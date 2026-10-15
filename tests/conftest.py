@@ -18,6 +18,7 @@ class FakeNeo4jClient:
     def __init__(self, available: bool = True, rows: list[dict] | None = None) -> None:
         self.available = available
         self.rows = rows or []
+        self.responses: list[list[dict]] = []
         self.queries: list[tuple[str, dict]] = []
 
     def is_available(self) -> bool:
@@ -25,8 +26,14 @@ class FakeNeo4jClient:
         return self.available
 
     def read(self, query: str, parameters: dict | None = None) -> list[dict]:
-        """Record the query and return the canned rows."""
+        """Record the query and return the next queued answer, or the canned rows.
+
+        Put one list per expected query in ``responses`` when an endpoint runs
+        several queries (for example a count query, then a page query).
+        """
         self.queries.append((query, parameters or {}))
+        if self.responses:
+            return self.responses.pop(0)
         return self.rows
 
     def close(self) -> None:
