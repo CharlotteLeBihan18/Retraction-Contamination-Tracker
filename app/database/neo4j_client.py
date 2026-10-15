@@ -55,14 +55,19 @@ class Neo4jClient:
         )
         return [record.data() for record in records]
 
-    def write(self, query: str, parameters: dict[str, Any] | None = None) -> None:
-        """Run a write query. Used by the ingestion scripts and by tests, never by endpoints."""
-        self._driver.execute_query(
+    def write(self, query: str, parameters: dict[str, Any] | None = None) -> list[dict[str, Any]]:
+        """Run a write query and return its records.
+
+        Used by the ingestion scripts, the tests, and GDS projections (which create
+        an in-memory graph). Endpoints never use it to change the data itself.
+        """
+        records, _, _ = self._driver.execute_query(
             query,
             parameters or {},
             database_=self._database,
             routing_=RoutingControl.WRITE,
         )
+        return [record.data() for record in records]
 
     def close(self) -> None:
         """Close the driver and its connection pool."""

@@ -36,6 +36,10 @@ class FakeNeo4jClient:
             return self.responses.pop(0)
         return self.rows
 
+    def write(self, query: str, parameters: dict | None = None) -> list[dict]:
+        """Record a write query; answers come from the same queue as reads."""
+        return self.read(query, parameters)
+
     def close(self) -> None:
         """Nothing to close."""
 
