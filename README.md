@@ -1,8 +1,7 @@
 # Retraction Contamination Tracker
 
-<!-- Replace YOUR-USERNAME/YOUR-REPO once the GitHub repository exists -->
-![Lint](https://github.com/YOUR-USERNAME/YOUR-REPO/actions/workflows/lint.yml/badge.svg)
-![Tests](https://github.com/YOUR-USERNAME/YOUR-REPO/actions/workflows/test.yml/badge.svg)
+![Lint](https://github.com/CharlotteLeBihan18/Retraction-Contamination-Tracker/actions/workflows/lint.yml/badge.svg)
+![Tests](https://github.com/CharlotteLeBihan18/Retraction-Contamination-Tracker/actions/workflows/test.yml/badge.svg)
 
 A graph-backed application that maps how retracted scientific papers spread through the
 citation network. Papers, citations and retractions are stored in Neo4j; a FastAPI service

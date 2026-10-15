@@ -8,7 +8,7 @@ from fastapi import FastAPI
 from app import __version__
 from app.config import get_settings
 from app.database import Neo4jClient
-from app.routers import health
+from app.routers import ask, audit, communities, health, journals, papers, retractions, risk
 
 
 @asynccontextmanager
@@ -29,4 +29,6 @@ app = FastAPI(
     lifespan=lifespan,
 )
 
-app.include_router(health.router)
+# Every router is registered here once, so nobody else needs to edit this file.
+for module in (health, papers, journals, retractions, communities, risk, ask, audit):
+    app.include_router(module.router)
