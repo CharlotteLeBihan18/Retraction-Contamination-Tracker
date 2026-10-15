@@ -1,0 +1,62 @@
+# Retraction Contamination Tracker - local stack
+#
+# Three services:
+#   neo4j  - graph database (GDS + APOC plugins), ports 7474 (browser) and 7687 (bolt)
+#   api    - FastAPI application, only reachable inside the Docker network
+#   nginx  - reverse proxy, the single public entry point for the API (port 80)
+
+services:
+  neo4j:
+    image: neo4j:5.26
+    container_name: rt-neo4j
+    environment:
+      NEO4J_AUTH: ${NEO4J_USER:-neo4j}/${NEO4J_PASSWORD:?Set NEO4J_PASSWORD in .env}
+      NEO4J_PLUGINS: '["apoc", "graph-data-science"]'
+      NEO4J_dbms_security_procedures_unrestricted: "gds.*,apoc.*"
+      NEO4J_server_memory_heap_max__size: 1G
+      NEO4J_server_memory_pagecache_size: 512M
+    ports:
+      - "7474:7474"
+      - "7687:7687"
+    volumes:
+      - neo4j_data:/data
+      - neo4j_plugins:/plugins
+    healthcheck:
+      test: ["CMD-SHELL", "cypher-shell -u $${NEO4J_AUTH%%/*} -p $${NEO4J_AUTH#*/} 'RETURN 1' || exit 1"]
+      interval: 10s
+      timeout: 10s
+      retries: 20
+      start_period: 40s
+
+  api:
+    build: .
+    image: ${API_IMAGE:-retraction-tracker-api:dev}
+    container_name: rt-api
+    env_file: .env
+    environment:
+      NEO4J_URI: bolt://neo4j:7687
+    expose:
+      - "8000"
+    depends_on:
+      neo4j:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/health')"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  nginx:
+    image: nginx:1.27-alpine
+    container_name: rt-nginx
+    ports:
+      - "${NGINX_PORT:-80}:80"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf:ro
+    depends_on:
+      api:
+        condition: service_healthy
+
+volumes:
+  neo4j_data:
+  neo4j_plugins:

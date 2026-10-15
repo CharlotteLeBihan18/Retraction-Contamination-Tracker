@@ -1,0 +1,6 @@
+# Runtime dependencies (installed in the Docker image)
+fastapi==0.143.1
+uvicorn[standard]==0.54.0
+neo4j==6.4.1
+pydantic==2.14.1
+pydantic-settings==2.16.0

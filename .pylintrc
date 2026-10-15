@@ -1,0 +1,29 @@
+[MAIN]
+# Fail the run (and CI) when the score drops below the course requirement
+fail-under=9.5
+ignore=.venv,venv,data
+jobs=0
+py-version=3.11
+
+[FORMAT]
+# Same line length as black (-l 120)
+max-line-length=120
+
+[MESSAGES CONTROL]
+disable=
+    # Pydantic models and small config classes legitimately have few methods
+    too-few-public-methods,
+    # FastAPI dependencies are injected through default arguments by design
+    unused-argument
+
+[DESIGN]
+max-args=7
+max-positional-arguments=7
+max-locals=20
+
+[BASIC]
+good-names=i,j,k,db,df,id,tx,_
+
+[REPORTS]
+reports=no
+score=yes
