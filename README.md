@@ -10,7 +10,8 @@ exposes graph queries, and an LLM component answers questions in plain English.
 The app reports **exposure and risk**, never that a paper is invalid: retraction is not
 contagious, and citing a retracted paper can mean mentioning, criticising or relying on it.
 
-> Status: milestone M1 (project skeleton). Sections marked *TODO* are filled in later milestones.
+> Status: in progress. Each section marked *TODO* names the team member who will write it
+> (roles and task lists are in the project proposal).
 
 ## Quick start
 
@@ -31,7 +32,7 @@ make docker-run             # start Neo4j, the API and Nginx
 Check that Neo4j and its plugins are ready:
 
 ```bash
-. .venv/bin/activate && python -m scripts.check_neo4j
+.venv/bin/python -m scripts.check_neo4j
 ```
 
 ## Makefile commands
@@ -56,7 +57,7 @@ Check that Neo4j and its plugins are ready:
 - **api** (built from `Dockerfile`): FastAPI service, reachable only inside the Docker network.
 - **nginx** (`nginx:1.27-alpine`): reverse proxy and the single public entry point (port 80), with rate limiting and security headers.
 
-*TODO (M6): architecture diagram.*
+*TODO (Person 1): architecture diagram.*
 
 ## Tests
 
@@ -70,16 +71,16 @@ In GitHub Actions, the test workflow starts its own Neo4j, so the Neo4j tests al
 
 ## Data sources
 
-*TODO (M2):* [Retraction Watch](https://crossref.org/documentation/retrieve-metadata/retraction-watch/) (via Crossref) and [OpenAlex](https://openalex.org/).
+*TODO (Person 2): describe and justify both sources.* [Retraction Watch](https://crossref.org/documentation/retrieve-metadata/retraction-watch/) (via Crossref) and [OpenAlex](https://openalex.org/).
 
 ## Graph schema and modeling rationale
 
-*TODO (M2/M6).*
+*TODO (Person 2): schema diagram, modeling decisions, rejected alternatives and the anti-genericity appendix.*
 
 ## API examples
 
-*TODO (M3).*
+*TODO (everyone): one example per endpoint, written by its owner (see the team table in the proposal).*
 
 ## LLM component and guardrails
 
-*TODO (M4).*
+*TODO (Person 3): how Ask and the audit agent work, each guardrail, and the evaluation results.*
