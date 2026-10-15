@@ -35,10 +35,5 @@ def top_spreaders(
         info, total, rows = rank_top_spreaders(db, limit=limit, offset=offset, refresh=refresh)
     except GraphNotReadyError as exc:
         raise HTTPException(status_code=status.HTTP_503_SERVICE_UNAVAILABLE, detail=str(exc)) from exc
-    return TopSpreadersResponse(
-        total=total,
-        limit=limit,
-        offset=offset,
-        graph=GraphSize(papers=info.node_count, links=info.relationship_count),
-        items=rows,
-    )
+    graph = GraphSize.from_projection(info)
+    return TopSpreadersResponse(total=total, limit=limit, offset=offset, graph=graph, items=rows)
