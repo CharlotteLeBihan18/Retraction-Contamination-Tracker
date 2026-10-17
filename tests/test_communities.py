@@ -61,6 +61,13 @@ def test_rejects_invalid_parameters_with_422(client, params):
     assert client.get(URL, params=params).status_code == 422
 
 
+@pytest.mark.parametrize("path", ["/api/retractions/top-spreaders", URL])
+def test_graph_cannot_be_rebuilt_from_a_public_request(client, path):
+    """Rebuilding the GDS graph is expensive, so only the loading script does it."""
+    parameters = client.get("/openapi.json").json()["paths"][path]["get"]["parameters"]
+    assert "refresh" not in [p["name"] for p in parameters]
+
+
 # ---------- Real Neo4j + GDS ----------
 
 # Two tight groups of 4 papers, each fully connected by citations, joined by a
