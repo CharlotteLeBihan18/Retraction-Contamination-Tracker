@@ -1,8 +1,15 @@
 .PHONY: help venv install run docker-build docker-run docker-down docker-logs test test-unit lint format clean tree
 
-PYTHON ?= python3
 VENV := .venv
-ACTIVATE := . $(VENV)/bin/activate
+# Windows (Git Bash) puts the virtualenv scripts in Scripts/ and names Python "python"
+ifeq ($(OS),Windows_NT)
+PYTHON ?= python
+VENV_BIN := $(VENV)/Scripts
+else
+PYTHON ?= python3
+VENV_BIN := $(VENV)/bin
+endif
+ACTIVATE := . $(VENV_BIN)/activate
 TAG ?= retraction-tracker-api:dev
 LINT_PATHS := app scripts
 
@@ -28,7 +35,7 @@ venv:
 		$(ACTIVATE) && pip install --upgrade pip; \
 		echo "Created $(VENV)"; \
 	else echo "$(VENV) already exists"; fi
-	@echo "To activate: source $(VENV)/bin/activate"
+	@echo "To activate: source $(VENV_BIN)/activate"
 
 install: venv
 	@$(ACTIVATE) && pip install -r requirements-dev.txt
