@@ -2,12 +2,19 @@
 
 from pydantic import BaseModel, Field
 
+from app.services.gds import ProjectionInfo
+
 
 class GraphSize(BaseModel):
     """Size of the in-memory citation graph the algorithm ran on."""
 
     papers: int
     links: int = Field(description="Directed and undirected copies of each citation")
+
+    @classmethod
+    def from_projection(cls, info: ProjectionInfo) -> "GraphSize":
+        """Build it from the projection returned by app.services.gds.ensure_projection."""
+        return cls(papers=info.node_count, links=info.relationship_count)
 
 
 class SpreaderPaper(BaseModel):

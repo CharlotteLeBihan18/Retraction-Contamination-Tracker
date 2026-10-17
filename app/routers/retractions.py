@@ -23,7 +23,6 @@ router = APIRouter(prefix="/api/retractions", tags=["graph algorithms"])
 def top_spreaders(
     limit: int = Query(10, ge=1, le=100, description="Papers per page"),
     offset: int = Query(0, ge=0, description="How many papers to skip (pagination)"),
-    refresh: bool = Query(False, description="Rebuild the in-memory graph first (after loading new data)"),
     db: Neo4jClient = Depends(get_db),
 ) -> TopSpreadersResponse:
     """Rank retracted papers by PageRank: how central they are in the citation network.
@@ -32,13 +31,8 @@ def top_spreaders(
     paper, so the damage from its retraction can spread the furthest.
     """
     try:
-        info, total, rows = rank_top_spreaders(db, limit=limit, offset=offset, refresh=refresh)
+        info, total, rows = rank_top_spreaders(db, limit=limit, offset=offset)
     except GraphNotReadyError as exc:
         raise HTTPException(status_code=status.HTTP_503_SERVICE_UNAVAILABLE, detail=str(exc)) from exc
-    return TopSpreadersResponse(
-        total=total,
-        limit=limit,
-        offset=offset,
-        graph=GraphSize(papers=info.node_count, links=info.relationship_count),
-        items=rows,
-    )
+    graph = GraphSize.from_projection(info)
+    return TopSpreadersResponse(total=total, limit=limit, offset=offset, graph=graph, items=rows)
