@@ -8,9 +8,15 @@ from fastapi import APIRouter, HTTPException, status
 router = APIRouter(prefix="/api/papers", tags=["machine learning"])
 
 NOT_READY = "Not implemented yet"
+NOT_READY_RESPONSE = {501: {"description": NOT_READY}}
 
 
-@router.get("/{paper_id}/risk", summary="Predicted probability that a paper is at risk", status_code=status.HTTP_200_OK)
+@router.get(
+    "/{paper_id}/risk",
+    summary="Predicted probability that a paper is at risk",
+    status_code=status.HTTP_200_OK,
+    responses=NOT_READY_RESPONSE,
+)
 def paper_risk(paper_id: str) -> dict:
     """Predicted probability that a paper is at risk. Returns 501 until implemented."""
     raise HTTPException(status_code=status.HTTP_501_NOT_IMPLEMENTED, detail=NOT_READY)
