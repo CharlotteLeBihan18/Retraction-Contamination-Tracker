@@ -11,8 +11,11 @@ project every ``Paper`` and every ``CITES`` relationship, twice:
 * ``CITES_UNDIRECTED`` ignores the direction. Louvain and FastRP need it: two
   papers belong to the same community whichever one cites the other.
 
-A projection is a snapshot. After new data is loaded, call
-``ensure_projection(db, refresh=True)`` so the algorithms see it.
+A projection is a snapshot. After new data is loaded, the loading script calls
+``drop_projection(db)``, and the next request builds a fresh one. An empty
+projection (no papers loaded yet) is never kept: it is dropped and
+``GraphNotReadyError`` is raised, so the API answers 503 instead of caching
+an empty graph that would be reused after the data arrives.
 """
 
 from dataclasses import dataclass
@@ -49,6 +52,9 @@ RETURN graphName, nodeCount, relationshipCount
 """
 
 
+NO_DATA = "No papers to analyse yet: load the data first"
+
+
 class GraphNotReadyError(RuntimeError):
     """Raised when there is no data to project yet (for example an empty database)."""
 
@@ -77,6 +83,14 @@ def drop_projection(db: Neo4jClient, name: str = GRAPH_NAME) -> None:
     db.write(DROP_QUERY, {"name": name})
 
 
+def _non_empty(db: Neo4jClient, info: ProjectionInfo) -> ProjectionInfo:
+    """Return the projection, or drop it and raise if it has no papers."""
+    if info.node_count == 0:
+        drop_projection(db, info.name)
+        raise GraphNotReadyError(NO_DATA)
+    return info
+
+
 def ensure_projection(
     db: Neo4jClient, name: str = GRAPH_NAME, label: str = "Paper", refresh: bool = False
 ) -> ProjectionInfo:
@@ -89,14 +103,16 @@ def ensure_projection(
     if refresh:
         drop_projection(db, name)
     elif projection_exists(db, name):
-        return _info(db.read(INFO_QUERY, {"name": name})[0])
+        return _non_empty(db, _info(db.read(INFO_QUERY, {"name": name})[0]))
 
     try:
         rows = db.write(PROJECT_QUERY, {"name": name, "label": label})
     except ClientError as exc:
+        # These error messages come from GDS 2.13 (see docker-compose.yml).
+        # Check them again if GDS is upgraded: a reworded message would skip these branches.
         if "already exists" in str(exc):  # another request projected it meanwhile
-            return _info(db.read(INFO_QUERY, {"name": name})[0])
+            return _non_empty(db, _info(db.read(INFO_QUERY, {"name": name})[0]))
         if "not found" in str(exc).lower() or "no nodes" in str(exc).lower():
-            raise GraphNotReadyError("No papers to analyse yet: load the data first") from exc
+            raise GraphNotReadyError(NO_DATA) from exc
         raise
-    return _info(rows[0])
+    return _non_empty(db, _info(rows[0]))

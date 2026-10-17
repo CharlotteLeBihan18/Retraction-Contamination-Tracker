@@ -44,6 +44,56 @@ def test_empty_database_raises_graph_not_ready(fake_db):
         gds.ensure_projection(fake_db)
 
 
+def test_empty_projection_is_dropped_not_cached(fake_db):
+    empty = {"graphName": "citations", "nodeCount": 0, "relationshipCount": 0}
+    fake_db.responses = [[{"exists": False}], [empty], []]
+    with pytest.raises(gds.GraphNotReadyError):
+        gds.ensure_projection(fake_db)
+    assert "gds.graph.drop" in fake_db.queries[-1][0]
+
+
+def test_cached_empty_projection_is_dropped(fake_db):
+    empty = {"graphName": "citations", "nodeCount": 0, "relationshipCount": 0}
+    fake_db.responses = [[{"exists": True}], [empty], []]
+    with pytest.raises(gds.GraphNotReadyError):
+        gds.ensure_projection(fake_db)
+    assert "gds.graph.drop" in fake_db.queries[-1][0]
+
+
+def test_reuses_projection_created_meanwhile_by_another_request(fake_db):
+    fake_db.responses = [[{"exists": False}], [INFO_ROW]]
+
+    def already_exists(*_args, **_kwargs):
+        raise ClientError("A graph with name 'citations' already exists.")
+
+    fake_db.write = already_exists
+    assert gds.ensure_projection(fake_db) == gds.ProjectionInfo("citations", 3, 6)
+
+
+def test_other_errors_are_not_hidden(fake_db):
+    fake_db.responses = [[{"exists": False}]]
+
+    def broken(*_args, **_kwargs):
+        raise ClientError("Something else went wrong")
+
+    fake_db.write = broken
+    with pytest.raises(ClientError):
+        gds.ensure_projection(fake_db)
+
+
+@pytest.mark.neo4j
+def test_label_with_no_papers_raises_and_leaves_no_projection(neo4j_client):
+    # The label exists but has no nodes left (like Paper after the data was deleted):
+    # GDS projects 0 nodes without error, and we must not keep that empty projection.
+    name = "test_empty"
+    gds.drop_projection(neo4j_client, name)
+    neo4j_client.write("CREATE (:EmptyTest)")
+    neo4j_client.write("MATCH (n:EmptyTest) DETACH DELETE n")
+    with pytest.raises(gds.GraphNotReadyError):
+        gds.ensure_projection(neo4j_client, name=name, label="EmptyTest")
+    assert not gds.projection_exists(neo4j_client, name)
+
+
 # ---------- Real Neo4j + GDS ----------
 
 # Three test papers: A cites B, B cites C. Projected under a separate name and
