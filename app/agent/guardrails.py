@@ -163,4 +163,4 @@ def run_validated(db: Neo4jClient, query: str, params: dict | None = None) -> li
         db.read(f"EXPLAIN {safe}", params)
     except ClientError as exc:
         raise GuardrailError("syntax", f"Neo4j refused the query: {exc.message}") from exc
-    return db.read(Query(safe, timeout=QUERY_TIMEOUT_S), params) 
+    return db.read(Query(safe, timeout=QUERY_TIMEOUT_S), params)
