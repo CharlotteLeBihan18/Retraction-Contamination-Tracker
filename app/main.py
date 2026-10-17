@@ -3,7 +3,9 @@
 from collections.abc import AsyncIterator
 from contextlib import asynccontextmanager
 
-from fastapi import FastAPI
+from fastapi import FastAPI, Request
+from fastapi.responses import JSONResponse
+from neo4j.exceptions import ServiceUnavailable
 
 from app import __version__
 from app.config import get_settings
@@ -28,6 +30,13 @@ app = FastAPI(
     version=__version__,
     lifespan=lifespan,
 )
+
+
+@app.exception_handler(ServiceUnavailable)
+async def database_unavailable(_request: Request, _exc: ServiceUnavailable) -> JSONResponse:
+    """Any endpoint: answer 503 with a clear message when Neo4j cannot be reached."""
+    return JSONResponse(status_code=503, content={"detail": "The graph database is not reachable, try again later"})
+
 
 # Every router is registered here once, so nobody else needs to edit this file.
 for module in (health, papers, journals, retractions, communities, risk, ask, audit):

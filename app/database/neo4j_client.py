@@ -55,6 +55,15 @@ class Neo4jClient:
         )
         return [record.data() for record in records]
 
+    def write(self, query: str, parameters: dict[str, Any] | None = None) -> None:
+        """Run a write query. Used by the ingestion scripts and by tests, never by endpoints."""
+        self._driver.execute_query(
+            query,
+            parameters or {},
+            database_=self._database,
+            routing_=RoutingControl.WRITE,
+        )
+
     def close(self) -> None:
         """Close the driver and its connection pool."""
         self._driver.close()
