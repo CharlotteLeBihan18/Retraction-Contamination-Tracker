@@ -9,6 +9,7 @@ import json
 
 import pytest
 
+from app.services import gds
 from scripts import ingest
 
 # --- Small helpers to build fake cache content -------------------------------------------------
@@ -201,17 +202,36 @@ def test_committed_cache_gives_consistent_rows():
 
 
 def test_load_creates_the_schema_before_any_data(fake_db):
-    fake_db.rows = [{"papers": 1}]
+    fake_db.rows = [{"papers": 1, "missing": 0}]
     rows = {"papers": [{"doi": "10.1/a"}], "notices": [], "authors": [], "citations": []}
 
     summary = ingest.load(fake_db, rows)
 
-    assert summary == {"papers": 1}
+    assert summary == {"papers": 1, "missing": 0}
     queries = [query for query, _ in fake_db.queries]
     schema_count = len(ingest.SCHEMA_STATEMENTS)
     assert queries[:schema_count] == ingest.SCHEMA_STATEMENTS
     assert queries[schema_count] == ingest.PAPERS_QUERY
     assert fake_db.queries[schema_count][1] == {"rows": [{"doi": "10.1/a"}]}
+
+
+def test_load_drops_the_gds_projection_after_the_data(fake_db):
+    fake_db.rows = [{"missing": 0}]
+    rows = {"papers": [{"doi": "10.1/a"}], "notices": [], "authors": [], "citations": []}
+
+    ingest.load(fake_db, rows)
+
+    queries = [query for query, _ in fake_db.queries]
+    assert queries.index(gds.DROP_QUERY) > queries.index(ingest.PAPERS_QUERY)
+    assert (gds.DROP_QUERY, {"name": gds.GRAPH_NAME}) in fake_db.queries
+
+
+def test_load_fails_when_a_citation_has_no_before_retraction(fake_db):
+    fake_db.rows = [{"missing": 3}]
+    rows = {"papers": [], "notices": [], "authors": [], "citations": []}
+
+    with pytest.raises(ingest.MissingFlagError, match="3 citations"):
+        ingest.load(fake_db, rows)
 
 
 def test_run_batches_sends_rows_by_batch_not_one_by_one(fake_db):

@@ -22,6 +22,7 @@ from neo4j.exceptions import Neo4jError
 
 from app.config import get_settings
 from app.database import Neo4jClient
+from app.services.gds import drop_projection
 from scripts.fetch_openalex import CACHE_DIR
 
 BATCH_SIZE = 500
@@ -84,6 +85,13 @@ MERGE (a)-[c:CITES]->(b)
 SET c.before_retraction = row.before_retraction
 """
 
+# A missing flag makes "before_retraction = false" null in Cypher: the citation would be silently ignored.
+MISSING_FLAG_QUERY = """
+MATCH (:Paper)-[c:CITES]->(:Paper:Retracted)
+WHERE c.before_retraction IS NULL
+RETURN count(c) AS missing
+"""
+
 SUMMARY_QUERY = """
 RETURN COUNT { (:Paper) } AS papers,
        COUNT { (:Paper:Retracted) } AS retracted,
@@ -93,6 +101,10 @@ RETURN COUNT { (:Paper) } AS papers,
        COUNT { (:Journal) } AS journals,
        COUNT { ()-[:CITES]->() } AS citations
 """
+
+
+class MissingFlagError(RuntimeError):
+    """Raised when a citation to a retracted paper has no before_retraction value."""
 
 
 def parse_rw_date(value: str | None) -> str | None:
@@ -271,12 +283,20 @@ def run_batches(client: Neo4jClient, query: str, rows: list[dict[str, Any]]) -> 
 
 
 def load(client: Neo4jClient, rows: dict[str, list[dict[str, Any]]]) -> dict[str, Any]:
-    """Create the schema, load every kind of row and return the counts found in the database."""
+    """Create the schema, load every kind of row and return the counts found in the database.
+
+    Afterwards the in-memory GDS graph is dropped, so the algorithms see the new data, and we check
+    that every citation to a retracted paper has its ``before_retraction`` flag.
+    """
     create_schema(client)
     run_batches(client, PAPERS_QUERY, rows["papers"])
     run_batches(client, NOTICES_QUERY, rows["notices"])
     run_batches(client, AUTHORS_QUERY, rows["authors"])
     run_batches(client, CITATIONS_QUERY, rows["citations"])
+    drop_projection(client)
+    missing = client.read(MISSING_FLAG_QUERY)[0]["missing"]
+    if missing:
+        raise MissingFlagError(f"{missing} citations to retracted papers have no before_retraction value")
     return client.read(SUMMARY_QUERY)[0]
 
 
@@ -303,7 +323,7 @@ def main(argv: list[str] | None = None) -> int:
             print("Neo4j is not reachable. Start the stack first: make docker-run")
             return 1
         summary = load(client, rows)
-    except Neo4jError as exc:
+    except (Neo4jError, MissingFlagError) as exc:
         print(f"Loading failed: {exc}")
         return 1
     finally:
