@@ -81,7 +81,30 @@ In GitHub Actions, the test workflow starts its own Neo4j, so the Neo4j tests al
 
 ## Data sources
 
-*TODO (Person 2): describe and justify both sources.* [Retraction Watch](https://crossref.org/documentation/retrieve-metadata/retraction-watch/) (via Crossref) and [OpenAlex](https://openalex.org/).
+We use two sources and join them on the DOI of each paper.
+
+- **[Retraction Watch](https://crossref.org/documentation/retrieve-metadata/retraction-watch/)** (a CSV, distributed through Crossref) tells us which papers were retracted, when, and why. We treat it as the reference for retractions. We used commit `5338abda2966b2da8b0a84e189f805867bfc5171` of the open dataset.
+- **[OpenAlex](https://openalex.org/)** (an API) gives us what Retraction Watch doesn't have: abstract, authors, journal, publication date and the list of works each paper cites.
+
+We only kept one field, Dentistry, so the graph stays small enough to explore and to explain during the demo.
+
+`python -m scripts.fetch_openalex` downloads everything into `data/cache/`. We commit that folder on purpose, so nobody needs an API key to rerun the project. `python -m scripts.ingest` then loads the cache into Neo4j. You can run it twice, you get the same graph (we use `MERGE`).
+
+### How we matched the two sources (and what we decided)
+
+Matching papers between two datasets is messy, so here is what we chose and why.
+
+- **Only real retractions.** Out of 519 Dentistry rows, 16 are not retractions (corrections, expressions of concern), so we dropped them.
+- **No DOI, no paper.** 46 rows had no DOI. The DOI is the only reliable key between the two sources, so we dropped them too. That leaves 457 papers.
+- **Fixing broken DOIs.** Some DOIs in the CSV were URL-encoded (`%3c` instead of `<`) or written twice in a row. We repair them and store everything in lowercase, otherwise OpenAlex doesn't find the paper.
+- **Matching by DOI only.** 453 of the 457 were found in OpenAlex. The 4 others are listed in `data/cache/manifest.json` and left out. We preferred losing 4 papers over guessing with fuzzy title matching and merging the wrong ones.
+- **When the sources disagree, Retraction Watch wins.** For 2 papers OpenAlex doesn't flag them as retracted, but Retraction Watch does, so they stay `Retracted`.
+- **One notice per source.** Each paper gets a `RetractionNotice` from Retraction Watch (with the date and the reasons) and one from OpenAlex (no date, OpenAlex doesn't give one). That way we keep track of who says what.
+- **Cleaning the reasons.** Retraction Watch writes them like `+Plagiarism;+Fake Peer Review;`. We split them into separate `Reason` nodes, shared between papers, so we can count and compare them.
+- **Journal names come from OpenAlex**, with the Retraction Watch name as a fallback. The citing papers also come from OpenAlex, so we get one spelling per journal.
+- **Authors without an OpenAlex id are skipped** (147 links out of 2115). Without an id, two people with the same name would end up merged.
+- **`before_retraction` is computed once, when loading.** We compare the full dates when we have them. If we only know the year and it is the same as the retraction year, we say "before". A citation is only called a zombie when we are sure it came after the retraction.
+- **Missing abstracts.** OpenAlex has no abstract for 91 of the 453 papers (362 have one). They are loaded with an empty abstract, so any search that only reads abstracts cannot find them. Searching on title + abstract fixes that.
 
 ## Graph schema and modeling rationale
 
