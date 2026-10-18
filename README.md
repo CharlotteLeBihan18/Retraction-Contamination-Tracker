@@ -94,6 +94,7 @@ Matching papers between two datasets is messy, so here is what we chose and why.
 - **Journal names come from OpenAlex**, with the Retraction Watch name as a fallback. The citing papers also come from OpenAlex, so we get one spelling per journal.
 - **Authors without an OpenAlex id are skipped** (147 links out of 2115). Without an id, two people with the same name would end up merged.
 - **`before_retraction` is computed once, when loading.** We compare the full dates when we have them. If we only know the year and it is the same as the retraction year, we say "before". A citation is only called a zombie when we are sure it came after the retraction.
+- **Missing abstracts.** OpenAlex has no abstract for 91 of the 453 papers (362 have one). They are loaded with an empty abstract, so any search that only reads abstracts cannot find them. Searching on title + abstract fixes that.
 
 ## Graph schema and modeling rationale
 
