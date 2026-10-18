@@ -76,7 +76,50 @@ def test_audit_case(monkeypatch):
 def test_run_all_and_markdown(monkeypatch):
     monkeypatch.setattr(ev, "answer_question", _fake_answer(GuardrailError("write", "no")))
     monkeypatch.setattr(ev, "run_audit", lambda *args, **kwargs: {"found_in": "nowhere", "steps": []})
-    table = ev.to_markdown(ev.run_all(None, None))
+    table = ev.to_markdown(ev.run_all(None, None, rate_limit_wait=0))
     assert table.count("\n| ") == 21  # header separator + 20 rows
-    assert "5 were refused by the guardrails" in table 
-    
+    assert "5 were refused by the guardrails" in table
+
+
+def test_rate_limit_is_retried(monkeypatch):
+    replies = [LLMUnavailableError("The LLM provider failed: GoogleRateLimitError"), _response("llm_cypher", [])]
+
+    def answer(_question, _db, _llm):
+        reply = replies.pop(0)
+        if isinstance(reply, Exception):
+            raise reply
+        return reply
+
+    monkeypatch.setattr(ev, "answer_question", answer)
+    result = ev.run_with_retry(ev.run_ask_case, ev.AskCase("q", "llm_cypher"), None, None, wait=0)
+    assert result.ok and not replies
+
+
+def test_gives_up_after_max_attempts(monkeypatch):
+    calls = []
+
+    def answer(_question, _db, _llm):
+        calls.append(1)
+        raise LLMUnavailableError("GoogleRateLimitError")
+
+    monkeypatch.setattr(ev, "answer_question", answer)
+    result = ev.run_with_retry(ev.run_ask_case, ev.AskCase("q", "llm_cypher"), None, None, wait=0)
+    assert result.got == "LLM error" and len(calls) == ev.MAX_ATTEMPTS
+
+
+def test_audit_flags_llm_failures_inside_steps(monkeypatch):
+    steps = [{"tool": "find_paper", "result": "ok"}, {"tool": "judge_reliance", "result": "GoogleRateLimitError"}]
+    monkeypatch.setattr(ev, "run_audit", lambda *a, **k: {"found_in": "graph", "retracted": True, "steps": steps})
+    result = ev.run_audit_case(ev.AuditCase(ev.RETRACTED, "graph", retracted=True), None, None)
+    assert "LLM failed in 1 step(s)" in result.detail
+
+
+def test_summary_does_not_count_llm_errors_as_declined():
+    results = [
+        ev.Result("ask", "q1", "refused", "refused (write)", True),
+        ev.Result("ask", "q2", "refused", "LLM declined (llm_cypher)", True),
+        ev.Result("ask", "q3", "refused", "LLM error", False),
+    ]
+    summary = ev.to_markdown(results).splitlines()[-1]
+    assert "1 were refused by the guardrails and 1 were declined" in summary
+    assert "1 case(s) could not run" in summary
