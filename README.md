@@ -57,7 +57,17 @@ Check that Neo4j and its plugins are ready:
 - **api** (built from `Dockerfile`): FastAPI service, reachable only inside the Docker network.
 - **nginx** (`nginx:1.27-alpine`): reverse proxy and the single public entry point (port 80), with rate limiting and security headers.
 
-*TODO (Person 1): architecture diagram.*
+![Architecture: services, ports and data flows](docs/architecture.png)
+
+How to read it (the numbers match the arrows):
+
+1. **User requests** go to Nginx on port 80, which forwards them to the API on port 8000. The API is never exposed directly.
+2. **AI requests** (`/api/ask` and `/api/audit` only) make the API call the LLM provider over HTTPS.
+3. **Loading the data** runs once, not on each request: the scripts fetch Retraction Watch and OpenAlex, cache the raw files in `data/cache/`, then write them into Neo4j, with an embedding of each abstract for vector search. `/api/ask` embeds the question with the same model, otherwise the vector search would silently return unrelated papers.
+4. **Developers** can inspect the graph in the Neo4j Browser on port 7474.
+5. **Delivery**: every push runs lint and tests in GitHub Actions, and the API image is published on Docker Hub.
+
+The graph algorithms (PageRank, Louvain, FastRP) run on a GDS in-memory copy of the citation graph, built on the first request and dropped by the loading script after new data is loaded. The diagram source is `docs/architecture.drawio` (open it with [diagrams.net](https://app.diagrams.net)).
 
 ## Tests
 
@@ -84,3 +94,17 @@ In GitHub Actions, the test workflow starts its own Neo4j, so the Neo4j tests al
 ## LLM component and guardrails
 
 *TODO (Person 3): how Ask and the audit agent work, each guardrail, and the evaluation results.*
+
+## Merged pull requests
+
+Every change goes through a pull request reviewed by another team member (at least 2 constructive comments each). The full list is in the [closed pull requests](https://github.com/CharlotteLeBihan18/Retraction-Contamination-Tracker/pulls?q=is%3Apr+is%3Amerged).
+
+| PR | What it adds | Author | Reviewer |
+| --- | --- | --- | --- |
+| [#1](https://github.com/CharlotteLeBihan18/Retraction-Contamination-Tracker/pull/1) | Placeholder files for every endpoint | Person 1 | Person 3 |
+| [#2](https://github.com/CharlotteLeBihan18/Retraction-Contamination-Tracker/pull/2) | Zombie citations endpoint | Person 1 | Person 3 |
+| [#3](https://github.com/CharlotteLeBihan18/Retraction-Contamination-Tracker/pull/3) | GDS in-memory projection | Person 1 | Person 3 |
+| [#4](https://github.com/CharlotteLeBihan18/Retraction-Contamination-Tracker/pull/4) | Top spreaders endpoint (PageRank) | Person 1 | Person 3 |
+| [#5](https://github.com/CharlotteLeBihan18/Retraction-Contamination-Tracker/pull/5) | Communities endpoint (Louvain) | Person 1 | Person 3 |
+
+*To avoid Git conflicts, only Person 1 edits this file: each author writes their row in their pull request description, and Person 1 adds the rows together.*
