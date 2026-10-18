@@ -6,8 +6,8 @@ constraints and indexes, then loads the retracted papers, their notices, reasons
 journals, then the papers that cite them (with their authors, journals and citations).
 
 A citing paper is a plain ``Paper``: only Retraction Watch makes a paper ``Retracted``. OpenAlex's
-own ``is_retracted`` flag is not used for the citing papers, because it has known errors and
-carries no retraction date.
+``is_retracted`` flag has no date and no reasons, so it doesn't give the label. It is kept as the
+property ``openalex_retracted`` on the citing paper, so the information is not lost.
 
 Every write is a ``MERGE``, so running the script twice gives the same graph.
 
@@ -95,7 +95,8 @@ MERGE (p:Paper {openalex_id: row.openalex_id})
 SET p.doi = row.doi,
     p.title = row.title,
     p.year = row.year,
-    p.publication_date = date(row.publication_date)
+    p.publication_date = date(row.publication_date),
+    p.openalex_retracted = row.openalex_retracted
 """
 
 CITER_JOURNALS_QUERY = """
@@ -317,6 +318,7 @@ def citer_rows(
                 "title": work.get("title"),
                 "year": work.get("publication_year"),
                 "publication_date": work.get("publication_date"),
+                "openalex_retracted": bool(work.get("is_retracted")),
             }
         )
         if work.get("journal"):

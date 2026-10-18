@@ -229,7 +229,7 @@ def test_citer_rows_skips_retracted_papers_duplicate_dois_and_unknown_targets():
     assert [(c["citing"], c["cited"]) for c in rows["citer_citations"]] == [("W10", "W1")]
 
 
-def test_citer_rows_leaves_out_missing_journals_and_ignores_openalex_retracted_flag():
+def test_citer_rows_leaves_out_missing_journals_and_keeps_openalex_flag_as_property():
     selection, works = retracted_set()
     citers = {"W10": make_citer("W10", "10.2/x", ["W1"], journal=None, is_retracted=True, authors=[])}
 
@@ -237,7 +237,9 @@ def test_citer_rows_leaves_out_missing_journals_and_ignores_openalex_retracted_f
 
     assert rows["citer_journals"] == []
     assert rows["citer_authors"] == []
-    assert set(rows["citer_papers"][0]) == {"openalex_id", "doi", "title", "year", "publication_date"}
+    paper = rows["citer_papers"][0]
+    assert set(paper) == {"openalex_id", "doi", "title", "year", "publication_date", "openalex_retracted"}
+    assert paper["openalex_retracted"] is True  # kept as a property, never as the Retracted label
 
 
 def test_build_rows_without_citers_has_empty_citer_lists():
@@ -544,6 +546,8 @@ def test_load_citers_into_neo4j_is_complete_and_idempotent(clean_citers):
     )
     assert clean_citers.read(papers, ids) == [{"n": 2, "with_doi": 1}]
     assert clean_citers.read(labels, ids) == [{"n": 0}]  # citing papers are never labelled Retracted
+    flagged = "MATCH (p:Paper) WHERE p.openalex_id IN $ids RETURN count(p.openalex_retracted) AS n"
+    assert clean_citers.read(flagged, ids) == [{"n": 2}]  # the property is set on every citing paper
     assert clean_citers.read(cites, {**ids, "doi": TEST_DOIS[0]}) == [
         {"citing": CITER_IDS[0], "flag": False},  # published after the 2019 retraction
         {"citing": CITER_IDS[1], "flag": True},
