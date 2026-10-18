@@ -214,4 +214,3 @@ def run_audit(doi: str, db: Neo4jClient, llm: LLM, save_hypotheses: bool = True)
     """Run the agent on one DOI and return its final state."""
     agent = build_audit_graph(db, llm)
     return agent.invoke({"doi": tools.normalize_doi(doi), "save_hypotheses": save_hypotheses, "steps": []})
-
