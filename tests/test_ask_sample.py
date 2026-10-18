@@ -44,6 +44,9 @@ def test_contamination_of_the_fluoride_trial(sample_db):
               "10.0000/sample.025"}
     assert {d for d, h in hops.items() if h == 1} == direct
     assert {d for d, h in hops.items() if h == 2} == {"10.0000/sample.021", "10.0000/sample.022"}
+    # 011 and 012 cited the trial before its 2019 retraction; 013, 014 and 025 after it (zombie citations).
+    before = {r["doi"][-3:]: r["before_retraction"] for r in rows if r["hops"] == 1}
+    assert before == {"011": True, "012": True, "013": False, "014": False, "025": False}
 
 
 def test_most_cited_retracted_papers(sample_db):

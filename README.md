@@ -130,7 +130,7 @@ LLM_MODEL=gemini-3.8-flash    # any Flash / Flash-Lite model works
 
 Temperature is 0, so the same question gives the same answer, which makes testing and the demo repeatable. Every call goes through one small function (`app/agent/llm.py`), so tests replace the LLM with a fake and never touch the network. If the key is missing or the quota is exceeded, the endpoints answer **503** instead of crashing.
 
-Free-tier note: We use the paid tier (prepaid credits, no automatic top-up, so spending is capped). Paid-tier prompts are not used to train Google's models, and the higher rate limits keep the demo and the evaluation from being throttled.
+Paid tier: we use the paid tier (prepaid credits, no automatic top-up, so spending is capped). Paid-tier prompts are not used to train Google's models, and the higher rate limits keep the demo and the evaluation from being throttled.
 
 ### `/api/ask`: a question in plain English becomes a safe graph query
 
@@ -182,7 +182,7 @@ locate ──► (not found) ─────────────────
 ```
 
 1. **locate:** find the paper in our graph, or else on OpenAlex
-2. **exposure** (normal paper): retracted papers it relies on, up to 2 citation steps away. **contamination** (retracted paper): papers that built on it
+2. **exposure** (normal paper): retracted papers it relies on, up to 2 citation steps away. **contamination** (retracted paper): papers that built on it, with `before_retraction` on each direct citation, so the report can count the zombie citations (made after the retraction)
 3. **judge:** for each *direct* citation, Gemini reads the citing paper's abstract and decides whether it **relies on**, only **mentions**, or **criticizes** the retracted work, with a confidence and a sentence quoted from the abstract. Capped at 5 LLM calls per audit.
 4. **report:** a short summary written by Gemini from the findings only
 
@@ -190,7 +190,7 @@ The response separates **facts** (`exposure`, `contamination`) from **hypotheses
 
 **Tools:** `find_paper`, `exposure_check`, `contamination_check`, `safe_cypher` (same guardrails as /ask), `openalex_lookup`, `judge_reliance`. Each result is tagged with its `source` (graph, openalex, llm) and `kind` (fact, hypothesis). Tools never crash the agent: a failure is recorded as a step and the audit continues.
 
-**RELIES_ON links (AI hypotheses).** A judgement is saved as a `RELIES_ON` relationship only when:
+**RELIES_ON links (AI hypotheses).** Saving is opt-in: by default an audit never changes the graph. With `"save_hypotheses": true` in the request, a judgement is saved as a `RELIES_ON` relationship only when:
 - the verdict is `relies_on` with confidence ≥ 0.6, **and**
 - the quoted sentence really appears in the abstract (otherwise the verdict becomes `unclear`: our anti-hallucination check), **and**
 - a real `CITES` link exists between the two papers in our data.
