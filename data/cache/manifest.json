@@ -1,0 +1,23 @@
+{
+  "fetched_on": "2026-10-17",
+  "subject": "Dentistry",
+  "retraction_watch_commit": "5338abda2966b2da8b0a84e189f805867bfc5171",
+  "filters": {
+    "rows_in_field": 519,
+    "not_a_retraction": 16,
+    "no_doi": 46,
+    "duplicate_doi": 0,
+    "kept": 457
+  },
+  "requested": 457,
+  "found_in_openalex": 453,
+  "missing_in_openalex": [
+    "10.1002/14651858.cd006698.pub",
+    "10.11259/jsg.35.287",
+    "10.4103/0301-5742.179941",
+    "10.4314/jfas.v10i6s.214"
+  ],
+  "returned_but_not_requested": [
+    "10.1177/0974909820160204"
+  ]
+}
