@@ -10,6 +10,7 @@ from neo4j import Driver, GraphDatabase
 from neo4j.exceptions import Neo4jError, ServiceUnavailable
 
 from app.config import Settings, get_settings
+from app.services.gds import DROP_QUERY, GRAPH_NAME
 
 SAMPLE_FILE = Path(__file__).resolve().parent.parent / "data" / "sample" / "sample.cypher"
 
@@ -34,11 +35,14 @@ def open_driver(settings: Settings) -> Driver:
 def load_sample(driver: Driver, database: str, path: Path = SAMPLE_FILE) -> int:
     """Run every statement of the sample file and return how many were run.
 
-    The file starts by deleting the previous sample nodes, so running it twice is safe.
+    The file starts by deleting the previous sample nodes, so running it twice is safe. Once the
+    data is in, the in-memory GDS graph is dropped: otherwise Top spreaders and Communities would
+    keep using the old snapshot and would not see the sample.
     """
     statements = read_statements(path)
     for statement in statements:
         driver.execute_query(statement, database_=database)
+    driver.execute_query(DROP_QUERY, {"name": GRAPH_NAME}, database_=database)
     return len(statements)
 
 

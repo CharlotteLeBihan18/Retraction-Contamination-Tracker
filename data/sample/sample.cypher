@@ -1,7 +1,10 @@
 // Sample graph for tests and demos (invented data, ~20 papers, dentistry theme).
 // Everything created here has sample = true, so it can be removed with:
 //   MATCH (n {sample: true}) DETACH DELETE n;
+// Exception: Reason nodes are shared by name with the real data, so they are never flagged.
+// After the delete, only the reasons that no notice uses any more are removed.
 MATCH (n {sample: true}) DETACH DELETE n;
+MATCH (r:Reason) WHERE NOT (r)<-[:FOR_REASON]-() DELETE r;
 
 CREATE CONSTRAINT paper_doi IF NOT EXISTS FOR (p:Paper) REQUIRE p.doi IS UNIQUE;
 CREATE CONSTRAINT author_id IF NOT EXISTS FOR (a:Author) REQUIRE a.openalex_id IS UNIQUE;
@@ -72,7 +75,6 @@ CREATE (n)-[:RETRACTS]->(p)
 WITH n, row
 UNWIND row.reasons AS reason
 MERGE (r:Reason {name: reason})
-SET r.sample = true
 MERGE (n)-[:FOR_REASON]->(r);
 
 // Citations (before_retraction only for citations that point at retracted papers)
