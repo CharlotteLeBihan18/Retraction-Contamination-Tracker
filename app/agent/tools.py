@@ -1,3 +1,4 @@
+
 """Tools the audit agent can call. Each one returns a plain dict the agent can read.
 
 Owner: Person 3. Only the owner edits this file.
@@ -44,6 +45,7 @@ RETURN p.doi AS doi, p.title AS title, p.year AS year, p:Retracted AS retracted
 ORDER BY p.year DESC
 LIMIT 5
 """
+ABSTRACT_QUERY = "MATCH (p:Paper {doi: $doi}) RETURN p.abstract AS abstract"
 SAVE_RELIES_ON = """
 MATCH (c:Paper {doi: $citing})-[:CITES]->(r:Paper:Retracted {doi: $retracted})
 MERGE (c)-[x:RELIES_ON]->(r)
@@ -65,7 +67,8 @@ Answer with ONE JSON object and nothing else:
 If no sentence supports a verdict, answer "unclear" with "evidence": ""."""
 
 
-def _normalize_doi(doi: str) -> str:
+def normalize_doi(doi: str) -> str:
+    """Lowercase a DOI and strip "https://doi.org/" or "doi:" so it matches the graph."""
     doi = doi.strip().lower()
     for prefix in ("https://doi.org/", "http://doi.org/", "doi:"):
         if doi.startswith(prefix):
@@ -87,21 +90,29 @@ def _graph(db: Neo4jClient, cypher: str, params: dict[str, Any]) -> dict[str, An
 def find_paper(db: Neo4jClient, doi: str = "", title: str = "") -> dict[str, Any]:
     """Find a paper in our graph by DOI (exact) or by part of its title (up to 5 matches)."""
     if doi:
-        return _graph(db, FIND_BY_DOI, {"doi": _normalize_doi(doi)})
+        return _graph(db, FIND_BY_DOI, {"doi": normalize_doi(doi)})
     if title.strip():
         return _graph(db, FIND_BY_TITLE, {"title": title.strip()})
     return {"error": "Give a DOI or a title"}
 
 
+def get_abstract(db: Neo4jClient, doi: str) -> str:
+    """The abstract stored in our graph, or "" when the paper or its abstract is missing."""
+    result = _graph(db, ABSTRACT_QUERY, {"doi": normalize_doi(doi)})
+    rows = result.get("rows") or []
+    abstract = rows[0].get("abstract") if rows else None
+    return abstract if isinstance(abstract, str) else ""
+
+
 def exposure_check(db: Neo4jClient, doi: str, depth: int = 2) -> dict[str, Any]:
     """Retracted papers this paper relies on through citations, within ``depth`` steps (max 3)."""
-    cypher, params = build_template({"intent": "exposure", "doi": _normalize_doi(doi), "depth": depth})
+    cypher, params = build_template({"intent": "exposure", "doi": normalize_doi(doi), "depth": depth})
     return _graph(db, cypher, params)
 
 
 def contamination_check(db: Neo4jClient, doi: str, depth: int = 2) -> dict[str, Any]:
     """Papers that built on this RETRACTED paper, within ``depth`` citation steps (max 3)."""
-    cypher, params = build_template({"intent": "contamination", "doi": _normalize_doi(doi), "depth": depth})
+    cypher, params = build_template({"intent": "contamination", "doi": normalize_doi(doi), "depth": depth})
     return _graph(db, cypher, params)
 
 
@@ -123,7 +134,7 @@ def _abstract(inverted_index: dict[str, list[int]] | None) -> str:
 
 def openalex_lookup(doi: str) -> dict[str, Any]:
     """Fetch a paper from OpenAlex when it is not in our graph (title, year, retraction flag, abstract)."""
-    doi = _normalize_doi(doi)
+    doi = normalize_doi(doi)
     if not DOI_PATTERN.match(doi):
         return {"error": f"Not a valid DOI: {doi!r}"}
     url = OPENALEX_URL.format(doi=urllib.parse.quote(doi, safe="/"))
@@ -192,8 +203,8 @@ def save_relies_on(db: Neo4jClient, citing_doi: str, retracted_doi: str, judgeme
     rows = db.write(
         SAVE_RELIES_ON,
         {
-            "citing": _normalize_doi(citing_doi),
-            "retracted": _normalize_doi(retracted_doi),
+            "citing": normalize_doi(citing_doi),
+            "retracted": normalize_doi(retracted_doi),
             "confidence": judgement["confidence"],
             "evidence": judgement["evidence"],
             "verdict": judgement["verdict"],

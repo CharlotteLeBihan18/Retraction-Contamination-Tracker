@@ -24,7 +24,7 @@ def test_endpoint_is_registered(client, method, path):
 
 
 @pytest.mark.parametrize(
-    "path", ["/api/audit", "/api/papers/{paper_id}/contamination", "/api/papers/{paper_id}/risk"]
+    "path", [ "/api/papers/{paper_id}/contamination", "/api/papers/{paper_id}/risk"]
 )
 def test_placeholders_document_their_501(client, path):
     operation = next(iter(client.get("/openapi.json").json()["paths"][path].values()))
