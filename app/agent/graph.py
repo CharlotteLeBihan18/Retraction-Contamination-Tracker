@@ -38,7 +38,8 @@ MAX_REPORT_INPUT = 12000  # characters of findings sent to the LLM
 
 REPORT_PROMPT = """You write a short integrity report (at most 5 sentences) about one scientific paper.
 Use ONLY the JSON findings given. Separate clearly:
-- FACTS: what the citation graph shows (retraction status, exposure, contamination)
+- FACTS: what the citation graph shows (retraction status, exposure, contamination, and how many
+  direct citations came after the retraction: before_retraction=false, "zombie citations")
 - HYPOTHESES: the AI judgements about reliance, with their confidence
 Never say a paper is invalid, fraudulent or should be retracted: talk about exposure and risk.
 If nothing was found, say so."""
@@ -127,8 +128,10 @@ class AuditAgent:
         direct = _direct(rows)
         title = (state.get("paper") or {}).get("title") or ""
         to_judge = [{"citing": r["doi"], "retracted": doi, "retracted_title": title} for r in direct]
+        zombies = sum(r.get("before_retraction") is False for r in direct)
         summary = result.get("error") or (
-            f"{len(rows)} paper(s) built on it within {DEPTH} steps, {len(direct)} directly"
+            f"{len(rows)} paper(s) built on it within {DEPTH} steps, {len(direct)} directly, "
+            f"{zombies} of them after the retraction (zombie citations)"
         )
         step = _step("contamination_check", {"doi": doi, "depth": DEPTH}, summary)
         return {"contamination": rows, "to_judge": to_judge, "steps": step}
@@ -210,7 +213,7 @@ def _fallback_report(state: AuditState) -> str:
     return f"This paper is not retracted. It relies on {exposed} retracted paper(s) within {DEPTH} steps."
 
 
-def run_audit(doi: str, db: Neo4jClient, llm: LLM, save_hypotheses: bool = True) -> AuditState:
+def run_audit(doi: str, db: Neo4jClient, llm: LLM, save_hypotheses: bool = False) -> AuditState:
     """Run the agent on one DOI and return its final state."""
     agent = build_audit_graph(db, llm)
     return agent.invoke({"doi": tools.normalize_doi(doi), "save_hypotheses": save_hypotheses, "steps": []})
