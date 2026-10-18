@@ -19,6 +19,9 @@ SAFE_QUERIES = [
     "MATCH path = shortestPath((a:Paper)-[:CITES*..3]->(b:Paper:Retracted)) RETURN path",
     "CALL db.index.vector.queryNodes('abstracts', 5, $vector) YIELD node RETURN node.title",
     "MATCH (p:Paper) RETURN p.title // delete this later",
+    "MATCH (p:Paper) WHERE p.title = 'How to SET up a lab' RETURN p.title",
+    "MATCH (p:Paper) WHERE p.title CONTAINS 'a; b' RETURN p.title",
+    "MATCH (p:Paper) WHERE p.title CONTAINS 'created by' RETURN p.title",
 ]
 
 
@@ -50,6 +53,12 @@ REFUSED_QUERIES = [
     ("MATCH (p:Paper) RETURN p; MATCH (n) DETACH DELETE n", "shape"),
     ("MATCH (p:`Paper`) RETURN p", "shape"),
     ("   ", "shape"),
+    ("MATCH (p:Paper)-[:CITES|RETRACTS*1..10]->(q:Paper) RETURN q", "cost"),
+    ("MATCH (p:Paper)-[*1..10]->(q:Paper) RETURN q", "cost"),
+    ("MATCH path = shortestPath((a:Paper)-[:CITES*]->(b:Paper)) RETURN path", "cost"),
+    ("MATCH (p:Paper:Person) RETURN p", "schema"),
+    ("MATCH (p:paper) RETURN p", "schema"),
+    ("CALL db.labels()", "procedure"),
 ]
 
 
