@@ -1,8 +1,8 @@
 """Tests for scripts/ingest.py.
 
 Most tests need no database: the pure functions are tested directly and the Neo4j calls go
-through the FakeNeo4jClient from conftest.py. The last tests (marked ``neo4j``) run the real
-queries on a real database and are skipped when Neo4j is not running.
+through the FakeNeo4jClient from conftest.py. The last test (marked ``neo4j``) runs the real
+queries on a real database and is skipped when Neo4j is not running.
 """
 
 import json
@@ -33,7 +33,7 @@ def make_work(openalex_id: str, doi: str, **overrides) -> dict:
     return work
 
 
-def make_selection(doi: str, date: str = "3/15/2020 0:00", reasons: list[str] | None = None) -> dict:
+def make_selection(doi: str, date: str | None = "2020-03-15", reasons: list[str] | None = None) -> dict:
     """A minimal row of retraction_watch_selection.json."""
     return {
         "record_id": "1",
@@ -46,21 +46,6 @@ def make_selection(doi: str, date: str = "3/15/2020 0:00", reasons: list[str] | 
 
 
 # --- Pure functions ----------------------------------------------------------------------------
-
-
-@pytest.mark.parametrize(
-    "raw, expected",
-    [
-        ("3/15/2025 0:00", "2025-03-15"),
-        ("10/1/2026 0:00", "2026-10-01"),
-        ("1/1/1900 0:00", None),  # Retraction Watch's placeholder for "unknown"
-        ("", None),
-        (None, None),
-        ("not a date", None),
-    ],
-)
-def test_parse_rw_date(raw, expected):
-    assert ingest.parse_rw_date(raw) == expected
 
 
 def test_short_id_removes_the_openalex_url():
@@ -142,8 +127,8 @@ def test_paper_row_falls_back_to_retraction_watch_title():
 
 def test_build_rows_links_papers_and_flags_citations():
     selection = [
-        make_selection("10.1/old", date="1/1/2015 0:00"),
-        make_selection("10.1/new", date="1/1/2030 0:00"),
+        make_selection("10.1/old", date="2015-01-01"),
+        make_selection("10.1/new", date="2030-01-01"),
         make_selection("10.1/missing"),  # not found in OpenAlex
     ]
     works = {

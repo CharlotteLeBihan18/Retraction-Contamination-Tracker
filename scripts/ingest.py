@@ -14,7 +14,6 @@ import argparse
 import json
 import sys
 from collections.abc import Iterator
-from datetime import datetime
 from pathlib import Path
 from typing import Any
 
@@ -28,8 +27,6 @@ from scripts.fetch_openalex import CACHE_DIR
 BATCH_SIZE = 500
 OPENALEX_PREFIX = "https://openalex.org/"
 DOI_PREFIX = "https://doi.org/"
-# Retraction Watch writes 1/1/1900 when the retraction date is unknown
-UNKNOWN_DATE_YEAR = 1900
 
 # Same names as data/sample/sample.cypher, so loading both never creates duplicates.
 SCHEMA_STATEMENTS = [
@@ -105,18 +102,6 @@ RETURN COUNT { (:Paper) } AS papers,
 
 class MissingFlagError(RuntimeError):
     """Raised when a citation to a retracted paper has no before_retraction value."""
-
-
-def parse_rw_date(value: str | None) -> str | None:
-    """Turn a Retraction Watch date (``'3/15/2025 0:00'``) into ISO ``'2025-03-15'``.
-
-    Returns None when the value is empty, malformed or the 1900 placeholder for "unknown".
-    """
-    try:
-        parsed = datetime.strptime(value.strip(), "%m/%d/%Y %H:%M")
-    except (ValueError, AttributeError):
-        return None
-    return None if parsed.year <= UNKNOWN_DATE_YEAR else parsed.date().isoformat()
 
 
 def short_id(url: str) -> str:
@@ -205,7 +190,7 @@ def notice_rows(row: dict[str, Any], work: dict[str, Any]) -> list[dict[str, Any
         {
             "doi": row["doi"],
             "source": "Retraction Watch",
-            "date": parse_rw_date(row["retraction_date"]),
+            "date": row["retraction_date"],
             "reasons": row["reasons"],
         }
     ]
@@ -261,7 +246,7 @@ def build_rows(selection: list[dict[str, Any]], works: dict[str, dict[str, Any]]
         papers.append(paper_row(row, work))
         notices.extend(notice_rows(row, work))
         authors.extend(author_rows(row["doi"], work))
-    retraction_dates = {row["doi"]: parse_rw_date(row["retraction_date"]) for row in kept}
+    retraction_dates = {row["doi"]: row["retraction_date"] for row in kept}
     return {
         "papers": papers,
         "notices": notices,
