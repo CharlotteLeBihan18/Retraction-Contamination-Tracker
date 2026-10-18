@@ -142,38 +142,46 @@ chains that go through another retracted paper.
 
 ## Comparison with a basic AI-generated schema
 
-To check that our model is more than the obvious answer, we asked an AI assistant for a schema with only this
-one-line prompt, without our data or our questions:
+To check that our model is more than the obvious answer, we gave the free version of ChatGPT this one-line
+prompt, in a new conversation, without our data or our questions:
 
 > Design a Neo4j graph schema for a project that tracks retracted scientific papers and the papers that cite them.
 > List the node labels, relationship types and properties.
 
 Its answer, summarised:
 
-- Nodes: `Paper {id, doi, title, year, abstract, isRetracted, retractionDate, retractionReason}`,
-  `Author {name, affiliation}`, `Journal {name, issn}`, `Keyword {name}`
-- Relationships: `(:Author)-[:WROTE]->(:Paper)`, `(:Paper)-[:PUBLISHED_IN]->(:Journal)`,
-  `(:Paper)-[:CITES]->(:Paper)`, `(:Paper)-[:HAS_KEYWORD]->(:Keyword)`
-- An index on `Paper.doi`
+- Nodes: `Paper {doi, title, publicationDate, journal, abstract, url}`,
+  `Retraction {date, reason, noticeUrl, retractionType, status}`,
+  `Author {authorId, name, orcid, affiliation}`, `Journal {name, issn, publisher}`
+- Relationships: `(:Paper)-[:CITES {context, section, citationDate}]->(:Paper)`,
+  `(:Paper)-[:HAS_RETRACTION {source, recordedAt}]->(:Retraction)`,
+  `(:Author)-[:AUTHORED {authorOrder, corresponding}]->(:Paper)`,
+  `(:Paper)-[:PUBLISHED_IN {volume, issue, pages}]->(:Journal)`
+- Unique constraints on `Paper.doi`, `Author.authorId` and `Journal.issn`
+- A closing remark: a paper may cite another one *before* it is retracted, so publication and retraction dates
+  should be kept apart.
 
-It is a reasonable start, and it gets the core right: papers, authors, journals and a `CITES` relationship.
-Here is what goes wrong with our data and our questions:
+**What it gets right, and what we share with it.** Retractions are a separate node instead of a boolean on the
+paper (our `RetractionNotice`), the source of a retraction is recorded, authors have a stable id instead of their
+name, `CITES` points from the citing paper to the cited one, and DOIs are unique. It even raises the
+before/after-retraction problem on its own.
+
+**Where it does not fit our data and our questions:**
 
 | Basic schema | What happens with our data | Our model |
 | --- | --- | --- |
-| `isRetracted` boolean on `Paper` | Every "start from the retracted papers" query reads all 9,354 papers and filters them | `:Retracted` label: the planner scans only the 456 retracted papers |
-| `retractionDate` and `retractionReason` on `Paper` | Only one source fits: no room for OpenAlex's flag next to Retraction Watch, nor for their disagreements | `RetractionNotice` with `source`, one per source |
-| `retractionReason` as one string | 351 notices have 2 to 11 reasons, so counting by reason means splitting strings in every query | `Reason` nodes and `FOR_REASON` links |
-| `CITES` without properties | The zombie-citation question compares dates on every request, and each query must repeat the same-year / unknown-date rules | `before_retraction` computed once, with one written rule and a final check |
-| Nothing for "relies on" | Adding it later as a property of `CITES` would mix AI guesses with facts | `RELIES_ON` kept apart, with confidence and evidence |
-| `Author` identified by `name` | 926 different authors would collapse into 403 names | `Author.openalex_id`, unique |
-| `Paper.id` / DOI as the only key | 379 citing papers have no DOI | both `doi` and `openalex_id` are unique keys |
-| No constraints | Nothing stops two `Paper` nodes with the same DOI, or two copies of the same journal | 5 unique constraints + a year index, created before the data |
+| It notes the before/after problem but stores nothing for it | The zombie-citation question compares `citing.publicationDate` with `r.date` in every query, and each query must repeat the same rules for year-only and unknown dates (or forget them) | `before_retraction` computed once by the loader, with one written rule and a final check that no citation is missing it |
+| `CITES {context, section, citationDate}` | A good idea, but OpenAlex does not give citation contexts or citation dates, so these properties would stay empty | `CITES` only stores what we can fill; "does it really rely on it?" is answered by `RELIES_ON` from the abstract |
+| `Retraction.reason` is one string | 351 of our 453 Retraction Watch notices give 2 to 11 reasons: counting by reason means splitting strings in every query | `Reason` nodes and `FOR_REASON` links |
+| "Retracted" = "has a `HAS_RETRACTION` link" | Any source can make a paper retracted: OpenAlex's flag would mark 208 citing papers as retracted with no date and no reason, and every query must filter on `source` to avoid them | the `:Retracted` label is given by Retraction Watch only; OpenAlex's flag is kept as `openalex_retracted` |
+| No label for retracted papers | Each query that starts from retracted papers needs an extra hop through `Retraction` nodes; GDS projections and the guardrails also need a simple way to name them | `:Retracted` label on `Paper`: `(:Paper:Retracted)` in any query, and the planner scans only those 456 papers (see the benchmark) |
+| `Paper.doi` is the only key | 379 of our citing papers have no DOI: they cannot be merged by DOI | both `doi` and `openalex_id` are unique keys |
+| No place for AI judgements | Adding "relies on" later as a `CITES` property would mix AI guesses with facts | `RELIES_ON` kept apart, with confidence, evidence and the model name |
+| `Paper.journal` property *and* a `Journal` node | The same fact is stored twice and can drift apart | only the `PUBLISHED_IN` link |
 
-Two ideas of the basic schema are fair and we chose not to use them: `Keyword` nodes (the research field) and
-`Journal.issn`. We left keywords out because the communities of the citation graph (Louvain, Person 1) already
-group papers by topic, and all our papers come from one field (dentistry). An ISSN would be a better journal key
-than the name, but our cached data only keeps the journal name, so we kept the name for now.
+**Ideas from it that we did not use, on purpose.** `Journal.issn` as the journal key is better than the name, but
+our cached OpenAlex data only keeps the journal name, so we kept the name for now. `authorOrder`, `noticeUrl`,
+`volume`, `issue` and `pages` are fine metadata, but none of our questions use them, so we did not load them.
 
 ## Limits
 
