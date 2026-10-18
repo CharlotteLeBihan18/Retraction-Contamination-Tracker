@@ -13,7 +13,9 @@ class AuditRequest(BaseModel):
 
     doi: str = Field(min_length=3, max_length=200, examples=["10.1016/j.cell.2020.01.001"])
     save_hypotheses: bool = Field(
-        True, description="Save confident 'relies on' judgements as RELIES_ON links (always labelled as AI guesses)"
+        False,
+        description="Also save confident 'relies on' judgements as RELIES_ON links (labelled as AI guesses). "
+        "Off by default so a report never changes the graph unless asked.",
     )
 
 
@@ -46,9 +48,10 @@ class AuditResponse(BaseModel):
     paper: dict[str, Any] | None
     retracted: bool
     exposure: list[dict[str, Any]] = Field(description="FACT: retracted papers it relies on through citations")
-    contamination: list[dict[str, Any]] = Field(description="FACT: papers that built on it (if retracted)")
+    contamination: list[dict[str, Any]] = Field(
+        description="FACT: papers that built on it (if retracted); before_retraction=false marks a zombie citation"
+    )
     hypotheses: list[Judgement] = Field(description="HYPOTHESIS: AI judgements of real reliance")
     report: str = Field(description="Summary written by the LLM from the facts and hypotheses above")
     report_is_ai_generated: bool = True
     steps: list[AgentStep] = Field(description="Every tool call the agent made, in order")
-    

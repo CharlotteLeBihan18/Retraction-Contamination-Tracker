@@ -114,7 +114,7 @@ def make_db():
 
 def test_exposed_paper_gets_facts_hypotheses_and_steps(run):
     db = make_db()
-    body = run(db, FakeLLM(), doi=PAPER).json()
+    body = run(db, FakeLLM(), doi=PAPER, save_hypotheses=True).json()
 
     assert body["found_in"] == "graph" and body["retracted"] is False
     assert body["exposure"] == [{"doi": RETRACTED, "title": "Smith et al. stem cell protocol", "hops": 1}]
@@ -127,9 +127,9 @@ def test_exposed_paper_gets_facts_hypotheses_and_steps(run):
     assert db.writes[0]["citing"] == PAPER and db.writes[0]["retracted"] == RETRACTED
 
 
-def test_save_can_be_turned_off(run):
+def test_nothing_is_saved_by_default(run):
     db = make_db()
-    body = run(db, FakeLLM(), doi=PAPER, save_hypotheses=False).json()
+    body = run(db, FakeLLM(), doi=PAPER).json()
     assert body["hypotheses"][0]["saved"] is None
     assert not db.writes
 
@@ -191,4 +191,15 @@ def test_invalid_doi_is_422(run):
 def test_doi_url_is_normalized(run):
     body = run(make_db(), FakeLLM(), doi=f"https://doi.org/{PAPER.upper()}").json()
     assert body["doi"] == PAPER and body["found_in"] == "graph"
-    
+
+
+def test_contamination_counts_zombie_citations(run, monkeypatch):
+    rows = [
+        {"doi": "10.1000/a", "title": "A", "hops": 1, "before_retraction": True},
+        {"doi": "10.1000/b", "title": "B", "hops": 1, "before_retraction": False},
+        {"doi": "10.1000/c", "title": "C", "hops": 2, "before_retraction": None},
+    ]
+    monkeypatch.setattr(tools, "contamination_check", lambda *a, **k: {"rows": rows, "source": "graph"})
+    body = run(make_db(), FakeLLM(judge='{"verdict": "unclear", "confidence": 0}'), doi=RETRACTED).json()
+    assert body["contamination"][1]["before_retraction"] is False
+    assert "2 directly, 1 of them after the retraction" in body["steps"][1]["result"]
