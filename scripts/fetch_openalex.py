@@ -21,7 +21,7 @@ import urllib.error
 import urllib.parse
 import urllib.request
 from collections.abc import Iterator
-from datetime import date
+from datetime import date, datetime
 from pathlib import Path
 from typing import Any
 
@@ -38,6 +38,8 @@ WORK_FIELDS = (
     "referenced_works,authorships,primary_location,is_retracted,cited_by_count"
 )
 MAX_TRIES = 5
+# Retraction Watch writes 1/1/1900 when the retraction date is unknown
+UNKNOWN_DATE_YEAR = 1900
 
 
 def normalize_doi(value: str) -> str | None:
@@ -54,6 +56,19 @@ def normalize_doi(value: str) -> str | None:
     if len(doi) % 2 == 0 and doi[:half] == doi[half:]:
         doi = doi[:half]
     return doi if doi.startswith("10.") else None
+
+
+def iso_date(value: str | None) -> str | None:
+    """Turn a Retraction Watch date (month/day/year, ``'3/15/2025 0:00'``) into ``'2025-03-15'``.
+
+    Retraction Watch writes the month first, so ``10/1/2026`` is October 1st. Returns None when
+    the value is empty, malformed or the 1900 placeholder that means "unknown".
+    """
+    try:
+        parsed = datetime.strptime(value.strip(), "%m/%d/%Y %H:%M")
+    except (ValueError, AttributeError):
+        return None
+    return None if parsed.year <= UNKNOWN_DATE_YEAR else parsed.date().isoformat()
 
 
 def split_reasons(raw: str) -> list[str]:
@@ -88,7 +103,7 @@ def select_retracted_rows(csv_path: Path, subject: str) -> tuple[list[dict[str, 
                 "doi": doi,
                 "title": row.get("Title"),
                 "journal": row.get("Journal"),
-                "retraction_date": row.get("RetractionDate"),
+                "retraction_date": iso_date(row.get("RetractionDate")),
                 "reasons": split_reasons(row.get("Reason", "")),
             }
     stats["kept"] = len(kept)

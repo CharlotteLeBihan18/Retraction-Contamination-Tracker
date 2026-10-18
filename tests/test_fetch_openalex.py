@@ -29,6 +29,22 @@ def test_normalize_doi_rejects_values_that_are_not_dois(value: str) -> None:
     assert fetch.normalize_doi(value) is None
 
 
+@pytest.mark.parametrize(
+    "raw, expected",
+    [
+        ("3/15/2025 0:00", "2025-03-15"),
+        ("10/1/2026 0:00", "2026-10-01"),  # month first: October 1st, not January 10th
+        ("1/1/1900 0:00", None),  # Retraction Watch's placeholder for "unknown"
+        ("", None),
+        (None, None),
+        ("not a date", None),
+    ],
+)
+def test_iso_date_reads_month_first_and_drops_unknown(raw, expected) -> None:
+    """Retraction Watch dates become ISO dates once, here, so nobody can misread them later."""
+    assert fetch.iso_date(raw) == expected
+
+
 def test_split_reasons_strips_plus_signs_and_empty_parts() -> None:
     """The Reason column is a ``;`` list whose items start with ``+``."""
     assert fetch.split_reasons("+Plagiarism;+Fake Peer Review;") == ["Plagiarism", "Fake Peer Review"]
@@ -60,7 +76,7 @@ def test_select_retracted_rows_applies_every_filter(tmp_path) -> None:
             "doi": "10.1/aaa",
             "title": "T1",
             "journal": "J1",
-            "retraction_date": "5/7/2020 0:00",
+            "retraction_date": "2020-05-07",
             "reasons": ["Plagiarism", "Fake Peer Review"],
         }
     ]
