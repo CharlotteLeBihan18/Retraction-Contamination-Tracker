@@ -1,0 +1,6120 @@
+{
+  "cites": [
+    "W2164748822",
+    "W2166217686",
+    "W2166418769",
+    "W2169494662",
+    "W2170321254",
+    "W2220218514",
+    "W2234625253",
+    "W2241142985",
+    "W2268633645",
+    "W2283624454",
+    "W2286002975",
+    "W2287912876",
+    "W2289841874",
+    "W2295582261",
+    "W2315790151",
+    "W2320581575",
+    "W2327972628",
+    "W2330221969",
+    "W2331796915",
+    "W2332071678",
+    "W2332240302",
+    "W2333580116",
+    "W2344601939",
+    "W2346699313",
+    "W2405872102",
+    "W2417021417",
+    "W2418783949",
+    "W2423538642",
+    "W2466873903",
+    "W2472791893",
+    "W2494985803",
+    "W2506779131",
+    "W2510731289",
+    "W2515683133",
+    "W2516607824",
+    "W2519632328",
+    "W2523861273",
+    "W2533561690",
+    "W2545066082",
+    "W2546794631",
+    "W2557953995",
+    "W2566859458",
+    "W2567428729",
+    "W2579618622",
+    "W2595332161",
+    "W2596684069",
+    "W2602839974",
+    "W2603825787",
+    "W2604028669",
+    "W2605533298"
+  ],
+  "cursor": "Ils5Ny4wLCA2LCAnaHR0cHM6Ly9vcGVuYWxleC5vcmcvVzIxMzYwNTQ4NTcnXSI=",
+  "next_cursor": "Ils5NC4wLCAzLCAnaHR0cHM6Ly9vcGVuYWxleC5vcmcvVzI1Njg5MTA0MTAnXSI=",
+  "results": [
+    {
+      "id": "https://openalex.org/W2595773854",
+      "doi": "https://doi.org/10.3390/ma10040347",
+      "title": "Nurse’s A-Phase Material Enhance Adhesion, Growth and Differentiation of Human Bone Marrow-Derived Stromal Mesenchymal Stem Cells",
+      "publication_year": 2017,
+      "publication_date": "2017-03-27",
+      "is_retracted": false,
+      "journal": "Materials",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5071496014",
+          "name": "Rubén Rabadán-Ros"
+        },
+        {
+          "id": "https://openalex.org/A5036350527",
+          "name": "Salvador D. Aznar‐Cervantes"
+        },
+        {
+          "id": "https://openalex.org/A5028516969",
+          "name": "Patricia Mazón"
+        },
+        {
+          "id": "https://openalex.org/A5014233418",
+          "name": "Patricia Ros-Tárraga"
+        },
+        {
+          "id": "https://openalex.org/A5087924496",
+          "name": "Piedad N. De Aza"
+        },
+        {
+          "id": "https://openalex.org/A5010636830",
+          "name": "Luis Meseguer‐Olmo"
+        }
+      ],
+      "cites_retracted": [
+        "W2289841874"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W3090442683",
+      "doi": "https://doi.org/10.4103/abr.abr_92_20",
+      "title": "Cytomorphometric Study of Changes in Buccal Mucosal Cells in Alcoholics",
+      "publication_year": 2020,
+      "publication_date": "2020-01-01",
+      "is_retracted": false,
+      "journal": "Advanced Biomedical Research",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5078094660",
+          "name": "Banushree Chandrasekhar Srinivasamurthy"
+        },
+        {
+          "id": "https://openalex.org/A5068821701",
+          "name": "Kandan Balamurugesan"
+        },
+        {
+          "id": "https://openalex.org/A5033481040",
+          "name": "N Sathishkumar"
+        },
+        {
+          "id": "https://openalex.org/A5105835165",
+          "name": "RamachandraV Bhat"
+        }
+      ],
+      "cites_retracted": [
+        "W2327972628"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W3169153685",
+      "doi": "https://doi.org/10.1016/j.matlet.2021.130156",
+      "title": "Self-assembling, hybrid hydroxyapatite-methylcellulose granules, modified with nano-silver",
+      "publication_year": 2021,
+      "publication_date": "2021-06-01",
+      "is_retracted": false,
+      "journal": "Materials Letters",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5023355937",
+          "name": "Joanna P. Czechowska"
+        }
+      ],
+      "cites_retracted": [
+        "W2466873903"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W4286492209",
+      "doi": "https://doi.org/10.2174/18742106-v16-e2205110",
+      "title": "Efficacy of Anterior Tooth Simulations with Clear Aligner Therapy - A Retrospective Cohort study of Invisalign and Flash Aligner Systems",
+      "publication_year": 2022,
+      "publication_date": "2022-07-21",
+      "is_retracted": false,
+      "journal": "The Open Dentistry Journal",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5064455850",
+          "name": "Hanadi Sorour"
+        },
+        {
+          "id": "https://openalex.org/A5047891750",
+          "name": "Fadia Dhaval"
+        },
+        {
+          "id": "https://openalex.org/A5103033575",
+          "name": "Donald J. Ferguson"
+        },
+        {
+          "id": "https://openalex.org/A5029984415",
+          "name": "Laith Makki"
+        },
+        {
+          "id": "https://openalex.org/A5019624026",
+          "name": "Samar M. Adel"
+        },
+        {
+          "id": "https://openalex.org/A5016757501",
+          "name": "Ismaeel Hansa"
+        },
+        {
+          "id": "https://openalex.org/A5113170555",
+          "name": "Nikhilesh R. Vaid"
+        }
+      ],
+      "cites_retracted": [
+        "W2510731289"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W4385626979",
+      "doi": "https://doi.org/10.4103/jisp.jisp_356_22",
+      "title": "Socket shield technique: Stress distribution analysis",
+      "publication_year": 2023,
+      "publication_date": "2023-07-01",
+      "is_retracted": false,
+      "journal": "Journal of Indian Society of Periodontology",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5034322524",
+          "name": "Ricardo Neves Guimarães"
+        },
+        {
+          "id": "https://openalex.org/A5004452459",
+          "name": "Priscilla Cardoso Lazari‐Carvalho"
+        },
+        {
+          "id": "https://openalex.org/A5063953059",
+          "name": "Marco Aurélio de Carvalho"
+        },
+        {
+          "id": "https://openalex.org/A5101682305",
+          "name": "Alexandre Leite Carvalho"
+        },
+        {
+          "id": "https://openalex.org/A5078183019",
+          "name": "João Batista de Souza"
+        },
+        {
+          "id": "https://openalex.org/A5085081601",
+          "name": "Érica Miranda de Torres"
+        }
+      ],
+      "cites_retracted": [
+        "W2557953995"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W4401269164",
+      "doi": "https://doi.org/10.1016/j.aanat.2024.152313",
+      "title": "Biomechanical characteristics of maxillary anterior incisor, conventional immediate implantation and socket shield technique — A finite element analysis and case report",
+      "publication_year": 2024,
+      "publication_date": "2024-08-02",
+      "is_retracted": false,
+      "journal": "Annals of Anatomy - Anatomischer Anzeiger",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5040308156",
+          "name": "Zhangyan Ye"
+        },
+        {
+          "id": "https://openalex.org/A5034403355",
+          "name": "Mingquan Yu"
+        },
+        {
+          "id": "https://openalex.org/A5106403586",
+          "name": "Yanwu Ji"
+        },
+        {
+          "id": "https://openalex.org/A5114202386",
+          "name": "Shengrui Jia"
+        },
+        {
+          "id": "https://openalex.org/A5100510334",
+          "name": "Xiaomin Xu"
+        },
+        {
+          "id": "https://openalex.org/A5103535867",
+          "name": "Huiyu Yao"
+        },
+        {
+          "id": "https://openalex.org/A5069607269",
+          "name": "Zhongqiang Feng"
+        },
+        {
+          "id": "https://openalex.org/A5110656948",
+          "name": "Guangwei Shangguan"
+        },
+        {
+          "id": "https://openalex.org/A5035834837",
+          "name": "Jun Zhang"
+        },
+        {
+          "id": "https://openalex.org/A5109791739",
+          "name": "Xuekun Hou"
+        },
+        {
+          "id": "https://openalex.org/A5060313435",
+          "name": "Xi Ding"
+        }
+      ],
+      "cites_retracted": [
+        "W2557953995"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W2000876296",
+      "doi": "https://doi.org/10.1016/j.mpaic.2014.07.002",
+      "title": "Clinical aspects of endocrinology: parathyroid and adrenal gland disorders",
+      "publication_year": 2014,
+      "publication_date": "2014-09-26",
+      "is_retracted": false,
+      "journal": "Anaesthesia & intensive care medicine",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5077416318",
+          "name": "Inese Kutovaja"
+        }
+      ],
+      "cites_retracted": [
+        "W2164748822"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W3129292400",
+      "doi": "https://doi.org/10.1007/s12663-021-01524-1",
+      "title": "Prognostic Value of Lymph Node Density Compared to Pre-operative Platelet-to-Lymphocyte Ratio and Neutrophil-to-Lymphocyte Ratio in Patients with Tongue Squamous Cell Carcinoma",
+      "publication_year": 2021,
+      "publication_date": "2021-02-22",
+      "is_retracted": false,
+      "journal": "Journal of Maxillofacial and Oral Surgery",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5086234192",
+          "name": "Mona Khazravi"
+        },
+        {
+          "id": "https://openalex.org/A5085493532",
+          "name": "Mohammad Shirkhoda"
+        },
+        {
+          "id": "https://openalex.org/A5110262120",
+          "name": "Hana Saffar"
+        },
+        {
+          "id": "https://openalex.org/A5036236269",
+          "name": "Amirmohsen Jalaeefar"
+        }
+      ],
+      "cites_retracted": [
+        "W2332071678"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W4223420372",
+      "doi": "https://doi.org/10.1186/s12903-022-02149-7",
+      "title": "Socket shield technique and delayed implant placement in maxilla: a series of five case reports",
+      "publication_year": 2022,
+      "publication_date": "2022-04-05",
+      "is_retracted": false,
+      "journal": "BMC Oral Health",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5072497071",
+          "name": "Rola Muhammed Shadid"
+        }
+      ],
+      "cites_retracted": [
+        "W2557953995"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W4388551678",
+      "doi": "https://doi.org/10.1038/s41415-023-6440-2",
+      "title": "Restoratively driven planning for implants in the posterior maxilla - Part 2: implant planning, biomechanics and prosthodontic planning a proposed prosthodontic complexity index",
+      "publication_year": 2023,
+      "publication_date": "2023-11-10",
+      "is_retracted": false,
+      "journal": "BDJ",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5022513797",
+          "name": "Elizabeth M. King"
+        }
+      ],
+      "cites_retracted": [
+        "W2234625253"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W3049576445",
+      "doi": "https://doi.org/10.1016/j.joms.2020.08.013",
+      "title": "The Impact of Prior Use of Corticosteroid to Dental Extraction on Oral Health-Related Quality-of-Life and Clinical Outcomes: A Randomized Clinical Trial",
+      "publication_year": 2020,
+      "publication_date": "2020-08-15",
+      "is_retracted": false,
+      "journal": "Journal of Oral and Maxillofacial Surgery",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5023457366",
+          "name": "Heitor Boeira Pansard"
+        },
+        {
+          "id": "https://openalex.org/A5010469351",
+          "name": "Mayara Colpo Prado"
+        },
+        {
+          "id": "https://openalex.org/A5061253969",
+          "name": "Gabriel Fighera Marchi"
+        },
+        {
+          "id": "https://openalex.org/A5027570566",
+          "name": "Camila Silveira Sfreddo"
+        },
+        {
+          "id": "https://openalex.org/A5025438586",
+          "name": "Jovito Adiel Skupien"
+        }
+      ],
+      "cites_retracted": [
+        "W2596684069"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W4401404453",
+      "doi": "https://doi.org/10.1016/j.dental.2024.07.005",
+      "title": "Stearic acid nanoparticles increase acyclovir absorption by oral epithelial cells",
+      "publication_year": 2024,
+      "publication_date": "2024-08-06",
+      "is_retracted": false,
+      "journal": "Dental Materials",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5032044496",
+          "name": "Priti Pragati Rath"
+        },
+        {
+          "id": "https://openalex.org/A5024119109",
+          "name": "Hardik Makkar"
+        },
+        {
+          "id": "https://openalex.org/A5001831708",
+          "name": "Shruti Vidhawan Agarwalla"
+        },
+        {
+          "id": "https://openalex.org/A5043397723",
+          "name": "Gopu Sriram"
+        },
+        {
+          "id": "https://openalex.org/A5055314759",
+          "name": "Vinícius Rosa"
+        }
+      ],
+      "cites_retracted": [
+        "W2170321254"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W4401912069",
+      "doi": "https://doi.org/10.3233/wor-240067",
+      "title": "An assessment of musculoskeletal disorders and physical activity levels in dentists: A cross-sectional study",
+      "publication_year": 2024,
+      "publication_date": "2024-08-27",
+      "is_retracted": false,
+      "journal": "Work",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5025052983",
+          "name": "Didem Özkal Emi̇noğlu"
+        },
+        {
+          "id": "https://openalex.org/A5048619929",
+          "name": "Kamber Kaşalı"
+        },
+        {
+          "id": "https://openalex.org/A5106899182",
+          "name": "Buket Şeran"
+        },
+        {
+          "id": "https://openalex.org/A5051967433",
+          "name": "Gül Eda Burmaoğlu"
+        },
+        {
+          "id": "https://openalex.org/A5061903165",
+          "name": "Tuğba Aydın"
+        },
+        {
+          "id": "https://openalex.org/A5094358682",
+          "name": "Hasan Basri Bircan"
+        }
+      ],
+      "cites_retracted": [
+        "W2604028669"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W3109188811",
+      "doi": "https://doi.org/10.1111/ced.14522",
+      "title": "A novel c.916C>A EDA gene pathogenic variant in a boy with X‐linked hypohidrotic ectodermal dysplasia",
+      "publication_year": 2020,
+      "publication_date": "2020-11-22",
+      "is_retracted": false,
+      "journal": "Clinical and Experimental Dermatology",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5022337231",
+          "name": "Dillon Mintoff"
+        },
+        {
+          "id": "https://openalex.org/A5033086802",
+          "name": "Nikolai Paul Pace"
+        },
+        {
+          "id": "https://openalex.org/A5089577006",
+          "name": "Victor Mercieca"
+        },
+        {
+          "id": "https://openalex.org/A5086201841",
+          "name": "Peter Bauer"
+        },
+        {
+          "id": "https://openalex.org/A5073193231",
+          "name": "Isabella Borg"
+        }
+      ],
+      "cites_retracted": [
+        "W2346699313"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W4382584395",
+      "doi": "https://doi.org/10.3390/dj11070161",
+      "title": "Phosphoric Acid Etch Partially Restores the Initial Bond Strength of Composite to Silver Diamine Fluoride–Treated Enamel Using Universal Adhesives",
+      "publication_year": 2023,
+      "publication_date": "2023-06-28",
+      "is_retracted": false,
+      "journal": "Dentistry Journal",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5041122246",
+          "name": "Zaher Jabbour"
+        },
+        {
+          "id": "https://openalex.org/A5038904420",
+          "name": "Mijoo Kim"
+        },
+        {
+          "id": "https://openalex.org/A5010067560",
+          "name": "Marc Hayashi"
+        },
+        {
+          "id": "https://openalex.org/A5012892523",
+          "name": "Reuben Kim"
+        }
+      ],
+      "cites_retracted": [
+        "W2595332161"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W4386759915",
+      "doi": "https://doi.org/10.1016/j.optcom.2023.129944",
+      "title": "Novel zinc-doped carbon nitride (Zn:C3N4) modulated short-pulsed Er:YAP laser in the mid-infrared region",
+      "publication_year": 2023,
+      "publication_date": "2023-09-15",
+      "is_retracted": false,
+      "journal": "Optics Communications",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5062826737",
+          "name": "Lu Huang"
+        },
+        {
+          "id": "https://openalex.org/A5045407857",
+          "name": "Zhenhong Wang"
+        },
+        {
+          "id": "https://openalex.org/A5072631261",
+          "name": "Xinghua Wu"
+        },
+        {
+          "id": "https://openalex.org/A5100678344",
+          "name": "Jun Liu"
+        }
+      ],
+      "cites_retracted": [
+        "W2332240302"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W4401049814",
+      "doi": "https://doi.org/10.7759/cureus.65506",
+      "title": "Failure Rate of Dental Implants in the Esthetic Zone: A Systematic Review and Meta-Analysis",
+      "publication_year": 2024,
+      "publication_date": "2024-07-27",
+      "is_retracted": false,
+      "journal": "Cureus",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5056212430",
+          "name": "Manar Mohammed Alzahrani"
+        },
+        {
+          "id": "https://openalex.org/A5106007543",
+          "name": "Sondus Bakhreibah"
+        },
+        {
+          "id": "https://openalex.org/A5074193882",
+          "name": "Nada Alharbi"
+        },
+        {
+          "id": "https://openalex.org/A5106152697",
+          "name": "Lama Alamoudi"
+        },
+        {
+          "id": "https://openalex.org/A5106007544",
+          "name": "Seba Halloul"
+        },
+        {
+          "id": "https://openalex.org/A5113308014",
+          "name": "Sara Alamoudi"
+        },
+        {
+          "id": "https://openalex.org/A5110670250",
+          "name": "Raghad M. Alharthi"
+        },
+        {
+          "id": "https://openalex.org/A5111271303",
+          "name": "Salem Baghdadi"
+        },
+        {
+          "id": "https://openalex.org/A5021372840",
+          "name": "Ahmed Aydhah Alamoudi"
+        }
+      ],
+      "cites_retracted": [
+        "W2557953995"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W4402731586",
+      "doi": "https://doi.org/10.1007/s10854-024-13479-3",
+      "title": "Preparation and performance of Ho3+/Yb3+ co-doped fluorosilicate-emitting broadband near-infrared glasses",
+      "publication_year": 2024,
+      "publication_date": "2024-09-01",
+      "is_retracted": false,
+      "journal": "Journal of Materials Science Materials in Electronics",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5113395753",
+          "name": "Wencheng Ge"
+        },
+        {
+          "id": "https://openalex.org/A5101233490",
+          "name": "Yiran Hou"
+        },
+        {
+          "id": "https://openalex.org/A5101367750",
+          "name": "Jiaxuan Xu"
+        },
+        {
+          "id": "https://openalex.org/A5114169284",
+          "name": "Shuofang Liu"
+        },
+        {
+          "id": "https://openalex.org/A5108483796",
+          "name": "Zihan Wang"
+        },
+        {
+          "id": "https://openalex.org/A5102677829",
+          "name": "Xiuqin Cai"
+        },
+        {
+          "id": "https://openalex.org/A5101221987",
+          "name": "Yilin Lu"
+        },
+        {
+          "id": "https://openalex.org/A5033874490",
+          "name": "Yuee Chen"
+        }
+      ],
+      "cites_retracted": [
+        "W2332240302"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W4405617942",
+      "doi": "https://doi.org/10.1111/jerd.13379",
+      "title": "The Value of a Tooth for Alveolar Ridge Management; Strategies to Manage Ankylosed Maxillary Anterior Teeth in Young Patients",
+      "publication_year": 2024,
+      "publication_date": "2024-12-19",
+      "is_retracted": false,
+      "journal": "Journal of Esthetic and Restorative Dentistry",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5012434274",
+          "name": "Jim Janakievski"
+        }
+      ],
+      "cites_retracted": [
+        "W2557953995"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W4411041922",
+      "doi": "https://doi.org/10.3389/fgene.2025.1592599",
+      "title": "Gene expression profiles identify key factors in inflammatory odontoblastic dental pulp stem cell differentiation via TNFα/C5L2",
+      "publication_year": 2025,
+      "publication_date": "2025-06-04",
+      "is_retracted": false,
+      "journal": "Frontiers in Genetics",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5100462770",
+          "name": "Jihyun Kim"
+        },
+        {
+          "id": "https://openalex.org/A5115442753",
+          "name": "Sreelekshmi Sreekumar"
+        },
+        {
+          "id": "https://openalex.org/A5008540220",
+          "name": "Seung‐Hyuk Chung"
+        }
+      ],
+      "cites_retracted": [
+        "W2603825787"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W4412487340",
+      "doi": "https://doi.org/10.1111/jerd.13515",
+      "title": "Peri‐Implant Esthetics in Focus: Comparing Anodized Titanium and Zirconium Dioxide Abutments in a Randomized Clinical Trial",
+      "publication_year": 2025,
+      "publication_date": "2025-07-16",
+      "is_retracted": false,
+      "journal": "Journal of Esthetic and Restorative Dentistry",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5081662884",
+          "name": "Farhan Durrani"
+        },
+        {
+          "id": "https://openalex.org/A5088174571",
+          "name": "Aishwarya Pandey"
+        },
+        {
+          "id": "https://openalex.org/A5023905919",
+          "name": "Shraddha Shilpi"
+        },
+        {
+          "id": "https://openalex.org/A5113889391",
+          "name": "Dhanraj Meena"
+        }
+      ],
+      "cites_retracted": [
+        "W2557953995"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W2593367525",
+      "doi": "https://doi.org/10.1155/2017/5149065",
+      "title": "Retracted: A Rare Pathological Entity of Multiple Calcified Hyperplastic Dental Follicles",
+      "publication_year": 2017,
+      "publication_date": "2017-01-01",
+      "is_retracted": true,
+      "journal": "Case Reports in Dentistry",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5114868377",
+          "name": "Case Reports In Dentistry"
+        }
+      ],
+      "cites_retracted": [
+        "W2566859458"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W4408208037",
+      "doi": "https://doi.org/10.3788/cjl241203",
+      "title": "飞秒激光用于牙齿钻孔及孔洞特性的研究",
+      "publication_year": 2025,
+      "publication_date": "2025-01-01",
+      "is_retracted": false,
+      "journal": "Chinese Journal of Lasers",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5116543010",
+          "name": "刘瑞祥 Liu Ruixiang"
+        },
+        {
+          "id": "https://openalex.org/A5116543011",
+          "name": "裴峰 Pei Feng"
+        },
+        {
+          "id": "https://openalex.org/A5116543012",
+          "name": "李建权 Li Jianquan"
+        },
+        {
+          "id": "https://openalex.org/A5116543013",
+          "name": "刘娜 Liu Na"
+        },
+        {
+          "id": "https://openalex.org/A5098965530",
+          "name": "吴思竹 Wu Sizhu"
+        }
+      ],
+      "cites_retracted": [
+        "W2332240302"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W4408256651",
+      "doi": "https://doi.org/10.1186/s12903-025-05741-9",
+      "title": "EDA1 variants inhibit the odontogenic differentiation and proliferation of human dental pulp stem cells",
+      "publication_year": 2025,
+      "publication_date": "2025-03-08",
+      "is_retracted": false,
+      "journal": "BMC Oral Health",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5103946497",
+          "name": "Yulin Ding"
+        },
+        {
+          "id": "https://openalex.org/A5113335175",
+          "name": "Genqi Lu"
+        },
+        {
+          "id": "https://openalex.org/A5100388322",
+          "name": "Yi qin Zhang"
+        },
+        {
+          "id": "https://openalex.org/A5083051735",
+          "name": "Jing Zhang"
+        },
+        {
+          "id": "https://openalex.org/A5043898563",
+          "name": "Jingle Ma"
+        },
+        {
+          "id": "https://openalex.org/A5062155646",
+          "name": "Yunyun Yuan"
+        },
+        {
+          "id": "https://openalex.org/A5100431744",
+          "name": "Wei Liu"
+        },
+        {
+          "id": "https://openalex.org/A5025232083",
+          "name": "Wenjing Shen"
+        }
+      ],
+      "cites_retracted": [
+        "W2346699313"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W4408536649",
+      "doi": "https://doi.org/10.3788/lop241738",
+      "title": "飞秒激光烧蚀牙齿表面的高效清洁研究",
+      "publication_year": 2025,
+      "publication_date": "2025-01-01",
+      "is_retracted": false,
+      "journal": "Laser & Optoelectronics Progress",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5093256198",
+          "name": "顾志祥 Gu Zhixiang"
+        },
+        {
+          "id": "https://openalex.org/A5116543011",
+          "name": "裴峰 Pei Feng"
+        },
+        {
+          "id": "https://openalex.org/A5116543010",
+          "name": "刘瑞祥 Liu Ruixiang"
+        },
+        {
+          "id": "https://openalex.org/A5065173975",
+          "name": "肖轶 Xiao Yi"
+        },
+        {
+          "id": "https://openalex.org/A5116543012",
+          "name": "李建权 Li Jianquan"
+        },
+        {
+          "id": "https://openalex.org/A5116543013",
+          "name": "刘娜 Liu Na"
+        },
+        {
+          "id": "https://openalex.org/A5098965530",
+          "name": "吴思竹 Wu Sizhu"
+        }
+      ],
+      "cites_retracted": [
+        "W2332240302"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W4409402862",
+      "doi": "https://doi.org/10.1002/jemt.24868",
+      "title": "Evaluation of the Effectiveness of Different Caries Removal Methods in Primary Teeth With Micro‐Computed Tomography and Scanning Electron Microscopy–Energy Dispersive Spectroscopy of X‐Ray",
+      "publication_year": 2025,
+      "publication_date": "2025-04-13",
+      "is_retracted": false,
+      "journal": "Microscopy Research and Technique",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5003891681",
+          "name": "Arda Büyüksungur"
+        },
+        {
+          "id": "https://openalex.org/A5014994221",
+          "name": "Levent Özer"
+        }
+      ],
+      "cites_retracted": [
+        "W2344601939"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W4413205322",
+      "doi": "https://doi.org/10.1007/s12668-025-02092-1",
+      "title": "A Comprehensive Review on Oral Squamous Cell Carcinoma: Etiology, Current Therapeutic Strategies, Molecular Signalling Pathways, Herbal Therapeutics, and the Role of Targeted Vesicular Delivery Systems",
+      "publication_year": 2025,
+      "publication_date": "2025-08-12",
+      "is_retracted": false,
+      "journal": "BioNanoScience",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5119303107",
+          "name": "Poulomi Bera"
+        },
+        {
+          "id": "https://openalex.org/A5025519397",
+          "name": "Manju Rawat Singh"
+        },
+        {
+          "id": "https://openalex.org/A5063178344",
+          "name": "Deependra Singh"
+        },
+        {
+          "id": "https://openalex.org/A5002954029",
+          "name": "Sahu Keshavkant"
+        }
+      ],
+      "cites_retracted": [
+        "W2166418769"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W2106487044",
+      "doi": null,
+      "title": "Frontiers in cancer prevention research.",
+      "publication_year": 2003,
+      "publication_date": "2003-09-15",
+      "is_retracted": false,
+      "journal": "PubMed",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5010529228",
+          "name": "Anita Lyn Sabichi"
+        },
+        {
+          "id": "https://openalex.org/A5107556096",
+          "name": "Marie‐France Demierre"
+        },
+        {
+          "id": "https://openalex.org/A5015008352",
+          "name": "Ernest T. Hawk"
+        },
+        {
+          "id": "https://openalex.org/A5061725200",
+          "name": "Caryn E. Lerman"
+        },
+        {
+          "id": "https://openalex.org/A5069190968",
+          "name": "Scott Michael Lippman"
+        }
+      ],
+      "cites_retracted": [
+        "W2327972628"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W218957656",
+      "doi": null,
+      "title": "Past and present concepts in flow cytometry: a European perspective.",
+      "publication_year": 2003,
+      "publication_date": "2003-11-10",
+      "is_retracted": false,
+      "journal": "PubMed",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5112739747",
+          "name": "G. Valet"
+        }
+      ],
+      "cites_retracted": [
+        "W2327972628"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W2015327769",
+      "doi": "https://doi.org/10.1016/s1368-8375(03)00098-8",
+      "title": "RETRACTED: Molecular based treatment of oral cancer",
+      "publication_year": 2003,
+      "publication_date": "2003-08-01",
+      "is_retracted": true,
+      "journal": "Oral Oncology",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5044099421",
+          "name": "Jon Sudbø"
+        },
+        {
+          "id": "https://openalex.org/A5075988137",
+          "name": "Magne Bryne"
+        },
+        {
+          "id": "https://openalex.org/A5100355205",
+          "name": "Mao Li"
+        },
+        {
+          "id": "https://openalex.org/A5063003854",
+          "name": "Reuben Lotan"
+        },
+        {
+          "id": "https://openalex.org/A5004793700",
+          "name": "Albrecht Reith"
+        },
+        {
+          "id": "https://openalex.org/A5068372060",
+          "name": "Wanja Kildal"
+        },
+        {
+          "id": "https://openalex.org/A5078288814",
+          "name": "Ben Davidson"
+        },
+        {
+          "id": "https://openalex.org/A5090957916",
+          "name": "Tine M. Søland"
+        },
+        {
+          "id": "https://openalex.org/A5069190968",
+          "name": "Scott Michael Lippman"
+        }
+      ],
+      "cites_retracted": [
+        "W2003274878",
+        "W2005426500",
+        "W2327972628"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W2157670507",
+      "doi": "https://doi.org/10.1155/2004/792424",
+      "title": "Towards a Single Cell Cancer Diagnosis. Multimodal and Monocellular Measurements of Markers and Morphology (5M)",
+      "publication_year": 2004,
+      "publication_date": "2004-01-01",
+      "is_retracted": false,
+      "journal": "Analytical Cellular Pathology",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5110158068",
+          "name": "Alfred Böcking"
+        },
+        {
+          "id": "https://openalex.org/A5062839302",
+          "name": "Jens Stockhausen"
+        },
+        {
+          "id": "https://openalex.org/A5028019977",
+          "name": "Dietrich Meyer‐Ebrecht"
+        }
+      ],
+      "cites_retracted": [
+        "W2327972628"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W2063871933",
+      "doi": "https://doi.org/10.1007/s10555-005-5048-0",
+      "title": "Molecular markers for diagnosis and prognosis",
+      "publication_year": 2005,
+      "publication_date": "2005-01-01",
+      "is_retracted": false,
+      "journal": "Cancer and Metastasis Reviews",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5108480068",
+          "name": "Max Partridge"
+        },
+        {
+          "id": "https://openalex.org/A5063611781",
+          "name": "Kamis Gaballah"
+        },
+        {
+          "id": "https://openalex.org/A5003066614",
+          "name": "Xiaohong Huang"
+        }
+      ],
+      "cites_retracted": [
+        "W2327972628"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W2093084437",
+      "doi": "https://doi.org/10.1054/ijom.2001.0187",
+      "title": "Biomedical technology revolution: opportunities and challenges for oral and maxillofacial surgeons",
+      "publication_year": 2002,
+      "publication_date": "2002-02-01",
+      "is_retracted": false,
+      "journal": "International Journal of Oral and Maxillofacial Surgery",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5086840262",
+          "name": "Leonard B. Kaban"
+        }
+      ],
+      "cites_retracted": [
+        "W2327972628"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W1992008337",
+      "doi": "https://doi.org/10.1056/nejme068020",
+      "title": "Expression of Concern: Sudbø J et al. DNA Content as a Prognostic Marker in Patients with Oral Leukoplakia. N Engl J Med 2001;344:1270-8 and Sudbø J et al. The Influence of Resection and Aneuploidy on Mortality in Oral Leukoplakia. N Engl J Med 2004;350:1405-13",
+      "publication_year": 2006,
+      "publication_date": "2006-01-21",
+      "is_retracted": false,
+      "journal": "New England Journal of Medicine",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5002989908",
+          "name": "Gregory Curfman"
+        },
+        {
+          "id": "https://openalex.org/A5040335881",
+          "name": "Stephen Morrissey"
+        },
+        {
+          "id": "https://openalex.org/A5021045413",
+          "name": "Jeffrey M. Drazen"
+        }
+      ],
+      "cites_retracted": [
+        "W1976282634",
+        "W2327972628"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W1982861717",
+      "doi": "https://doi.org/10.1159/000076911",
+      "title": "Chemoprevention of Oral Squamous Cell Carcinomas",
+      "publication_year": 2004,
+      "publication_date": "2004-01-01",
+      "is_retracted": false,
+      "journal": "Oncology Research and Treatment",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5085005740",
+          "name": "A.C. Kuebler"
+        },
+        {
+          "id": "https://openalex.org/A5051249388",
+          "name": "Joshua Zöller"
+        }
+      ],
+      "cites_retracted": [
+        "W2327972628"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W2182711704",
+      "doi": null,
+      "title": "Biologic correlates of a biochemoprevention trial in advanced upper aerodigestive tract premalignant lesions.",
+      "publication_year": 2002,
+      "publication_date": "2002-12-01",
+      "is_retracted": false,
+      "journal": "PubMed",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5008790176",
+          "name": "Vassiliki A. Papadimitrakopoulou"
+        },
+        {
+          "id": "https://openalex.org/A5080439835",
+          "name": "Diane D. Liu"
+        },
+        {
+          "id": "https://openalex.org/A5100355203",
+          "name": "Li Mao"
+        },
+        {
+          "id": "https://openalex.org/A5010399375",
+          "name": "Dong Moon Shin"
+        },
+        {
+          "id": "https://openalex.org/A5078173230",
+          "name": "Adel K. El‐Naggar"
+        },
+        {
+          "id": "https://openalex.org/A5088436268",
+          "name": "Heladio P. Ibarguen"
+        },
+        {
+          "id": "https://openalex.org/A5111144617",
+          "name": "Waun Ki Hong"
+        },
+        {
+          "id": "https://openalex.org/A5073876235",
+          "name": "Walter N. Hittelman"
+        }
+      ],
+      "cites_retracted": [
+        "W2327972628"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W2085076457",
+      "doi": "https://doi.org/10.1111/j.1600-0714.2005.00333.x",
+      "title": "Very early cytological and DNA‐cytometric diagnosis of in situ carcinoma in an immunosuppressed liver transplant recipient",
+      "publication_year": 2005,
+      "publication_date": "2005-12-23",
+      "is_retracted": false,
+      "journal": "Journal of Oral Pathology and Medicine",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5072954415",
+          "name": "Dimitra Maraki"
+        },
+        {
+          "id": "https://openalex.org/A5111532867",
+          "name": "Ulrich R. Hengge"
+        },
+        {
+          "id": "https://openalex.org/A5103227821",
+          "name": "J. Becker"
+        },
+        {
+          "id": "https://openalex.org/A5049202380",
+          "name": "Alfred Boecking"
+        }
+      ],
+      "cites_retracted": [
+        "W2327972628"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W2012906146",
+      "doi": "https://doi.org/10.1002/cncr.20524",
+      "title": "Ductoscopic cytology and image analysis to detect breast carcinoma",
+      "publication_year": 2004,
+      "publication_date": "2004-08-04",
+      "is_retracted": false,
+      "journal": "Cancer",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5043556576",
+          "name": "Edward R. Sauter"
+        },
+        {
+          "id": "https://openalex.org/A5070591384",
+          "name": "Andres J. Klein–Szanto"
+        },
+        {
+          "id": "https://openalex.org/A5110934304",
+          "name": "Hormoz Ehya"
+        },
+        {
+          "id": "https://openalex.org/A5012451877",
+          "name": "Brenda MacGibbon"
+        }
+      ],
+      "cites_retracted": [
+        "W2327972628"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W2087803641",
+      "doi": "https://doi.org/10.1016/j.jdsr.2010.01.004",
+      "title": "Apoptosis-inducing activity and tumor-specificity of antitumor agents against oral squamous cell carcinoma",
+      "publication_year": 2010,
+      "publication_date": "2010-02-26",
+      "is_retracted": false,
+      "journal": "Japanese Dental Science Review",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5003433490",
+          "name": "Hiroshi Sakagami"
+        }
+      ],
+      "cites_retracted": [
+        "W2169494662"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W2189224204",
+      "doi": null,
+      "title": "Pediatric herpes simplex virus infections: an evidence-based approach to treatment.",
+      "publication_year": 2014,
+      "publication_date": "2014-01-01",
+      "is_retracted": false,
+      "journal": "PubMed",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5069539280",
+          "name": "Jennifer E. Sanders"
+        },
+        {
+          "id": "https://openalex.org/A5039581399",
+          "name": "Sylvia E. Garcia"
+        }
+      ],
+      "cites_retracted": [
+        "W2170321254"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W2075777109",
+      "doi": "https://doi.org/10.1016/j.coms.2006.07.001",
+      "title": "Evaluation and Staging of Oral Cancer",
+      "publication_year": 2006,
+      "publication_date": "2006-11-01",
+      "is_retracted": false,
+      "journal": "Oral and Maxillofacial Surgery Clinics of North America",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5111541014",
+          "name": "Vishtasb Broumand"
+        }
+      ],
+      "cites_retracted": [
+        "W2327972628"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W2160754329",
+      "doi": "https://doi.org/10.1016/j.cancergencyto.2004.02.010",
+      "title": "Evaluation of genomic changes in a large series of malignant ovarian germ cell tumors—relation to clinicopathologic variables",
+      "publication_year": 2004,
+      "publication_date": "2004-11-01",
+      "is_retracted": false,
+      "journal": "Cancer Genetics and Cytogenetics",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5068372060",
+          "name": "Wanja Kildal"
+        },
+        {
+          "id": "https://openalex.org/A5038446062",
+          "name": "J. Kærn"
+        },
+        {
+          "id": "https://openalex.org/A5049861607",
+          "name": "Sigrid Marie Kraggerud"
+        },
+        {
+          "id": "https://openalex.org/A5111613888",
+          "name": "Vera Maria Abeler"
+        },
+        {
+          "id": "https://openalex.org/A5044099421",
+          "name": "Jon Sudbø"
+        },
+        {
+          "id": "https://openalex.org/A5041434650",
+          "name": "Claes Goran Trope"
+        },
+        {
+          "id": "https://openalex.org/A5089685702",
+          "name": "Ragnhild A. Lothe"
+        },
+        {
+          "id": "https://openalex.org/A5057258820",
+          "name": "Havard Emil Danielsen"
+        }
+      ],
+      "cites_retracted": [
+        "W2327972628"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W1990860670",
+      "doi": "https://doi.org/10.1053/j.seminoncol.2004.09.012",
+      "title": "Head and neck cancer: The pursuit of molecular diagnostic markers",
+      "publication_year": 2004,
+      "publication_date": "2004-12-01",
+      "is_retracted": false,
+      "journal": "Seminars in Oncology",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5105365236",
+          "name": "Rifat Hasina"
+        },
+        {
+          "id": "https://openalex.org/A5058226349",
+          "name": "Mark William Lingen"
+        }
+      ],
+      "cites_retracted": [
+        "W2327972628"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W2086930391",
+      "doi": "https://doi.org/10.1016/j.otc.2005.11.010",
+      "title": "Chemoprevention of squamous cell carcinoma of the oral cavity",
+      "publication_year": 2006,
+      "publication_date": "2006-04-01",
+      "is_retracted": false,
+      "journal": "Otolaryngologic Clinics of North America",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5109877402",
+          "name": "Madeleine A. Kane"
+        }
+      ],
+      "cites_retracted": [
+        "W1976282634",
+        "W2327972628"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W2780054362",
+      "doi": "https://doi.org/10.1364/oe.25.032948",
+      "title": "50 mJ/pulse, electronically tuned Cr:ZnSe master oscillator power amplifier",
+      "publication_year": 2017,
+      "publication_date": "2017-12-19",
+      "is_retracted": false,
+      "journal": "Optics Express",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5005338913",
+          "name": "Masaki Yumoto"
+        },
+        {
+          "id": "https://openalex.org/A5103717760",
+          "name": "Norihito Saito"
+        },
+        {
+          "id": "https://openalex.org/A5103010029",
+          "name": "Satoshi Wada"
+        }
+      ],
+      "cites_retracted": [
+        "W2332240302"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W1832540522",
+      "doi": null,
+      "title": "Point: Surrogate end point biomarkers are likely to be limited in their usefulness in the development of cancer chemoprevention agents against sporadic cancers.",
+      "publication_year": 2003,
+      "publication_date": "2003-07-01",
+      "is_retracted": false,
+      "journal": "PubMed",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5018753315",
+          "name": "William B. Armstrong"
+        },
+        {
+          "id": "https://openalex.org/A5015536826",
+          "name": "Thomas H. Taylor"
+        },
+        {
+          "id": "https://openalex.org/A5060872059",
+          "name": "Frank Louis Meyskens"
+        }
+      ],
+      "cites_retracted": [
+        "W2327972628"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W2013596593",
+      "doi": "https://doi.org/10.1016/j.annpat.2009.07.002",
+      "title": "Tumeurs des glandes salivaires. État des lieux en 2009",
+      "publication_year": 2009,
+      "publication_date": "2009-09-01",
+      "is_retracted": false,
+      "journal": "Annales de Pathologie",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5075378844",
+          "name": "Emmanuelle Uro‐Coste"
+        }
+      ],
+      "cites_retracted": [
+        "W2169494662"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W2277740308",
+      "doi": "https://doi.org/10.1111/odi.12411",
+      "title": "The child and adolescent with HIV in resource poor countries",
+      "publication_year": 2016,
+      "publication_date": "2016-02-16",
+      "is_retracted": false,
+      "journal": "Oral Diseases",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5077227375",
+          "name": "Veerasamy Yengopal"
+        },
+        {
+          "id": "https://openalex.org/A5109271854",
+          "name": "MD Thekiso"
+        },
+        {
+          "id": "https://openalex.org/A5034574176",
+          "name": "Mpho Matlakale Molete"
+        }
+      ],
+      "cites_retracted": [
+        "W2170321254",
+        "W4232579761"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W2941492231",
+      "doi": "https://doi.org/10.1016/j.msec.2019.04.074",
+      "title": "Minocycline-incorporated multilayers on titanium substrates for simultaneous regulation of MSCs and macrophages",
+      "publication_year": 2019,
+      "publication_date": "2019-04-24",
+      "is_retracted": false,
+      "journal": "Materials Science and Engineering C",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5062018338",
+          "name": "Xinkun Shen"
+        },
+        {
+          "id": "https://openalex.org/A5103916717",
+          "name": "Hao Shuang Gu"
+        },
+        {
+          "id": "https://openalex.org/A5110800094",
+          "name": "Pingping Ma"
+        },
+        {
+          "id": "https://openalex.org/A5061897617",
+          "name": "Zhong Yuan Luo"
+        },
+        {
+          "id": "https://openalex.org/A5032997576",
+          "name": "Menghuan Li"
+        },
+        {
+          "id": "https://openalex.org/A5074395397",
+          "name": "Yan Hu"
+        },
+        {
+          "id": "https://openalex.org/A5023252191",
+          "name": "Kaiyong Cai"
+        }
+      ],
+      "cites_retracted": [
+        "W2603825787"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W2998040668",
+      "doi": "https://doi.org/10.5005/jp-journals-10024-2642",
+      "title": "Socket-shield Technique and Immediate Implant Placement for Ridge Preservation: Case Report Series with 1-year Follow-up",
+      "publication_year": 2019,
+      "publication_date": "2019-01-01",
+      "is_retracted": false,
+      "journal": "The Journal of Contemporary Dental Practice",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5113164900",
+          "name": "Rola Al Habashneh"
+        },
+        {
+          "id": "https://openalex.org/A5059475479",
+          "name": "Maher Abdullatif Walid"
+        },
+        {
+          "id": "https://openalex.org/A5000193443",
+          "name": "Tahani Abualteen"
+        },
+        {
+          "id": "https://openalex.org/A5070307866",
+          "name": "Mohammad Abukar"
+        }
+      ],
+      "cites_retracted": [
+        "W2557953995"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W4239384437",
+      "doi": "https://doi.org/10.1016/b978-0-323-48110-6.00036-3",
+      "title": "Endocrine Pharmacology",
+      "publication_year": 2018,
+      "publication_date": "2018-11-30",
+      "is_retracted": false,
+      "journal": "Elsevier eBooks",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5028699425",
+          "name": "Mark T. Keegan"
+        }
+      ],
+      "cites_retracted": [
+        "W2164748822",
+        "W4236269095"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W1519404338",
+      "doi": "https://doi.org/10.1111/j.1600-0579.2011.00713.x",
+      "title": "Decision‐making and treatment with respect to surgical intervention in the context of a European Core Curriculum in Cariology",
+      "publication_year": 2011,
+      "publication_date": "2011-10-24",
+      "is_retracted": false,
+      "journal": "European Journal Of Dental Education",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5003816815",
+          "name": "Wolfgang Buchalla"
+        },
+        {
+          "id": "https://openalex.org/A5080259301",
+          "name": "Annette Wiegand"
+        }
+      ],
+      "cites_retracted": [
+        "W2595332161"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W2033112010",
+      "doi": "https://doi.org/10.1016/j.cden.2011.02.004",
+      "title": "Advances in Pediatric Dentistry",
+      "publication_year": 2011,
+      "publication_date": "2011-07-01",
+      "is_retracted": false,
+      "journal": "Dental Clinics of North America",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5113434477",
+          "name": "Richard K Yoon"
+        },
+        {
+          "id": "https://openalex.org/A5028901947",
+          "name": "Jed M. Best"
+        }
+      ],
+      "cites_retracted": [
+        "W2595332161"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W2047802183",
+      "doi": "https://doi.org/10.1016/j.coms.2013.03.001",
+      "title": "Common Medical Illnesses that Affect Anesthesia and Their Anesthetic Management",
+      "publication_year": 2013,
+      "publication_date": "2013-07-19",
+      "is_retracted": false,
+      "journal": "Oral and Maxillofacial Surgery Clinics of North America",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5056096787",
+          "name": "Michael H. Porter"
+        },
+        {
+          "id": "https://openalex.org/A5013095696",
+          "name": "George Obeid"
+        }
+      ],
+      "cites_retracted": [
+        "W2164748822"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W2769302003",
+      "doi": "https://doi.org/10.1016/j.gore.2017.11.009",
+      "title": "Dermatomyositis - key to diagnosing ovarian cancer, monitoring treatment and detecting recurrent disease: Case report",
+      "publication_year": 2017,
+      "publication_date": "2017-11-27",
+      "is_retracted": false,
+      "journal": "Gynecologic Oncology Reports",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5110396775",
+          "name": "Carlie Field"
+        },
+        {
+          "id": "https://openalex.org/A5065977118",
+          "name": "Barbara Ann Goff"
+        }
+      ],
+      "cites_retracted": [
+        "W2164748822",
+        "W4236269095"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W2783538759",
+      "doi": "https://doi.org/10.1007/s40368-017-0322-8",
+      "title": "Clinical assessment of class II resin-based composites versus preformed metal crowns performed on primary molars in patients at high risk of caries",
+      "publication_year": 2018,
+      "publication_date": "2018-01-12",
+      "is_retracted": false,
+      "journal": "European Archives of Paediatric Dentistry",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5017659458",
+          "name": "Asma Alyahya"
+        },
+        {
+          "id": "https://openalex.org/A5071611673",
+          "name": "Adeeba Khanum"
+        },
+        {
+          "id": "https://openalex.org/A5046006654",
+          "name": "Muawia A. Qudeimat"
+        }
+      ],
+      "cites_retracted": [
+        "W1841037192",
+        "W2595332161"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W3021037482",
+      "doi": "https://doi.org/10.1016/b978-0-7020-4948-4.00043-x",
+      "title": "Herpesvirus infections",
+      "publication_year": 2013,
+      "publication_date": "2013-01-01",
+      "is_retracted": false,
+      "journal": "Elsevier eBooks",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5105936821",
+          "name": "Crispian M. Scully"
+        }
+      ],
+      "cites_retracted": [
+        "W2170321254"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W2127546989",
+      "doi": null,
+      "title": "Increased expression of the PRL-3 gene in human oral squamous cell carcinoma and dysplasia tissues.",
+      "publication_year": 2011,
+      "publication_date": "2011-01-01",
+      "is_retracted": false,
+      "journal": "PubMed",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5007678499",
+          "name": "Nur Mohammad Monsur Hassan"
+        },
+        {
+          "id": "https://openalex.org/A5109228349",
+          "name": "Jun-Ichi Hamada"
+        },
+        {
+          "id": "https://openalex.org/A5112102861",
+          "name": "Takeshi Kameyama"
+        },
+        {
+          "id": "https://openalex.org/A5055140620",
+          "name": "Mitsuhiro Tada"
+        },
+        {
+          "id": "https://openalex.org/A5013543347",
+          "name": "Koji Nakagawa"
+        },
+        {
+          "id": "https://openalex.org/A5058063773",
+          "name": "Shoko Yoshida"
+        },
+        {
+          "id": "https://openalex.org/A5075249502",
+          "name": "Haruhiko Kashiwazaki"
+        },
+        {
+          "id": "https://openalex.org/A5108449862",
+          "name": "Yutaka Yamazaki"
+        },
+        {
+          "id": "https://openalex.org/A5103109255",
+          "name": "Yukiko Suzuki"
+        },
+        {
+          "id": "https://openalex.org/A5015429847",
+          "name": "Akira Sasaki"
+        },
+        {
+          "id": "https://openalex.org/A5113819628",
+          "name": "Hitoshi Nagatsuka"
+        },
+        {
+          "id": "https://openalex.org/A5100829358",
+          "name": "Nobuo Inoue"
+        },
+        {
+          "id": "https://openalex.org/A5058974199",
+          "name": "Tetsuya Moriuchi"
+        }
+      ],
+      "cites_retracted": [
+        "W2327972628"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W2896852622",
+      "doi": "https://doi.org/10.3390/ma11102007",
+      "title": "Influence of Implant Neck Design on Peri-Implant Tissue Dimensions: A Comparative Study in Dogs",
+      "publication_year": 2018,
+      "publication_date": "2018-10-17",
+      "is_retracted": false,
+      "journal": "Materials",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5034074678",
+          "name": "José Luís Calvo‐Guirado"
+        },
+        {
+          "id": "https://openalex.org/A5063734066",
+          "name": "Raúl Jiménez-Soto"
+        },
+        {
+          "id": "https://openalex.org/A5087521741",
+          "name": "Carlos Pérez Martı́nez"
+        },
+        {
+          "id": "https://openalex.org/A5026461316",
+          "name": "Manuel Fernández‐Domínguez"
+        },
+        {
+          "id": "https://openalex.org/A5026437987",
+          "name": "Sérgio Alexandre Gehrke"
+        },
+        {
+          "id": "https://openalex.org/A5006405088",
+          "name": "José Eduardo Maté Sánchez de Val"
+        }
+      ],
+      "cites_retracted": [
+        "W2045671643",
+        "W2234625253"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W2965850475",
+      "doi": "https://doi.org/10.1016/j.cden.2019.07.001",
+      "title": "Surgical Management of Caries Lesions",
+      "publication_year": 2019,
+      "publication_date": "2019-08-06",
+      "is_retracted": false,
+      "journal": "Dental Clinics of North America",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5009796344",
+          "name": "Andréa Ferreira Zandoná"
+        }
+      ],
+      "cites_retracted": [
+        "W2595332161"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W3049423461",
+      "doi": "https://doi.org/10.4103/jisp.jisp_557_19",
+      "title": "Socket shield: An esthetic success?",
+      "publication_year": 2020,
+      "publication_date": "2020-01-01",
+      "is_retracted": false,
+      "journal": "Journal of Indian Society of Periodontology",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5081662884",
+          "name": "Farhan Durrani"
+        },
+        {
+          "id": "https://openalex.org/A5031229225",
+          "name": "Himani Painuly"
+        },
+        {
+          "id": "https://openalex.org/A5109830020",
+          "name": "Akanksha Shukla"
+        },
+        {
+          "id": "https://openalex.org/A5102406200",
+          "name": "Samidha Pandey"
+        },
+        {
+          "id": "https://openalex.org/A5061893193",
+          "name": "Rakhshinda Nahid"
+        }
+      ],
+      "cites_retracted": [
+        "W2557953995"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W2120744394",
+      "doi": "https://doi.org/10.1080/22201009.2011.10872256",
+      "title": "Diagnosis and management of Addison's disease: insights gained from a large South African cohort",
+      "publication_year": 2011,
+      "publication_date": "2011-07-01",
+      "is_retracted": false,
+      "journal": "Journal of Endocrinology Metabolism and Diabetes of South Africa",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5042445092",
+          "name": "Ian Louis Ross"
+        },
+        {
+          "id": "https://openalex.org/A5082530971",
+          "name": "Naomi Sharlene Levitt"
+        }
+      ],
+      "cites_retracted": [
+        "W2164748822"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W2143444030",
+      "doi": "https://doi.org/10.5772/36526",
+      "title": "The Changing Aetiology of Oral Cancer and the Role of Novel Biomarkers to Aid in Early Diagnosis",
+      "publication_year": 2012,
+      "publication_date": "2012-03-14",
+      "is_retracted": false,
+      "journal": "Oral Cancer",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5077460275",
+          "name": "Gareema Prasad"
+        },
+        {
+          "id": "https://openalex.org/A5065984897",
+          "name": "Sarah Zhao"
+        },
+        {
+          "id": "https://openalex.org/A5098043684",
+          "name": "S. Camile"
+        }
+      ],
+      "cites_retracted": [
+        "W1976282634",
+        "W2005426500",
+        "W2327972628"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W2759537511",
+      "doi": "https://doi.org/10.1016/j.ajodo.2017.05.019",
+      "title": "Comparison of in-vivo failure of single-thread and dual-thread temporary anchorage devices over 18 months: A split-mouth randomized controlled trial",
+      "publication_year": 2017,
+      "publication_date": "2017-09-26",
+      "is_retracted": false,
+      "journal": "American Journal of Orthodontics and Dentofacial Orthopedics",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5073551162",
+          "name": "Owais Khalid Durrani"
+        },
+        {
+          "id": "https://openalex.org/A5038061236",
+          "name": "Sohrab Shaheed"
+        },
+        {
+          "id": "https://openalex.org/A5101026368",
+          "name": "Arsalan Khan"
+        },
+        {
+          "id": "https://openalex.org/A5059241898",
+          "name": "Ulfat Bashir"
+        }
+      ],
+      "cites_retracted": [
+        "W2055254402",
+        "W2234625253"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W2782973626",
+      "doi": "https://doi.org/10.1097/id.0000000000000718",
+      "title": "Implants With and Without Laser-Microtextured Collar",
+      "publication_year": 2018,
+      "publication_date": "2018-01-11",
+      "is_retracted": false,
+      "journal": "Implant Dentistry",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5061306190",
+          "name": "Renzo Guarnieri"
+        },
+        {
+          "id": "https://openalex.org/A5028847033",
+          "name": "Rolando Ceccarelli"
+        },
+        {
+          "id": "https://openalex.org/A5103554559",
+          "name": "John L. Ricci"
+        },
+        {
+          "id": "https://openalex.org/A5028796367",
+          "name": "Tiziano Testori"
+        }
+      ],
+      "cites_retracted": [
+        "W2234625253"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W2908676909",
+      "doi": "https://doi.org/10.1016/b978-0-323-60826-8.00004-3",
+      "title": "Oral and Dental Care of Local and Systemic Diseases",
+      "publication_year": 2019,
+      "publication_date": "2019-01-01",
+      "is_retracted": false,
+      "journal": "Elsevier eBooks",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5059380591",
+          "name": "Marcio A. da Fonseca"
+        }
+      ],
+      "cites_retracted": [
+        "W2170321254"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W3107625039",
+      "doi": "https://doi.org/10.3390/ijms21239225",
+      "title": "Description of a Novel Mechanism Possibly Explaining the Antiproliferative Properties of Glucocorticoids in Duchenne Muscular Dystrophy Fibroblasts Based on Glucocorticoid Receptor GR and NFAT5",
+      "publication_year": 2020,
+      "publication_date": "2020-12-03",
+      "is_retracted": false,
+      "journal": "International Journal of Molecular Sciences",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5003008880",
+          "name": "Sandrine Herbelet"
+        },
+        {
+          "id": "https://openalex.org/A5042968833",
+          "name": "Boél De Paepe"
+        },
+        {
+          "id": "https://openalex.org/A5082524383",
+          "name": "Jan De Bleecker"
+        }
+      ],
+      "cites_retracted": [
+        "W2164748822",
+        "W4236269095"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W2026246922",
+      "doi": "https://doi.org/10.2298/mpns0812591j",
+      "title": "Diagnosis of laryngeal carcinoma",
+      "publication_year": 2008,
+      "publication_date": "2008-01-01",
+      "is_retracted": false,
+      "journal": "Medicinski pregled",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5088364835",
+          "name": "Milan D. Jovanovic"
+        }
+      ],
+      "cites_retracted": [
+        "W2327972628"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W2079768517",
+      "doi": "https://doi.org/10.4012/dmj.2012-096",
+      "title": "A novel glass ionomer cement containing MgCO3 apatite induced the increased proliferation and differentiation of human pulp cells in vitro",
+      "publication_year": 2012,
+      "publication_date": "2012-01-01",
+      "is_retracted": false,
+      "journal": "Dental Materials Journal",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5043301226",
+          "name": "Arunee Laiteerapong"
+        },
+        {
+          "id": "https://openalex.org/A5068146098",
+          "name": "Yossakit Lochaiwatana"
+        },
+        {
+          "id": "https://openalex.org/A5087844313",
+          "name": "Isao Hirata"
+        },
+        {
+          "id": "https://openalex.org/A5105308779",
+          "name": "Masayuki Okazaki"
+        },
+        {
+          "id": "https://openalex.org/A5002282707",
+          "name": "Shinya Murakami"
+        },
+        {
+          "id": "https://openalex.org/A5058127076",
+          "name": "Suchit Poolthong"
+        }
+      ],
+      "cites_retracted": [
+        "W2595332161"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W2162463889",
+      "doi": "https://doi.org/10.1111/j.1601-1546.2012.00287.x",
+      "title": "Management of teeth with vital pulps and open apices",
+      "publication_year": 2010,
+      "publication_date": "2010-09-01",
+      "is_retracted": false,
+      "journal": "Endodontic Topics",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5027911652",
+          "name": "Ibrahim H. Abu‐Tahun"
+        },
+        {
+          "id": "https://openalex.org/A5028287256",
+          "name": "Mahmoud Torabinejad"
+        }
+      ],
+      "cites_retracted": [
+        "W2137700329",
+        "W2595332161"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W2983670718",
+      "doi": "https://doi.org/10.1007/s12663-019-01301-1",
+      "title": "Inappropriate Socket Shield Protocol as a Probable Cause of Peri-Implant Bone Resorption: A Case Report",
+      "publication_year": 2019,
+      "publication_date": "2019-11-07",
+      "is_retracted": false,
+      "journal": "Journal of Maxillofacial and Oral Surgery",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5069485823",
+          "name": "Yazad Gandhi"
+        },
+        {
+          "id": "https://openalex.org/A5079363490",
+          "name": "Neel Bhatavadekar"
+        }
+      ],
+      "cites_retracted": [
+        "W2557953995"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W3010602756",
+      "doi": "https://doi.org/10.4317/medoral.23416",
+      "title": "Prevalence of Apical Periodontitis in patients with Multiple Myeloma",
+      "publication_year": 2020,
+      "publication_date": "2020-01-01",
+      "is_retracted": false,
+      "journal": "Medicina oral, patología oral y cirugía bucal",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5062883316",
+          "name": "Ricardo Elías Oñate Sánchez"
+        },
+        {
+          "id": "https://openalex.org/A5058437981",
+          "name": "Francisco Javier Rodríguez‐Lozano"
+        },
+        {
+          "id": "https://openalex.org/A5024466055",
+          "name": "Julia Guerrero Gironés"
+        }
+      ],
+      "cites_retracted": [
+        "W2579618622"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W3037035361",
+      "doi": "https://doi.org/10.1159/000505643",
+      "title": "Is Fluorescence Technology a Promising Tool for Detecting Infected Dentin in Deep Carious Lesions?",
+      "publication_year": 2020,
+      "publication_date": "2020-01-01",
+      "is_retracted": false,
+      "journal": "Caries Research",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5037158006",
+          "name": "Leslie H. Trippe"
+        },
+        {
+          "id": "https://openalex.org/A5022086568",
+          "name": "Apoena Aguiar Ribeiro"
+        },
+        {
+          "id": "https://openalex.org/A5082861093",
+          "name": "M. Andrea Azcárate-Peril"
+        },
+        {
+          "id": "https://openalex.org/A5089347445",
+          "name": "John S. Preisser"
+        },
+        {
+          "id": "https://openalex.org/A5012466900",
+          "name": "Rujin Wang"
+        },
+        {
+          "id": "https://openalex.org/A5009796344",
+          "name": "Andréa Ferreira Zandoná"
+        }
+      ],
+      "cites_retracted": [
+        "W2595332161"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W4242855645",
+      "doi": "https://doi.org/10.1016/b978-0-7234-3695-9.00006-7",
+      "title": "Restorative paediatric dentistry",
+      "publication_year": 2013,
+      "publication_date": "2013-01-01",
+      "is_retracted": false,
+      "journal": "Elsevier eBooks",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5063043655",
+          "name": "Nicky M Kilpatrick"
+        },
+        {
+          "id": "https://openalex.org/A5104106042",
+          "name": "Sally Hibbert"
+        }
+      ],
+      "cites_retracted": [
+        "W1638893512",
+        "W2595332161"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W4288036236",
+      "doi": "https://doi.org/10.1563/aaid-joi-d-21-00034",
+      "title": "Primary Stability of Trabecular Metal Implant in Comparison to Fully Threaded Implants: In Vitro Study Simulating Immediate Implant Placement",
+      "publication_year": 2022,
+      "publication_date": "2022-07-26",
+      "is_retracted": false,
+      "journal": "Journal of Oral Implantology",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5012835968",
+          "name": "Marko Magić"
+        },
+        {
+          "id": "https://openalex.org/A5083733199",
+          "name": "Gorana Zupanek"
+        },
+        {
+          "id": "https://openalex.org/A5037482249",
+          "name": "Zoran Lazić"
+        },
+        {
+          "id": "https://openalex.org/A5042067080",
+          "name": "Edgard El Chaar"
+        }
+      ],
+      "cites_retracted": [
+        "W2315790151"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W1007852356",
+      "doi": "https://doi.org/10.1016/b978-012239990-9/50019-9",
+      "title": "Chemoprevention of Oral Premalignant Lesions",
+      "publication_year": 2003,
+      "publication_date": "2003-01-01",
+      "is_retracted": false,
+      "journal": "Elsevier eBooks",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5108480016",
+          "name": "Susan T. Mayne"
+        },
+        {
+          "id": "https://openalex.org/A5083248927",
+          "name": "Brenda Cartmel"
+        },
+        {
+          "id": "https://openalex.org/A5110189977",
+          "name": "Douglas E. Morse"
+        }
+      ],
+      "cites_retracted": [
+        "W2327972628"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W2497310129",
+      "doi": "https://doi.org/10.1016/b978-0-08-100491-3.00009-x",
+      "title": "Materials for pulp capping",
+      "publication_year": 2016,
+      "publication_date": "2016-01-01",
+      "is_retracted": false,
+      "journal": "Elsevier eBooks",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5061345254",
+          "name": "John W. Nicholson"
+        },
+        {
+          "id": "https://openalex.org/A5065058344",
+          "name": "Beata Czarnecka"
+        }
+      ],
+      "cites_retracted": [
+        "W2595332161"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W2508591726",
+      "doi": "https://doi.org/10.1111/scd.12198",
+      "title": "Oral healthcare management in Bardet Biedl syndrome",
+      "publication_year": 2016,
+      "publication_date": "2016-08-29",
+      "is_retracted": false,
+      "journal": "Special Care in Dentistry",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5020427319",
+          "name": "Yazan Mansour Hassona"
+        },
+        {
+          "id": "https://openalex.org/A5007126605",
+          "name": "Najla S. Kasabreh"
+        },
+        {
+          "id": "https://openalex.org/A5060733947",
+          "name": "Hanin Sager Hammoudeh"
+        },
+        {
+          "id": "https://openalex.org/A5105936821",
+          "name": "Crispian M. Scully"
+        }
+      ],
+      "cites_retracted": [
+        "W2164748822"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W2800800287",
+      "doi": "https://doi.org/10.1117/12.2315035",
+      "title": "Broadband tunable mid-IR Cr2+:CdSe lasers for medical applications",
+      "publication_year": 2018,
+      "publication_date": "2018-04-26",
+      "is_retracted": false,
+      "journal": null,
+      "authors": [
+        {
+          "id": "https://openalex.org/A5044680231",
+          "name": "Sergei Tomilov"
+        },
+        {
+          "id": "https://openalex.org/A5004993947",
+          "name": "Mikhail K. Tarabrin"
+        },
+        {
+          "id": "https://openalex.org/A5071868568",
+          "name": "Vladimir A. Lazarev"
+        },
+        {
+          "id": "https://openalex.org/A5048402186",
+          "name": "Valeriy E. Karasik"
+        },
+        {
+          "id": "https://openalex.org/A5070161666",
+          "name": "Valery Victorovich Tuchin"
+        }
+      ],
+      "cites_retracted": [
+        "W2332240302"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W2907243638",
+      "doi": "https://doi.org/10.2174/1874210601913010041",
+      "title": "Comparison of the Stress Strain Capacity between Different Clear Aligners",
+      "publication_year": 2019,
+      "publication_date": "2019-01-31",
+      "is_retracted": false,
+      "journal": "The Open Dentistry Journal",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5001242954",
+          "name": "Domenico Ciavarella"
+        },
+        {
+          "id": "https://openalex.org/A5081510611",
+          "name": "Claudia Cianci"
+        },
+        {
+          "id": "https://openalex.org/A5014619499",
+          "name": "Michele Laurenziello"
+        },
+        {
+          "id": "https://openalex.org/A5082900711",
+          "name": "Giuseppe Troiano"
+        },
+        {
+          "id": "https://openalex.org/A5067157511",
+          "name": "Francesco De Cillis"
+        },
+        {
+          "id": "https://openalex.org/A5078580806",
+          "name": "Michele Tepedino"
+        },
+        {
+          "id": "https://openalex.org/A5061895867",
+          "name": "Graziano Montaruli"
+        },
+        {
+          "id": "https://openalex.org/A5051881729",
+          "name": "Vincenzo Grassia"
+        },
+        {
+          "id": "https://openalex.org/A5053084731",
+          "name": "Lorenzo Lo Muzio"
+        },
+        {
+          "id": "https://openalex.org/A5039090776",
+          "name": "Carmine Pappalettere"
+        }
+      ],
+      "cites_retracted": [
+        "W2510731289"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W3114022680",
+      "doi": "https://doi.org/10.21926/rpm.2004024",
+      "title": "Clinical Significance of Internal Friction Connection and Micro-Threads in Implant-Supported Prostheses: A Literature Review",
+      "publication_year": 2020,
+      "publication_date": "2020-12-17",
+      "is_retracted": false,
+      "journal": "Recent Progress in Materials",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5020261847",
+          "name": "Ki-Won Jeong"
+        },
+        {
+          "id": "https://openalex.org/A5109865466",
+          "name": "Jeong Chan Kim"
+        },
+        {
+          "id": "https://openalex.org/A5016373597",
+          "name": "In-Sung Luke Yeo"
+        }
+      ],
+      "cites_retracted": [
+        "W2234625253"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W1530162220",
+      "doi": "https://doi.org/10.4103/2230-8210.159026",
+      "title": "Endocrinopathies: The current and changing perspectives in anesthesia practice",
+      "publication_year": 2015,
+      "publication_date": "2015-01-01",
+      "is_retracted": false,
+      "journal": "Indian Journal of Endocrinology and Metabolism",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5109860699",
+          "name": "SukhminderJit Singh Bajwa"
+        },
+        {
+          "id": "https://openalex.org/A5111410073",
+          "name": "Gurpreet Kaur"
+        }
+      ],
+      "cites_retracted": [
+        "W2164748822",
+        "W4236269095"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W1992462087",
+      "doi": "https://doi.org/10.1016/j.tripleo.2011.09.001",
+      "title": "Teriparatide's potential role in jaw bone related diseases",
+      "publication_year": 2011,
+      "publication_date": "2011-11-17",
+      "is_retracted": false,
+      "journal": "Oral Surgery Oral Medicine Oral Pathology Oral Radiology and Endodontology",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5087047490",
+          "name": "Craig S. Miller"
+        }
+      ],
+      "cites_retracted": [
+        "W2327972628"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W2467176175",
+      "doi": "https://doi.org/10.1017/cem.2016.338",
+      "title": "Analgesia for acute gingivostomatitis: a national survey of pediatric emergency physicians",
+      "publication_year": 2016,
+      "publication_date": "2016-07-27",
+      "is_retracted": false,
+      "journal": "Canadian Journal of Emergency Medicine",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5063833884",
+          "name": "Joe MacLellan"
+        },
+        {
+          "id": "https://openalex.org/A5011767832",
+          "name": "Samina Ali"
+        },
+        {
+          "id": "https://openalex.org/A5052856790",
+          "name": "Sarah J. Curtis"
+        },
+        {
+          "id": "https://openalex.org/A5036594046",
+          "name": "Jason Baserman"
+        },
+        {
+          "id": "https://openalex.org/A5079729257",
+          "name": "Andrew Dixon"
+        }
+      ],
+      "cites_retracted": [
+        "W2170321254",
+        "W4232579761"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W2981371374",
+      "doi": "https://doi.org/10.31557/apjcp.2019.20.10.3145",
+      "title": "Diagnostic Utility of Cytology in Assessment of Ploidy Status in Potentially Malignant Oral Disorders",
+      "publication_year": 2019,
+      "publication_date": "2019-10-01",
+      "is_retracted": false,
+      "journal": "Asian Pacific Journal of Cancer Prevention",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5032949576",
+          "name": "Thayalan Dineshkumar"
+        },
+        {
+          "id": "https://openalex.org/A5012330574",
+          "name": "Prabakar Srikanth"
+        },
+        {
+          "id": "https://openalex.org/A5110644435",
+          "name": "A E Nagarathinam"
+        },
+        {
+          "id": "https://openalex.org/A5059849030",
+          "name": "Shankaran Priyadharini"
+        },
+        {
+          "id": "https://openalex.org/A5088021273",
+          "name": "T A Shruthi"
+        }
+      ],
+      "cites_retracted": [
+        "W2327972628"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W3108363213",
+      "doi": "https://doi.org/10.1038/s41598-020-77862-w",
+      "title": "Ischial tuberosity: new donor site for bone grafts in animal cleft research",
+      "publication_year": 2020,
+      "publication_date": "2020-11-26",
+      "is_retracted": false,
+      "journal": "Scientific Reports",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5052637773",
+          "name": "Stephan Christian Möhlhenrich"
+        },
+        {
+          "id": "https://openalex.org/A5090725004",
+          "name": "Kristian Kniha"
+        },
+        {
+          "id": "https://openalex.org/A5082106124",
+          "name": "Zuzanna Magnuska"
+        },
+        {
+          "id": "https://openalex.org/A5069679489",
+          "name": "Felix Gremse"
+        },
+        {
+          "id": "https://openalex.org/A5059469029",
+          "name": "Florian Peters"
+        },
+        {
+          "id": "https://openalex.org/A5010298871",
+          "name": "Gholamreza Danesh"
+        },
+        {
+          "id": "https://openalex.org/A5076139009",
+          "name": "Frank Hölzle"
+        },
+        {
+          "id": "https://openalex.org/A5060565324",
+          "name": "Ali Modabber"
+        }
+      ],
+      "cites_retracted": [
+        "W2519632328"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W3215097231",
+      "doi": "https://doi.org/10.1002/jcb.30186",
+      "title": "Understanding the impact of missense mutations on the structure and function of the EDA gene in X‐linked hypohidrotic ectodermal dysplasia: A bioinformatics approach",
+      "publication_year": 2021,
+      "publication_date": "2021-11-24",
+      "is_retracted": false,
+      "journal": "Journal of Cellular Biochemistry",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5017650842",
+          "name": "Prashant Ranjan"
+        },
+        {
+          "id": "https://openalex.org/A5058252457",
+          "name": "Parimal Kumar Das"
+        }
+      ],
+      "cites_retracted": [
+        "W2346699313"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W4200275581",
+      "doi": "https://doi.org/10.1016/j.ijom.2021.12.002",
+      "title": "Digital guides to facilitate retained root removal and simultaneous implant placement",
+      "publication_year": 2021,
+      "publication_date": "2021-12-17",
+      "is_retracted": false,
+      "journal": "International Journal of Oral and Maxillofacial Surgery",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5101890148",
+          "name": "Xi Lin"
+        },
+        {
+          "id": "https://openalex.org/A5100652061",
+          "name": "Zhen Zhou"
+        },
+        {
+          "id": "https://openalex.org/A5100429158",
+          "name": "Shengli Li"
+        },
+        {
+          "id": "https://openalex.org/A5041215420",
+          "name": "Yan Tao Gao"
+        },
+        {
+          "id": "https://openalex.org/A5100710543",
+          "name": "Xianghuai Zheng"
+        }
+      ],
+      "cites_retracted": [
+        "W2557953995",
+        "W3092516030"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W4206570668",
+      "doi": "https://doi.org/10.51847/b0ivlxnz6c",
+      "title": "Orthodontic Clear Aligner Vs Fixed Appliances’ Influence On Oral Microbiota And Salivary Parameters’: A Systematic Review",
+      "publication_year": 2021,
+      "publication_date": "2021-01-01",
+      "is_retracted": false,
+      "journal": "Annals of dental specialty",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5086245482",
+          "name": "Nancy Ajwa"
+        },
+        {
+          "id": "https://openalex.org/A5002569934",
+          "name": "Rowaida AlRashoud"
+        },
+        {
+          "id": "https://openalex.org/A5020234662",
+          "name": "Jedayel AlWehaibi"
+        },
+        {
+          "id": "https://openalex.org/A5075377711",
+          "name": "Aseel Ahmad Almazyad"
+        }
+      ],
+      "cites_retracted": [
+        "W2510731289"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W4232644908",
+      "doi": "https://doi.org/10.1016/b978-0-323-08028-6.00015-4",
+      "title": "Adrenal Insufficiency",
+      "publication_year": 2013,
+      "publication_date": "2013-01-01",
+      "is_retracted": false,
+      "journal": "Elsevier eBooks",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5110166468",
+          "name": "James W. Little"
+        },
+        {
+          "id": "https://openalex.org/A5052313366",
+          "name": "Donald A. Falace"
+        },
+        {
+          "id": "https://openalex.org/A5087047490",
+          "name": "Craig S. Miller"
+        },
+        {
+          "id": "https://openalex.org/A5112759684",
+          "name": "Nelson L. Rhodus"
+        }
+      ],
+      "cites_retracted": [
+        "W2164748822"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W4285743368",
+      "doi": "https://doi.org/10.2298/sgs2202057e",
+      "title": "Comparative study of caries removal using BRIX 3000 and classic mechanical method",
+      "publication_year": 2022,
+      "publication_date": "2022-01-01",
+      "is_retracted": false,
+      "journal": "Stomatoloski glasnik Srbije",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5087248480",
+          "name": "Марина Ефтимоска"
+        },
+        {
+          "id": "https://openalex.org/A5090311229",
+          "name": "Ana Petroska"
+        },
+        {
+          "id": "https://openalex.org/A5047542115",
+          "name": "Boban Terzievski"
+        },
+        {
+          "id": "https://openalex.org/A5021237195",
+          "name": "Vasilka Rendžova"
+        },
+        {
+          "id": "https://openalex.org/A5087406508",
+          "name": "Sonja Apostolska"
+        }
+      ],
+      "cites_retracted": [
+        "W2333580116"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W4308635942",
+      "doi": "https://doi.org/10.1097/md.0000000000030855",
+      "title": "Prognostic value of preoperative systemic inflammatory response as a prognostic indicator in patients with early-stage oral squamous cell carcinoma",
+      "publication_year": 2022,
+      "publication_date": "2022-11-04",
+      "is_retracted": false,
+      "journal": "Medicine",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5067167339",
+          "name": "Toshihiko Mikami"
+        },
+        {
+          "id": "https://openalex.org/A5028125056",
+          "name": "Akinori Funayama"
+        },
+        {
+          "id": "https://openalex.org/A5023328781",
+          "name": "Kanae Niimi"
+        },
+        {
+          "id": "https://openalex.org/A5084806163",
+          "name": "Kenta Haga"
+        },
+        {
+          "id": "https://openalex.org/A5080876549",
+          "name": "Masami Kawaharada"
+        },
+        {
+          "id": "https://openalex.org/A5101909533",
+          "name": "Akihiko Nakamura"
+        },
+        {
+          "id": "https://openalex.org/A5036609556",
+          "name": "Wataru Katagiri"
+        },
+        {
+          "id": "https://openalex.org/A5014108953",
+          "name": "Tadaharu Kobayashi"
+        }
+      ],
+      "cites_retracted": [
+        "W2332071678"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W4309750788",
+      "doi": "https://doi.org/10.2147/ccide.s390131",
+      "title": "Comparing Dual-Zone Immediate Implant Placement and Socket Shield Technique for Ridge Width Changes in the Maxilla: A Prospective Cohort Study",
+      "publication_year": 2022,
+      "publication_date": "2022-11-01",
+      "is_retracted": false,
+      "journal": "Clinical Cosmetic and Investigational Dentistry",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5072497071",
+          "name": "Rola Muhammed Shadid"
+        }
+      ],
+      "cites_retracted": [
+        "W2557953995"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W4319983926",
+      "doi": "https://doi.org/10.3389/fonc.2023.1088444",
+      "title": "FGFR inhibitors combined with nab-paclitaxel - A promising strategy to treat non-small cell lung cancer and overcome resistance",
+      "publication_year": 2023,
+      "publication_date": "2023-02-10",
+      "is_retracted": false,
+      "journal": "Frontiers in Oncology",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5024131822",
+          "name": "Feng Ma"
+        },
+        {
+          "id": "https://openalex.org/A5034145724",
+          "name": "Xinhai Zhu"
+        },
+        {
+          "id": "https://openalex.org/A5114232712",
+          "name": "Yuchun Niu"
+        },
+        {
+          "id": "https://openalex.org/A5039821152",
+          "name": "Aitao Nai"
+        },
+        {
+          "id": "https://openalex.org/A5112894789",
+          "name": "Shoaib Bashir"
+        },
+        {
+          "id": "https://openalex.org/A5100722064",
+          "name": "Yan Xiong"
+        },
+        {
+          "id": "https://openalex.org/A5100554725",
+          "name": "Yunlong Dong"
+        },
+        {
+          "id": "https://openalex.org/A5100451129",
+          "name": "Yin Li"
+        },
+        {
+          "id": "https://openalex.org/A5101893950",
+          "name": "Jian H. Song"
+        },
+        {
+          "id": "https://openalex.org/A5076472783",
+          "name": "Meng Xu"
+        }
+      ],
+      "cites_retracted": [
+        "W2166418769"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W4391635315",
+      "doi": "https://doi.org/10.4103/jcde.jcde_239_23",
+      "title": "Modified single-step apexification and strengthening of thin dentinal walls with Biodentine",
+      "publication_year": 2024,
+      "publication_date": "2024-02-01",
+      "is_retracted": false,
+      "journal": "Journal of Conservative Dentistry and Endodontics",
+      "authors": [],
+      "cites_retracted": [
+        "W2603825787"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W2014189745",
+      "doi": "https://doi.org/10.1016/j.jebdp.2012.06.011",
+      "title": "The Partial Removal of Carious Tissue may Arrest Caries Progression in Primary Teeth",
+      "publication_year": 2012,
+      "publication_date": "2012-08-28",
+      "is_retracted": false,
+      "journal": "Journal of Evidence Based Dental Practice",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5038422173",
+          "name": "Anne C. O’Connell"
+        }
+      ],
+      "cites_retracted": [
+        "W2595332161"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W2410129",
+      "doi": "https://doi.org/10.14219/jada.archive.2012.0019",
+      "title": "A practitioner's guide to developing critical appraisal skills",
+      "publication_year": 2012,
+      "publication_date": "2012-01-01",
+      "is_retracted": false,
+      "journal": "The Journal of the American Dental Association",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5049792784",
+          "name": "Elliot Abt"
+        },
+        {
+          "id": "https://openalex.org/A5022930219",
+          "name": "Bruce Lee Pihlstrom"
+        }
+      ],
+      "cites_retracted": [
+        "W2595332161"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W2595130709",
+      "doi": "https://doi.org/10.1016/j.jebdp.2017.03.004",
+      "title": "Concordance Between Clinical Practice and Published Evidence: Findings From Virginia Commonwealth University School of Dentistry",
+      "publication_year": 2017,
+      "publication_date": "2017-03-13",
+      "is_retracted": false,
+      "journal": "Journal of Evidence Based Dental Practice",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5087977895",
+          "name": "Harmeet K. Chiang"
+        },
+        {
+          "id": "https://openalex.org/A5075128883",
+          "name": "Al M. Best"
+        },
+        {
+          "id": "https://openalex.org/A5032513769",
+          "name": "David C. Sarrett"
+        }
+      ],
+      "cites_retracted": [
+        "W2595332161"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W2771472215",
+      "doi": "https://doi.org/10.1111/jopr.12688",
+      "title": "Effect of Implant Connection Type and Depth on the Seating Accuracy of Hand‐Tightened Abutments",
+      "publication_year": 2017,
+      "publication_date": "2017-12-14",
+      "is_retracted": false,
+      "journal": "Journal of Prosthodontics",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5002932292",
+          "name": "Hakimeh Siadat"
+        },
+        {
+          "id": "https://openalex.org/A5051696599",
+          "name": "S. Belbasi"
+        },
+        {
+          "id": "https://openalex.org/A5001521269",
+          "name": "Marzieh Alikhasi"
+        },
+        {
+          "id": "https://openalex.org/A5107871062",
+          "name": "Vahideh Nazari"
+        },
+        {
+          "id": "https://openalex.org/A5065281787",
+          "name": "Elaheh Beyabanaki"
+        }
+      ],
+      "cites_retracted": [
+        "W2241142985"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W2812829383",
+      "doi": "https://doi.org/10.1016/b978-0-323-40181-4.00025-6",
+      "title": "Infections of the Oral Cavity",
+      "publication_year": 2017,
+      "publication_date": "2017-07-21",
+      "is_retracted": false,
+      "journal": "Elsevier eBooks",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5009223959",
+          "name": "J. H. Shaw"
+        }
+      ],
+      "cites_retracted": [
+        "W2170321254"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W2899385304",
+      "doi": "https://doi.org/10.1007/978-3-319-96848-3_4",
+      "title": "Current and Future Views on Pulp Exposure Management and Epigenetic Influences",
+      "publication_year": 2018,
+      "publication_date": "2018-11-01",
+      "is_retracted": false,
+      "journal": "Springer eBooks",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5028880412",
+          "name": "Henry Fergus Duncan"
+        },
+        {
+          "id": "https://openalex.org/A5104035481",
+          "name": "Yukako Yamauchi"
+        }
+      ],
+      "cites_retracted": [
+        "W2595332161"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W3010329545",
+      "doi": "https://doi.org/10.4028/www.scientific.net/msf.980.176",
+      "title": "Surface Characterization of Monolithic Zirconia Following Treatment with Different Polishing Techniques",
+      "publication_year": 2020,
+      "publication_date": "2020-03-01",
+      "is_retracted": false,
+      "journal": "Materials science forum",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5101577665",
+          "name": "Zhen Tang"
+        },
+        {
+          "id": "https://openalex.org/A5027524424",
+          "name": "Xin Yi Zhao"
+        },
+        {
+          "id": "https://openalex.org/A5006080537",
+          "name": "Anderson Takeo Hara"
+        }
+      ],
+      "cites_retracted": [
+        "W2494985803"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W3184952788",
+      "doi": "https://doi.org/10.5051/jpis.2101180059",
+      "title": "Comparison of peri-implant marginal bone level changes between tapered and straight implant designs: 5-year follow-up results",
+      "publication_year": 2021,
+      "publication_date": "2021-01-01",
+      "is_retracted": false,
+      "journal": "Journal of Periodontal & Implant Science",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5085754867",
+          "name": "Han Park"
+        },
+        {
+          "id": "https://openalex.org/A5049309333",
+          "name": "Ik‐Sang Moon"
+        },
+        {
+          "id": "https://openalex.org/A5029160540",
+          "name": "Chooryung Judi Chung"
+        },
+        {
+          "id": "https://openalex.org/A5050288762",
+          "name": "Su‐Jung Shin"
+        },
+        {
+          "id": "https://openalex.org/A5046032423",
+          "name": "Jong‐Ki Huh"
+        },
+        {
+          "id": "https://openalex.org/A5057165756",
+          "name": "Jeong‐Ho Yun"
+        },
+        {
+          "id": "https://openalex.org/A5023039939",
+          "name": "Dong‐Won Lee"
+        }
+      ],
+      "cites_retracted": [
+        "W2234625253"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W3216894095",
+      "doi": "https://doi.org/10.1002/ajmg.a.62579",
+      "title": "Ectodysplasin pathogenic variants affecting the furin‐cleavage site and unusual clinical features define X‐linked hypohidrotic ectodermal dysplasia in India",
+      "publication_year": 2021,
+      "publication_date": "2021-12-04",
+      "is_retracted": false,
+      "journal": "American Journal of Medical Genetics Part A",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5070100515",
+          "name": "Ajay Kumar Chaudhary"
+        },
+        {
+          "id": "https://openalex.org/A5043948102",
+          "name": "Aishwarya Gholse"
+        },
+        {
+          "id": "https://openalex.org/A5048834515",
+          "name": "Hampapathalu Adimurthy Nagarajaram"
+        },
+        {
+          "id": "https://openalex.org/A5008773486",
+          "name": "Ashwin Bhikaji Dalal"
+        },
+        {
+          "id": "https://openalex.org/A5028018655",
+          "name": "Neerja Gupta"
+        },
+        {
+          "id": "https://openalex.org/A5022193110",
+          "name": "Atanu Kumar Dutta"
+        },
+        {
+          "id": "https://openalex.org/A5065456135",
+          "name": "Sumita Danda"
+        },
+        {
+          "id": "https://openalex.org/A5111637771",
+          "name": "Rekha K. Gupta"
+        },
+        {
+          "id": "https://openalex.org/A5065619130",
+          "name": "Hariharan V. Sankar"
+        },
+        {
+          "id": "https://openalex.org/A5039572003",
+          "name": "Gandham SriLakshmi Bhavani"
+        },
+        {
+          "id": "https://openalex.org/A5022967635",
+          "name": "Katta M. Girisha"
+        },
+        {
+          "id": "https://openalex.org/A5015575038",
+          "name": "Shubha Rajendra Phadke"
+        },
+        {
+          "id": "https://openalex.org/A5000117049",
+          "name": "Prajnya Ranganath"
+        },
+        {
+          "id": "https://openalex.org/A5051966400",
+          "name": "Murali Dharan Bashyam"
+        }
+      ],
+      "cites_retracted": [
+        "W2346699313"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W4200046110",
+      "doi": "https://doi.org/10.3233/bme-211308",
+      "title": "Brushite bone cement containing polyethylene glycol for bone regeneration",
+      "publication_year": 2021,
+      "publication_date": "2021-12-03",
+      "is_retracted": false,
+      "journal": "Bio-Medical Materials and Engineering",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5030553588",
+          "name": "Otto Cumberbatch Morúa"
+        }
+      ],
+      "cites_retracted": [
+        "W2289841874"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W4223901726",
+      "doi": "https://doi.org/10.1016/j.genrep.2022.101613",
+      "title": "Association of VDR gene BsmI polymorphism with temporomandibular joint disorders: A case control study in Kashmiri population",
+      "publication_year": 2022,
+      "publication_date": "2022-04-16",
+      "is_retracted": false,
+      "journal": "Gene Reports",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5064552740",
+          "name": "Shabroza Bashir"
+        },
+        {
+          "id": "https://openalex.org/A5107999243",
+          "name": "Ajaz Ahmed Shah"
+        },
+        {
+          "id": "https://openalex.org/A5097655338",
+          "name": "Jahangir Irfan Dar"
+        },
+        {
+          "id": "https://openalex.org/A5003217368",
+          "name": "Irshad A. Misgar"
+        },
+        {
+          "id": "https://openalex.org/A5074196491",
+          "name": "Anjum Sabba"
+        },
+        {
+          "id": "https://openalex.org/A5007951678",
+          "name": "Parveena Firdous"
+        },
+        {
+          "id": "https://openalex.org/A5112135027",
+          "name": "Tajamul Hakim"
+        }
+      ],
+      "cites_retracted": [
+        "W2423538642"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W4230591209",
+      "doi": "https://doi.org/10.1503/cmaj.111741",
+      "title": "Herpetic whitlow",
+      "publication_year": 2012,
+      "publication_date": "2012-04-30",
+      "is_retracted": false,
+      "journal": "Canadian Medical Association Journal",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5046078243",
+          "name": "Norman‐Philipp Hoff"
+        },
+        {
+          "id": "https://openalex.org/A5056542379",
+          "name": "Peter Arne Gerber"
+        }
+      ],
+      "cites_retracted": [
+        "W2170321254",
+        "W4232579761"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W4285262228",
+      "doi": "https://doi.org/10.4103/jioh.jioh_334_21",
+      "title": "Clear Aligners: Where are we today? A narrative review",
+      "publication_year": 2022,
+      "publication_date": "2022-01-01",
+      "is_retracted": false,
+      "journal": "Journal of international oral health",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5014533371",
+          "name": "Keerthan Shashidhar"
+        },
+        {
+          "id": "https://openalex.org/A5027668955",
+          "name": "Bushra Kanwal"
+        },
+        {
+          "id": "https://openalex.org/A5022684039",
+          "name": "M N Kuttappa"
+        },
+        {
+          "id": "https://openalex.org/A5021835104",
+          "name": "US Krishna Nayak"
+        },
+        {
+          "id": "https://openalex.org/A5001380904",
+          "name": "Akshai Shetty"
+        }
+      ],
+      "cites_retracted": [
+        "W2510731289"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W4308685338",
+      "doi": "https://doi.org/10.1186/s12957-022-02822-9",
+      "title": "Defining the impact of platelet-to-lymphocyte ratio on patient survival with gastric neuroendocrine neoplasm: a retrospective cohort analysis",
+      "publication_year": 2022,
+      "publication_date": "2022-11-09",
+      "is_retracted": false,
+      "journal": "World Journal of Surgical Oncology",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5113743765",
+          "name": "Wenquan Liang"
+        },
+        {
+          "id": "https://openalex.org/A5029695000",
+          "name": "Xinxin Xu"
+        },
+        {
+          "id": "https://openalex.org/A5100664244",
+          "name": "Yuhua Liu"
+        },
+        {
+          "id": "https://openalex.org/A5023991462",
+          "name": "Jianxin Cui"
+        },
+        {
+          "id": "https://openalex.org/A5108281870",
+          "name": "Yunhe Gao"
+        },
+        {
+          "id": "https://openalex.org/A5100434696",
+          "name": "Chuang Wang"
+        },
+        {
+          "id": "https://openalex.org/A5101489050",
+          "name": "Kecheng Zhang"
+        },
+        {
+          "id": "https://openalex.org/A5109358100",
+          "name": "Hongqing Xi"
+        },
+        {
+          "id": "https://openalex.org/A5112523101",
+          "name": "Aizhen Cai"
+        },
+        {
+          "id": "https://openalex.org/A5014711277",
+          "name": "Bo Wei"
+        },
+        {
+          "id": "https://openalex.org/A5100443684",
+          "name": "Lin Chen"
+        }
+      ],
+      "cites_retracted": [
+        "W2332071678"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W4366601980",
+      "doi": "https://doi.org/10.4103/jomfp.jomfp_49_21",
+      "title": "Preoperative platelet-lymphocyte ratio and neutrophil-lymphocyte ratio as predictors of occult lymph node metastasis detected using Desmoglein 3 and Cytokeratin in Indian population",
+      "publication_year": 2022,
+      "publication_date": "2022-10-01",
+      "is_retracted": false,
+      "journal": "Journal of Oral and Maxillofacial Pathology",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5017642091",
+          "name": "Aadithya Basavaraj Urs"
+        },
+        {
+          "id": "https://openalex.org/A5048732221",
+          "name": "Jeyaseelan Augustine"
+        },
+        {
+          "id": "https://openalex.org/A5111860905",
+          "name": "Nita Khurana"
+        },
+        {
+          "id": "https://openalex.org/A5009596992",
+          "name": "Akanksha Uniyal"
+        },
+        {
+          "id": "https://openalex.org/A5070730099",
+          "name": "Ravi Meher"
+        }
+      ],
+      "cites_retracted": [
+        "W2332071678"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W14149834",
+      "doi": "https://doi.org/10.1080/19424396.2012.12220932",
+      "title": "Community-Based Prevention and Early Intervention Strategies",
+      "publication_year": 2012,
+      "publication_date": "2012-07-01",
+      "is_retracted": false,
+      "journal": "Journal of the California Dental Association",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5032306443",
+          "name": "Alan W. Budenz"
+        },
+        {
+          "id": "https://openalex.org/A5059871988",
+          "name": "Paul E. Subar"
+        }
+      ],
+      "cites_retracted": [
+        "W2595332161"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W2134013703",
+      "doi": null,
+      "title": "Modulation of apoptosis protein profiles--role of P-gp in HeLa cells exposed to doxorubicin.",
+      "publication_year": 2012,
+      "publication_date": "2012-11-09",
+      "is_retracted": false,
+      "journal": "PubMed",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5029978947",
+          "name": "Beata Gruber"
+        },
+        {
+          "id": "https://openalex.org/A5087672431",
+          "name": "Jolanta Krzysztoń-Russjan"
+        },
+        {
+          "id": "https://openalex.org/A5038652134",
+          "name": "Irena Bubko"
+        },
+        {
+          "id": "https://openalex.org/A5011814305",
+          "name": "Mirosława Koronkiewicz"
+        },
+        {
+          "id": "https://openalex.org/A5000343896",
+          "name": "Elżbieta Anuszewska"
+        }
+      ],
+      "cites_retracted": [
+        "W2169494662"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W2959114104",
+      "doi": "https://doi.org/10.5005/jp-journals-10048-0008",
+      "title": "Knowledge, Attitude, and Practice Survey of Dentists in Palestine toward Deep Dentin Caries Removal",
+      "publication_year": 2016,
+      "publication_date": "2016-07-01",
+      "is_retracted": false,
+      "journal": "Conservative Dentistry and Endodontic Journal",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5073584194",
+          "name": "Tarek H. Rabi"
+        }
+      ],
+      "cites_retracted": [
+        "W1638893512",
+        "W2137700329",
+        "W2595332161"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W3040728108",
+      "doi": "https://doi.org/10.33326/26644649.2020.4.1.914",
+      "title": "Características de la técnica Socket Shield",
+      "publication_year": 2020,
+      "publication_date": "2020-06-26",
+      "is_retracted": false,
+      "journal": "Revista Odontológica Basadrina",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5002352158",
+          "name": "Britto Ebert Falcón-Guerrero"
+        },
+        {
+          "id": "https://openalex.org/A5073069551",
+          "name": "Guido Sebastián Falcón-Pasapera"
+        }
+      ],
+      "cites_retracted": [
+        "W2557953995"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W3123971038",
+      "doi": "https://doi.org/10.21608/ajdsm.2020.25357.1019",
+      "title": "Effect of Ridge Splitting Simultaneous with Implant Placement for Treatment of Narrow Ridge",
+      "publication_year": 2020,
+      "publication_date": "2020-07-01",
+      "is_retracted": false,
+      "journal": "Al-Azhar Journal of Dental Science",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5097524028",
+          "name": "Ahmed Abdulhalim"
+        },
+        {
+          "id": "https://openalex.org/A5043153006",
+          "name": "Bahaa El-Din Tawfik"
+        },
+        {
+          "id": "https://openalex.org/A5041068810",
+          "name": "Ahmed Mohamed Hosni"
+        }
+      ],
+      "cites_retracted": [
+        "W2241142985"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W3154015522",
+      "doi": "https://doi.org/10.5152/cjms.2021.2718",
+      "title": "Systemic Inflammatory Markers as a Prognostic Factor in Parotid Gland Tumors",
+      "publication_year": 2021,
+      "publication_date": "2021-04-15",
+      "is_retracted": false,
+      "journal": "Cyprus Journal of Medical Sciences",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5057730253",
+          "name": "Orhan Tunç"
+        },
+        {
+          "id": "https://openalex.org/A5076678901",
+          "name": "Burhanettin Gönüldaş"
+        },
+        {
+          "id": "https://openalex.org/A5077288083",
+          "name": "Muzaffer Kanlı́kama"
+        }
+      ],
+      "cites_retracted": [
+        "W2332071678"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W3200011232",
+      "doi": "https://doi.org/10.1016/j.sdentj.2021.09.019",
+      "title": "Assessment of bone marrow-derived mesenchymal stem cells capacity for odontogenic differentiation and dentin regeneration in methimazole-treated albino rats (Light microscopic Study)",
+      "publication_year": 2021,
+      "publication_date": "2021-09-20",
+      "is_retracted": false,
+      "journal": "The Saudi Dental Journal",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5085454779",
+          "name": "Amany A. Rabea"
+        }
+      ],
+      "cites_retracted": [
+        "W2603825787"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W4200390418",
+      "doi": "https://doi.org/10.1055/s-0041-1736292",
+      "title": "Short-Term Evaluation of Prosthetic Rehabilitation of Thin Wiry Ridge by Ridge Splitting and Simultaneous Implants Placement: Non-randomized Control Trial",
+      "publication_year": 2021,
+      "publication_date": "2021-12-04",
+      "is_retracted": false,
+      "journal": "European Journal of Dentistry",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5009078577",
+          "name": "Mohamed Yahia Sharaf"
+        },
+        {
+          "id": "https://openalex.org/A5027378077",
+          "name": "Asharaf Email Eskander"
+        },
+        {
+          "id": "https://openalex.org/A5030371558",
+          "name": "Ahmed Ibrahim Elbakery"
+        }
+      ],
+      "cites_retracted": [
+        "W2241142985"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W4211191763",
+      "doi": "https://doi.org/10.1007/978-1-4419-1584-9_9",
+      "title": "Postoperative Management",
+      "publication_year": 2011,
+      "publication_date": "2011-01-01",
+      "is_retracted": false,
+      "journal": "Springer eBooks",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5002492448",
+          "name": "Sharon Lisa Stein"
+        },
+        {
+          "id": "https://openalex.org/A5040780838",
+          "name": "Conor Patrick Delaney"
+        }
+      ],
+      "cites_retracted": [
+        "W2164748822"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W4285229179",
+      "doi": "https://doi.org/10.4103/njms.njms_53_20",
+      "title": "Socket shield technique",
+      "publication_year": 2022,
+      "publication_date": "2022-05-05",
+      "is_retracted": false,
+      "journal": "National Journal of Maxillofacial Surgery",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5101453374",
+          "name": "Ankit Sharma"
+        },
+        {
+          "id": "https://openalex.org/A5020162149",
+          "name": "Komal Maheshwari"
+        },
+        {
+          "id": "https://openalex.org/A5063477450",
+          "name": "Bhawana Tiwari"
+        },
+        {
+          "id": "https://openalex.org/A5019684244",
+          "name": "Dwarakananda Naik"
+        }
+      ],
+      "cites_retracted": [
+        "W2557953995"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W4393866821",
+      "doi": "https://doi.org/10.3390/molecules29071594",
+      "title": "Advances in Small Molecular Agents against Oral Cancer",
+      "publication_year": 2024,
+      "publication_date": "2024-04-03",
+      "is_retracted": false,
+      "journal": "Molecules",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5137262312",
+          "name": "Kai Wei"
+        },
+        {
+          "id": "https://openalex.org/A5101327793",
+          "name": "Weiru Zhu"
+        },
+        {
+          "id": "https://openalex.org/A5102929104",
+          "name": "Xinhua Zheng"
+        },
+        {
+          "id": "https://openalex.org/A5015674374",
+          "name": "Yunyun Zheng"
+        }
+      ],
+      "cites_retracted": [
+        "W2166418769"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W4407383534",
+      "doi": "https://doi.org/10.7759/cureus.78831",
+      "title": "Effect of Liners on Pulpal Outcome After Partial Caries Removal in Permanent Teeth: A Systematic Review and Meta-Analysis",
+      "publication_year": 2025,
+      "publication_date": "2025-02-10",
+      "is_retracted": false,
+      "journal": "Cureus",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5106116086",
+          "name": "Vaishnavi Ratnakar Patankar"
+        },
+        {
+          "id": "https://openalex.org/A5101596046",
+          "name": "Ashish K Jain"
+        },
+        {
+          "id": "https://openalex.org/A5040336526",
+          "name": "R Rao"
+        },
+        {
+          "id": "https://openalex.org/A5041302857",
+          "name": "Prajakta Rao"
+        },
+        {
+          "id": "https://openalex.org/A5050094255",
+          "name": "Deepak Langade"
+        },
+        {
+          "id": "https://openalex.org/A5029478859",
+          "name": "Sanpreet Singh Sachdev"
+        },
+        {
+          "id": "https://openalex.org/A5092141665",
+          "name": "Krupa Gala"
+        }
+      ],
+      "cites_retracted": [
+        "W2595332161"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W2566386452",
+      "doi": "https://doi.org/10.1007/978-3-319-43630-2_18",
+      "title": "Viral Diseases and Exanthems of the Skin",
+      "publication_year": 2016,
+      "publication_date": "2016-12-17",
+      "is_retracted": false,
+      "journal": "Springer eBooks",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5051706655",
+          "name": "Jillian F. Rork"
+        },
+        {
+          "id": "https://openalex.org/A5012725526",
+          "name": "Kristen C. Corey"
+        },
+        {
+          "id": "https://openalex.org/A5018082940",
+          "name": "Heather Summe"
+        },
+        {
+          "id": "https://openalex.org/A5003709900",
+          "name": "Sophia Delano"
+        },
+        {
+          "id": "https://openalex.org/A5027110387",
+          "name": "Karen Wiss"
+        }
+      ],
+      "cites_retracted": [
+        "W2170321254"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W3048347416",
+      "doi": "https://doi.org/10.4103/ccd.ccd_16_20",
+      "title": "Retaining and regaining esthetics in the anterior maxillary region using the socket-shield technique",
+      "publication_year": 2020,
+      "publication_date": "2020-01-01",
+      "is_retracted": false,
+      "journal": "Contemporary Clinical Dentistry",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5109454455",
+          "name": "Sreeprada Dash"
+        },
+        {
+          "id": "https://openalex.org/A5030705049",
+          "name": "Abhilash Mohapatra"
+        },
+        {
+          "id": "https://openalex.org/A5090036937",
+          "name": "Gunjan Srivastava"
+        },
+        {
+          "id": "https://openalex.org/A5108904863",
+          "name": "Gopal Krishna Choudhury"
+        },
+        {
+          "id": "https://openalex.org/A5103141657",
+          "name": "Pradyumna Kumar Sahoo"
+        }
+      ],
+      "cites_retracted": [
+        "W2557953995"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W3094547967",
+      "doi": "https://doi.org/10.2174/1574885515999201021165906",
+      "title": "Recent Advancements in Nanotechnology for Oral Cancer: a Review",
+      "publication_year": 2020,
+      "publication_date": "2020-10-22",
+      "is_retracted": false,
+      "journal": "Current Drug Therapy",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5068765808",
+          "name": "Dipali R. Talele"
+        },
+        {
+          "id": "https://openalex.org/A5101851743",
+          "name": "Deepa H. Patel"
+        }
+      ],
+      "cites_retracted": [
+        "W2166418769"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W4210766665",
+      "doi": "https://doi.org/10.1080/08869634.2022.2030077",
+      "title": "Does anxiety have an impact on temporomandibular disorders? A study in a Turkish sample by using specific questionnaires",
+      "publication_year": 2022,
+      "publication_date": "2022-01-31",
+      "is_retracted": false,
+      "journal": "CRANIO®",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5010282225",
+          "name": "Aslıhan Akbulut"
+        },
+        {
+          "id": "https://openalex.org/A5006081549",
+          "name": "Hanefı Kurt"
+        },
+        {
+          "id": "https://openalex.org/A5033952390",
+          "name": "Hilal Uslu Toygar"
+        },
+        {
+          "id": "https://openalex.org/A5080578505",
+          "name": "Erol Yıldırım"
+        }
+      ],
+      "cites_retracted": [
+        "W2423538642"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W4225264711",
+      "doi": "https://doi.org/10.1155/2022/7455050",
+      "title": "Root Membrane Replantation as an Alternative Technique for the Socket Preservation",
+      "publication_year": 2022,
+      "publication_date": "2022-01-01",
+      "is_retracted": false,
+      "journal": "Case Reports in Dentistry",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5000550760",
+          "name": "Francesco Campione"
+        },
+        {
+          "id": "https://openalex.org/A5048255062",
+          "name": "Ludovica Campione"
+        },
+        {
+          "id": "https://openalex.org/A5000073887",
+          "name": "Mario Francesco Campione"
+        },
+        {
+          "id": "https://openalex.org/A5027521559",
+          "name": "Michele Melillo"
+        },
+        {
+          "id": "https://openalex.org/A5016144245",
+          "name": "Claudia Arena"
+        },
+        {
+          "id": "https://openalex.org/A5065434411",
+          "name": "Francesc Abella Sans"
+        },
+        {
+          "id": "https://openalex.org/A5030682886",
+          "name": "Luca Boschini"
+        }
+      ],
+      "cites_retracted": [
+        "W2557953995"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W4239502881",
+      "doi": "https://doi.org/10.1016/b978-0-323-28730-2.00012-1",
+      "title": "Evidence-based treatment planning: Assessment of risk, prognosis, and expected treatment outcomes",
+      "publication_year": 2017,
+      "publication_date": "2017-01-01",
+      "is_retracted": false,
+      "journal": "Elsevier eBooks",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5028219063",
+          "name": "George Gerdts"
+        },
+        {
+          "id": "https://openalex.org/A5023593411",
+          "name": "Samuel Paul Nesbit"
+        },
+        {
+          "id": "https://openalex.org/A5005383084",
+          "name": "Leonardo Marchini"
+        }
+      ],
+      "cites_retracted": [
+        "W2595332161"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W4296361135",
+      "doi": "https://doi.org/10.4103/denthyp.denthyp_167_21",
+      "title": "Efficacy of Socket-Shield Technique on Tissue Stability of Immediate Implant Placement",
+      "publication_year": 2022,
+      "publication_date": "2022-07-01",
+      "is_retracted": false,
+      "journal": "Dental Hypotheses",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5022798225",
+          "name": "Reza Birang"
+        },
+        {
+          "id": "https://openalex.org/A5040144320",
+          "name": "Jaber Yaghini"
+        },
+        {
+          "id": "https://openalex.org/A5108511128",
+          "name": "Shirin Zahra Farhad"
+        },
+        {
+          "id": "https://openalex.org/A5003343435",
+          "name": "mahsa ahmadi shadmehri"
+        },
+        {
+          "id": "https://openalex.org/A5086236850",
+          "name": "Zohreh Afshari"
+        },
+        {
+          "id": "https://openalex.org/A5052541339",
+          "name": "Pedram Iranmanesh"
+        },
+        {
+          "id": "https://openalex.org/A5065055618",
+          "name": "Mohammad Reza Maracy"
+        },
+        {
+          "id": "https://openalex.org/A5020610251",
+          "name": "Amir Khorasani Zadeh"
+        }
+      ],
+      "cites_retracted": [
+        "W2557953995"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W4313209460",
+      "doi": "https://doi.org/10.4322/bds.2022.e3538",
+      "title": "Efficacy evaluation of pepsin enzyme-based gel in chemo-mechanical caries removal on primary anterior teeth: a randomized controlled clinical study",
+      "publication_year": 2022,
+      "publication_date": "2022-01-01",
+      "is_retracted": false,
+      "journal": "Brazilian Dental Science",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5027184542",
+          "name": "Douaa Abo Alhuda"
+        },
+        {
+          "id": "https://openalex.org/A5017511824",
+          "name": "Anas Rajab"
+        },
+        {
+          "id": "https://openalex.org/A5035177821",
+          "name": "Rashad I. Shaadouh"
+        },
+        {
+          "id": "https://openalex.org/A5078985236",
+          "name": "Imad Katbeh"
+        },
+        {
+          "id": "https://openalex.org/A5077445482",
+          "name": "Nikolay S. Tuturov"
+        },
+        {
+          "id": "https://openalex.org/A5018422816",
+          "name": "Ettihad Abo Arrag"
+        }
+      ],
+      "cites_retracted": [
+        "W2344601939"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W4378983548",
+      "doi": "https://doi.org/10.1007/978-3-031-29765-6_4",
+      "title": "Pathogenesis",
+      "publication_year": 2023,
+      "publication_date": "2023-01-01",
+      "is_retracted": false,
+      "journal": "Springer eBooks",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5083193969",
+          "name": "Gaetano Isola"
+        },
+        {
+          "id": "https://openalex.org/A5035686656",
+          "name": "Simona Santonocito"
+        },
+        {
+          "id": "https://openalex.org/A5011614740",
+          "name": "Rosalia Maria Leonardi"
+        },
+        {
+          "id": "https://openalex.org/A5027136665",
+          "name": "Alessandro Polizzi"
+        }
+      ],
+      "cites_retracted": [
+        "W1976282634",
+        "W2327972628"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W4388449297",
+      "doi": "https://doi.org/10.22289/sg.v4n2a26",
+      "title": "CARGA IMEDIATA EM DENTES ANTERIORES",
+      "publication_year": 2023,
+      "publication_date": "2023-10-25",
+      "is_retracted": false,
+      "journal": "Scientia Generalis",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5000952863",
+          "name": "Eric Dos Reis Branquinho"
+        },
+        {
+          "id": "https://openalex.org/A5062153688",
+          "name": "Túlio Silva Pereira"
+        }
+      ],
+      "cites_retracted": [
+        "W2234625253"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W4393180756",
+      "doi": "https://doi.org/10.1016/j.joms.2024.03.019",
+      "title": "Is Diclofenac Transbuccal Mucoadhesive Patch Superior to Oral Diclofenac for the Management of Postoperative Sequelae After Third Molar Surgery?",
+      "publication_year": 2024,
+      "publication_date": "2024-03-26",
+      "is_retracted": false,
+      "journal": "Journal of Oral and Maxillofacial Surgery",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5042417919",
+          "name": "Zenish Rameshbhai Bhatti"
+        },
+        {
+          "id": "https://openalex.org/A5101960435",
+          "name": "Shital Patel"
+        },
+        {
+          "id": "https://openalex.org/A5004387766",
+          "name": "Swasti Shah"
+        },
+        {
+          "id": "https://openalex.org/A5069488275",
+          "name": "Naiya Shah"
+        },
+        {
+          "id": "https://openalex.org/A5075010848",
+          "name": "Rajan Savani"
+        },
+        {
+          "id": "https://openalex.org/A5062109980",
+          "name": "Shyam Chauhan"
+        }
+      ],
+      "cites_retracted": [
+        "W2596684069"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W4405578744",
+      "doi": "https://doi.org/10.5005/jp-journals-10005-2979",
+      "title": "Clinical Effectiveness of Biomaterials in Indirect Pulp Therapy Treatment of Young Permanent Molars with Deep Carious Lesions: A Case–Control Study",
+      "publication_year": 2024,
+      "publication_date": "2024-12-19",
+      "is_retracted": false,
+      "journal": "International Journal of Clinical Pediatric Dentistry",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5034306693",
+          "name": "Shalini Garg"
+        },
+        {
+          "id": "https://openalex.org/A5108398693",
+          "name": "Bhavna G Saraf"
+        },
+        {
+          "id": "https://openalex.org/A5113184008",
+          "name": "Neha Sheoran"
+        },
+        {
+          "id": "https://openalex.org/A5048884493",
+          "name": "Anil Gupta"
+        }
+      ],
+      "cites_retracted": [
+        "W2595332161"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W4406337758",
+      "doi": "https://doi.org/10.3389/froh.2024.1513840",
+      "title": "Questionnaire survey on the clinical application of Hall technique preformed metal crowns in caries of primary molars in China",
+      "publication_year": 2025,
+      "publication_date": "2025-01-13",
+      "is_retracted": false,
+      "journal": "Frontiers in Oral Health",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5100668358",
+          "name": "Junhui Wang"
+        },
+        {
+          "id": "https://openalex.org/A5050121209",
+          "name": "Baize Zhang"
+        },
+        {
+          "id": "https://openalex.org/A5006504527",
+          "name": "Yujiang Chen"
+        },
+        {
+          "id": "https://openalex.org/A5100444643",
+          "name": "Lulu Wang"
+        },
+        {
+          "id": "https://openalex.org/A5041162172",
+          "name": "Yang Du"
+        },
+        {
+          "id": "https://openalex.org/A5100724432",
+          "name": "Fen Liu"
+        },
+        {
+          "id": "https://openalex.org/A5044929178",
+          "name": "Jing Gong"
+        },
+        {
+          "id": "https://openalex.org/A5049644479",
+          "name": "Xiaojing Wang"
+        }
+      ],
+      "cites_retracted": [
+        "W2595332161"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W4414160633",
+      "doi": "https://doi.org/10.1080/00016489.2025.2554650",
+      "title": "Evaluation of parotid tumors using systemic inflammation markers and diffusion-weighted magnetic resonance images",
+      "publication_year": 2025,
+      "publication_date": "2025-09-12",
+      "is_retracted": false,
+      "journal": "Acta Oto-Laryngologica",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5116472579",
+          "name": "Ahmet Ufuk Kılıçtaş"
+        },
+        {
+          "id": "https://openalex.org/A5038625304",
+          "name": "Özlem Çelebi Erdivanlı"
+        },
+        {
+          "id": "https://openalex.org/A5069926701",
+          "name": "Mehmet Birinci"
+        },
+        {
+          "id": "https://openalex.org/A5044812982",
+          "name": "Fatma Beyazal Çeliker"
+        },
+        {
+          "id": "https://openalex.org/A5080808371",
+          "name": "Suat Terzi"
+        },
+        {
+          "id": "https://openalex.org/A5021200553",
+          "name": "Metin Çeliker"
+        },
+        {
+          "id": "https://openalex.org/A5063944145",
+          "name": "Zerrin Özergin Çoşkun"
+        },
+        {
+          "id": "https://openalex.org/A5085554390",
+          "name": "Engin Dursun"
+        }
+      ],
+      "cites_retracted": [
+        "W2332071678"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W1796221866",
+      "doi": "https://doi.org/10.1016/b978-0-7020-3156-4.00008-5",
+      "title": "Maintaining dental pulp vitality",
+      "publication_year": 2010,
+      "publication_date": "2010-01-01",
+      "is_retracted": false,
+      "journal": "Elsevier eBooks",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5028880412",
+          "name": "Henry Fergus Duncan"
+        }
+      ],
+      "cites_retracted": [
+        "W2595332161"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W2515683133",
+      "doi": "https://doi.org/10.1111/clr.12978",
+      "title": "Retracted: A new cervical implant design compared with standard design in order to increase peri‐implant hard and soft tissue behavior: histomorphometric and histological study in dogs",
+      "publication_year": 2016,
+      "publication_date": "2016-09-05",
+      "is_retracted": true,
+      "journal": "Clinical Oral Implants Research",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5034074678",
+          "name": "José Luís Calvo‐Guirado"
+        },
+        {
+          "id": "https://openalex.org/A5006405088",
+          "name": "José Eduardo Maté Sánchez de Val"
+        },
+        {
+          "id": "https://openalex.org/A5002607122",
+          "name": "Rafael Arcesio Delgado Ruiz"
+        },
+        {
+          "id": "https://openalex.org/A5111772363",
+          "name": "Manuel Fernández Domínguez"
+        },
+        {
+          "id": "https://openalex.org/A5007308438",
+          "name": "Paulo Henrique Orlato Rossetti"
+        },
+        {
+          "id": "https://openalex.org/A5026437987",
+          "name": "Sérgio Alexandre Gehrke"
+        }
+      ],
+      "cites_retracted": [
+        "W2045671643",
+        "W2055254402",
+        "W2058870421",
+        "W2234625253"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W3011339520",
+      "doi": "https://doi.org/10.14531/ss2020.1.61-77",
+      "title": "Deformities of the spine and limbs in patients with Duchenne myodystrophy: clinical features, diagnosis and treatment. Interstate consensus protocol",
+      "publication_year": 2020,
+      "publication_date": "2020-03-13",
+      "is_retracted": false,
+      "journal": "Russian Journal of Spine Surgery (Khirurgiya Pozvonochnika)",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5065252394",
+          "name": "SERGEY OLEGOVYCH RYABYKH"
+        },
+        {
+          "id": "https://openalex.org/A5005203436",
+          "name": "Очирова Полина Вячеславовна"
+        },
+        {
+          "id": "https://openalex.org/A5055649326",
+          "name": "Dmitry M Savin"
+        },
+        {
+          "id": "https://openalex.org/A5063752144",
+          "name": "Третьякова Анастасия Николаевна"
+        },
+        {
+          "id": "https://openalex.org/A5046328884",
+          "name": "Dmitry A. Popkov"
+        },
+        {
+          "id": "https://openalex.org/A5003099053",
+          "name": "Рябых Татьяна Викторовна"
+        },
+        {
+          "id": "https://openalex.org/A5085108327",
+          "name": "Елена Николаевна Щурова"
+        },
+        {
+          "id": "https://openalex.org/A5021757792",
+          "name": "М. С. Сайфутдинов"
+        }
+      ],
+      "cites_retracted": [
+        "W2164748822"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W4384072423",
+      "doi": "https://doi.org/10.1007/s12663-023-01959-8",
+      "title": "Platelet Lymphocyte Ratio as a Prognosticator in Oral Cancer Patients",
+      "publication_year": 2023,
+      "publication_date": "2023-07-12",
+      "is_retracted": false,
+      "journal": "Journal of Maxillofacial and Oral Surgery",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5009770013",
+          "name": "Bahiya Elrashid Khalid Hamad"
+        },
+        {
+          "id": "https://openalex.org/A5082485632",
+          "name": "Yousif Idris Eltohami"
+        },
+        {
+          "id": "https://openalex.org/A5110808281",
+          "name": "Ahmed Mohamed Suleiman"
+        }
+      ],
+      "cites_retracted": [
+        "W2332071678"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W4386802432",
+      "doi": "https://doi.org/10.1007/s12070-023-04213-2",
+      "title": "Prognostic Significance of Pre-Treatment Neutrophil–Lymphocyte Ratio and Platelet-Lymphocyte Ratio in Head and Neck Malignancies",
+      "publication_year": 2023,
+      "publication_date": "2023-09-16",
+      "is_retracted": false,
+      "journal": "Indian Journal of Otolaryngology and Head & Neck Surgery",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5069800885",
+          "name": "Rupali Sharma"
+        },
+        {
+          "id": "https://openalex.org/A5004165275",
+          "name": "Gopika Kalsotra"
+        },
+        {
+          "id": "https://openalex.org/A5085996742",
+          "name": "Deepti Mahajan"
+        },
+        {
+          "id": "https://openalex.org/A5074008332",
+          "name": "Parmod Kalsotra"
+        },
+        {
+          "id": "https://openalex.org/A5113467373",
+          "name": "Dev Raj"
+        }
+      ],
+      "cites_retracted": [
+        "W2332071678"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W4386973821",
+      "doi": "https://doi.org/10.4103/jdi.jdi_6_22",
+      "title": "Maxillary anterior implants-challenge of esthetic outcome",
+      "publication_year": 2023,
+      "publication_date": "2023-01-01",
+      "is_retracted": false,
+      "journal": "Journal of Dental Implants",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5003982658",
+          "name": "Sheela Vijayashanthi"
+        },
+        {
+          "id": "https://openalex.org/A5052527942",
+          "name": "Laxman Boyapati"
+        },
+        {
+          "id": "https://openalex.org/A5092925343",
+          "name": "Hemachandra Babu Chilakalapudi"
+        },
+        {
+          "id": "https://openalex.org/A5077543951",
+          "name": "Asma Naaz"
+        }
+      ],
+      "cites_retracted": [
+        "W2315790151"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W4395455194",
+      "doi": "https://doi.org/10.1563/aaid-joi-d-24-00043",
+      "title": "Unconventional Dental Implant Placement Through an Impacted Maxillary Central Incisor in Stable Contact With Enamel and Dentin: A Case Report",
+      "publication_year": 2024,
+      "publication_date": "2024-04-25",
+      "is_retracted": false,
+      "journal": "Journal of Oral Implantology",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5103220253",
+          "name": "Xiaoxuan Lin"
+        },
+        {
+          "id": "https://openalex.org/A5027553146",
+          "name": "Zhengchuan Zhang"
+        },
+        {
+          "id": "https://openalex.org/A5113188441",
+          "name": "Yaohong Huang"
+        },
+        {
+          "id": "https://openalex.org/A5049712722",
+          "name": "Feilong Deng"
+        },
+        {
+          "id": "https://openalex.org/A5013925388",
+          "name": "Ruogu Xu"
+        }
+      ],
+      "cites_retracted": [
+        "W2557953995"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W4402332748",
+      "doi": "https://doi.org/10.1016/j.job.2024.09.003",
+      "title": "Antihypertensive agent losartan promotes tongue squamous cell carcinoma cell proliferation via EGFR/ERK1/2/cyclin D1 signaling axis",
+      "publication_year": 2024,
+      "publication_date": "2024-09-07",
+      "is_retracted": false,
+      "journal": "Journal of Oral Biosciences",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5011917848",
+          "name": "Luo-Yun Wu"
+        },
+        {
+          "id": "https://openalex.org/A5014696233",
+          "name": "Bor‐Chyuan Su"
+        },
+        {
+          "id": "https://openalex.org/A5025303721",
+          "name": "Hsin‐Hsien Yu"
+        },
+        {
+          "id": "https://openalex.org/A5050434756",
+          "name": "Chih‐Cheng Cheng"
+        },
+        {
+          "id": "https://openalex.org/A5066134519",
+          "name": "Chu-Wan Lee"
+        }
+      ],
+      "cites_retracted": [
+        "W2166418769"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W4406086043",
+      "doi": "https://doi.org/10.4103/jisp.jisp_13_24",
+      "title": "Comparative evaluation of conventional and socket-shield techniques on maxillary esthetics following immediate implant placement in fresh extraction sockets: A randomized controlled trial",
+      "publication_year": 2024,
+      "publication_date": "2024-07-01",
+      "is_retracted": false,
+      "journal": "Journal of Indian Society of Periodontology",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5081662884",
+          "name": "Farhan Durrani"
+        },
+        {
+          "id": "https://openalex.org/A5088174571",
+          "name": "Aishwarya Pandey"
+        },
+        {
+          "id": "https://openalex.org/A5099016223",
+          "name": "Shweta Ahlawat"
+        },
+        {
+          "id": "https://openalex.org/A5074847898",
+          "name": "Ekta Kumari"
+        },
+        {
+          "id": "https://openalex.org/A5114233299",
+          "name": "S. U. Gokila Vani"
+        },
+        {
+          "id": "https://openalex.org/A5102013161",
+          "name": "Sakshi Agarwal"
+        },
+        {
+          "id": "https://openalex.org/A5110917471",
+          "name": "P. G. Naveen Kumar"
+        }
+      ],
+      "cites_retracted": [
+        "W2557953995"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W4407094836",
+      "doi": "https://doi.org/10.1007/s00784-025-06195-7",
+      "title": "Physicochemical characterization and effects of monetite obtained from titania-reinforced eggshell on bone repair: a new possibility for tissue bioengineering?",
+      "publication_year": 2025,
+      "publication_date": "2025-02-03",
+      "is_retracted": false,
+      "journal": "Clinical Oral Investigations",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5037212027",
+          "name": "Laisa Kindely Ramos De Oliveira"
+        },
+        {
+          "id": "https://openalex.org/A5059969093",
+          "name": "Conrado Dias do Nascimento Neto"
+        },
+        {
+          "id": "https://openalex.org/A5113066189",
+          "name": "Amy Brian Costa e Silva"
+        },
+        {
+          "id": "https://openalex.org/A5059487826",
+          "name": "Stela Maris Wanderley Rocha"
+        },
+        {
+          "id": "https://openalex.org/A5040087210",
+          "name": "PATRICIA ROCCON BIANCHI MOLINI"
+        },
+        {
+          "id": "https://openalex.org/A5022718071",
+          "name": "André Gustavo de Sousa Galdino"
+        },
+        {
+          "id": "https://openalex.org/A5100343122",
+          "name": "Daniela Nascimento Silva"
+        }
+      ],
+      "cites_retracted": [
+        "W2533561690"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W7118920989",
+      "doi": "https://doi.org/10.3389/fcell.2025.1701546",
+      "title": "Transcriptome analysis identifies EDA1 variants disrupt FOSB-mediated regulation of odontogenic epithelial cell behaviors during dental germ development",
+      "publication_year": 2026,
+      "publication_date": "2026-01-07",
+      "is_retracted": false,
+      "journal": "Frontiers in Cell and Developmental Biology",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5100345353",
+          "name": "Jing Zhang"
+        },
+        {
+          "id": "https://openalex.org/A5070666797",
+          "name": "Xuanting Kong"
+        },
+        {
+          "id": "https://openalex.org/A5062155646",
+          "name": "Yunyun Yuan"
+        },
+        {
+          "id": "https://openalex.org/A5103946497",
+          "name": "Yulin Ding"
+        },
+        {
+          "id": "https://openalex.org/A5023974810",
+          "name": "Jiabao Ren"
+        },
+        {
+          "id": "https://openalex.org/A5025232083",
+          "name": "Wenjing Shen"
+        }
+      ],
+      "cites_retracted": [
+        "W2346699313"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W7125835328",
+      "doi": "https://doi.org/10.1016/j.mtcomm.2026.114729",
+      "title": "Porous structured biphasic calcium phosphate bone grafts derived from room-temperature densified cement for bone repair",
+      "publication_year": 2026,
+      "publication_date": "2026-01-27",
+      "is_retracted": false,
+      "journal": "Materials Today Communications",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5005221053",
+          "name": "Jian‐Chih Chen"
+        },
+        {
+          "id": "https://openalex.org/A5123887921",
+          "name": "Wen-Cheng Chen"
+        }
+      ],
+      "cites_retracted": [
+        "W2466873903"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W7127051453",
+      "doi": "https://doi.org/10.6087/kcse.391",
+      "title": "Patterns of scientific misconduct, time to retraction, and post-retraction citation in dental implantology from 2000 to 2024: a bibliometric study",
+      "publication_year": 2026,
+      "publication_date": "2026-01-29",
+      "is_retracted": false,
+      "journal": "Science Editing",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5067657357",
+          "name": "Indumathi Sivakumar"
+        },
+        {
+          "id": "https://openalex.org/A5061906483",
+          "name": "Arunachalam Sivakumar"
+        },
+        {
+          "id": "https://openalex.org/A5055134492",
+          "name": "Praveen Gadde"
+        },
+        {
+          "id": "https://openalex.org/A5012785095",
+          "name": "Muaiyed Mahmoud Buzayan"
+        },
+        {
+          "id": "https://openalex.org/A5027876213",
+          "name": "Jitendra Sharan"
+        },
+        {
+          "id": "https://openalex.org/A5124746333",
+          "name": "Bindu Kamaraj"
+        }
+      ],
+      "cites_retracted": [
+        "W2405872102",
+        "W4231380776"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W2086343833",
+      "doi": "https://doi.org/10.1155/2002/452527",
+      "title": "Telomerase Activity Levels in the Surgical Margin and Tumour Distant Tissue of the Squamous Cell Carcinoma of the Head‐And‐Neck",
+      "publication_year": 2002,
+      "publication_date": "2002-01-01",
+      "is_retracted": false,
+      "journal": "Analytical Cellular Pathology",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5017742556",
+          "name": "Eva‐Maria Fabricius"
+        },
+        {
+          "id": "https://openalex.org/A5024098497",
+          "name": "Ulrike Gurr"
+        },
+        {
+          "id": "https://openalex.org/A5113470657",
+          "name": "G. P. Wildner"
+        }
+      ],
+      "cites_retracted": [
+        "W2005426500",
+        "W2327972628"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W2129462015",
+      "doi": "https://doi.org/10.1016/s0046-8177(03)00345-9",
+      "title": "Genome profiles of bilateral dysgerminomas, a unilateral gonadoblastoma, and a metastasis from a 46, XY phenotypic female",
+      "publication_year": 2003,
+      "publication_date": "2003-09-01",
+      "is_retracted": false,
+      "journal": "Human Pathology",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5068372060",
+          "name": "Wanja Kildal"
+        },
+        {
+          "id": "https://openalex.org/A5049861607",
+          "name": "Sigrid Marie Kraggerud"
+        },
+        {
+          "id": "https://openalex.org/A5111613888",
+          "name": "Vera Maria Abeler"
+        },
+        {
+          "id": "https://openalex.org/A5111515325",
+          "name": "Sverre Heim"
+        },
+        {
+          "id": "https://openalex.org/A5041434650",
+          "name": "Claes Goran Trope"
+        },
+        {
+          "id": "https://openalex.org/A5018546041",
+          "name": "Gunnar Balle Kristensen"
+        },
+        {
+          "id": "https://openalex.org/A5110188074",
+          "name": "Björn Åke Risberg"
+        },
+        {
+          "id": "https://openalex.org/A5089685702",
+          "name": "Ragnhild A. Lothe"
+        },
+        {
+          "id": "https://openalex.org/A5057258820",
+          "name": "Havard Emil Danielsen"
+        }
+      ],
+      "cites_retracted": [
+        "W2327972628"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W2016314326",
+      "doi": "https://doi.org/10.1016/j.oraloncology.2005.05.014",
+      "title": "Use of fuzzy neural networks in modeling relationships of HPV infection with apoptotic and proliferation markers in potentially malignant oral lesions",
+      "publication_year": 2005,
+      "publication_date": "2005-08-30",
+      "is_retracted": false,
+      "journal": "Oral Oncology",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5062414404",
+          "name": "Giuseppina Campisi"
+        },
+        {
+          "id": "https://openalex.org/A5059694955",
+          "name": "Olga Di Fede"
+        },
+        {
+          "id": "https://openalex.org/A5077263334",
+          "name": "Lucia Giovannelli"
+        },
+        {
+          "id": "https://openalex.org/A5018806590",
+          "name": "Giuseppina Capra"
+        },
+        {
+          "id": "https://openalex.org/A5074697996",
+          "name": "Immacolata Greco"
+        },
+        {
+          "id": "https://openalex.org/A5076611801",
+          "name": "F. Calvino"
+        },
+        {
+          "id": "https://openalex.org/A5047903927",
+          "name": "Ada Maria Florena"
+        },
+        {
+          "id": "https://openalex.org/A5053084731",
+          "name": "Lorenzo Lo Muzio"
+        }
+      ],
+      "cites_retracted": [
+        "W1976282634",
+        "W2327972628"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W2025993835",
+      "doi": "https://doi.org/10.1155/2011/321750",
+      "title": "Cell Transformation and the Evolution of a Field of Precancerization As It Relates to Oral Leukoplakia",
+      "publication_year": 2011,
+      "publication_date": "2011-01-01",
+      "is_retracted": false,
+      "journal": "International Journal of Dentistry",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5101695496",
+          "name": "Liviu Feller"
+        },
+        {
+          "id": "https://openalex.org/A5112249632",
+          "name": "Johan Lemmer"
+        }
+      ],
+      "cites_retracted": [
+        "W1976282634",
+        "W2327972628"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W2801087035",
+      "doi": "https://doi.org/10.22312/sdusbed.369257",
+      "title": "Effect Of Dentist Working Conditions On Occupational Musculoskeletal System Diseases",
+      "publication_year": 2018,
+      "publication_date": "2018-04-17",
+      "is_retracted": false,
+      "journal": "Süleyman Demirel Üniversitesi Sağlık Bilimleri Dergisi",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5023619352",
+          "name": "Selma Altındiş"
+        }
+      ],
+      "cites_retracted": [
+        "W2604028669"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W2766440705",
+      "doi": "https://doi.org/10.1016/j.amsu.2017.10.001",
+      "title": "In-hospital surgical treatment for haemorrhage after aesthetic mandibular osteotomy performed as an office-based day surgery: A case report",
+      "publication_year": 2017,
+      "publication_date": "2017-10-14",
+      "is_retracted": false,
+      "journal": "Annals of Medicine and Surgery",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5063195596",
+          "name": "Kosuke Kanke"
+        },
+        {
+          "id": "https://openalex.org/A5010352480",
+          "name": "Takahiro Abe"
+        },
+        {
+          "id": "https://openalex.org/A5100536301",
+          "name": "Yoshiyuki Mori"
+        },
+        {
+          "id": "https://openalex.org/A5007687545",
+          "name": "Kazuto Hoshi"
+        },
+        {
+          "id": "https://openalex.org/A5110692310",
+          "name": "Tsuyoshi Takato"
+        }
+      ],
+      "cites_retracted": [
+        "W2567428729"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W3044450437",
+      "doi": "https://doi.org/10.1002/jdd.12303",
+      "title": "Dental Decision Simulation (DDSim): Development of a virtual training environment",
+      "publication_year": 2020,
+      "publication_date": "2020-07-23",
+      "is_retracted": false,
+      "journal": "Journal of Dental Education",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5111548718",
+          "name": "James D. Bader"
+        },
+        {
+          "id": "https://openalex.org/A5074418281",
+          "name": "Heiko Spallek"
+        },
+        {
+          "id": "https://openalex.org/A5006532381",
+          "name": "Donald Brad Rindal"
+        },
+        {
+          "id": "https://openalex.org/A5049134154",
+          "name": "Chris J. Enstad"
+        },
+        {
+          "id": "https://openalex.org/A5112800513",
+          "name": "James Fricton"
+        },
+        {
+          "id": "https://openalex.org/A5021986262",
+          "name": "Stephen E. Asche"
+        },
+        {
+          "id": "https://openalex.org/A5027207862",
+          "name": "Sheryl M. Kane"
+        },
+        {
+          "id": "https://openalex.org/A5018749085",
+          "name": "Vijay Thirumalai"
+        },
+        {
+          "id": "https://openalex.org/A5050306732",
+          "name": "Olga V. Godlevsky"
+        },
+        {
+          "id": "https://openalex.org/A5063976279",
+          "name": "Amit Acharya"
+        },
+        {
+          "id": "https://openalex.org/A5103685455",
+          "name": "William A. Rush"
+        }
+      ],
+      "cites_retracted": [
+        "W2595332161"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W2620837336",
+      "doi": "https://doi.org/10.1002/rmv.1933",
+      "title": "Is salivary IgA level a potential biomarker for immunosuppression in HIV ‐positive children? A systematic review and meta‐analysis",
+      "publication_year": 2017,
+      "publication_date": "2017-06-01",
+      "is_retracted": false,
+      "journal": "Reviews in Medical Virology",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5001978286",
+          "name": "Fawad Javed"
+        },
+        {
+          "id": "https://openalex.org/A5038328117",
+          "name": "Zohaib Akram"
+        },
+        {
+          "id": "https://openalex.org/A5033909364",
+          "name": "Munerah Saleh BinShabaib"
+        },
+        {
+          "id": "https://openalex.org/A5102969283",
+          "name": "Shatha Subhi ALHarthi"
+        },
+        {
+          "id": "https://openalex.org/A5050926428",
+          "name": "Sergio Varela Kellesarian"
+        },
+        {
+          "id": "https://openalex.org/A5054751440",
+          "name": "Fahim Ahmed Vohra"
+        }
+      ],
+      "cites_retracted": [
+        "W2523861273"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W2975704079",
+      "doi": "https://doi.org/10.1007/s12630-019-01487-5",
+      "title": "Stress dose steroids: the dogma persists",
+      "publication_year": 2019,
+      "publication_date": "2019-09-23",
+      "is_retracted": false,
+      "journal": "Canadian Journal of Anesthesia/Journal canadien d anesthésie",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5056898271",
+          "name": "Kristine Urmson"
+        }
+      ],
+      "cites_retracted": [
+        "W2164748822",
+        "W4236269095"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W2995826748",
+      "doi": "https://doi.org/10.1007/978-3-030-31772-0_9",
+      "title": "Protection of the Dentin-Pulp Complex",
+      "publication_year": 2019,
+      "publication_date": "2019-12-14",
+      "is_retracted": false,
+      "journal": "Textbooks in contemporary dentistry",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5044862948",
+          "name": "Adriana Cristina de Mello Torres"
+        },
+        {
+          "id": "https://openalex.org/A5088703331",
+          "name": "Ana Paula Martins Gomes"
+        },
+        {
+          "id": "https://openalex.org/A5001983239",
+          "name": "Cláudio Hideki Kubo"
+        },
+        {
+          "id": "https://openalex.org/A5062885339",
+          "name": "Carlos Rocha Gomes Torres"
+        }
+      ],
+      "cites_retracted": [
+        "W2595332161"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W3023784134",
+      "doi": "https://doi.org/10.3390/app10093006",
+      "title": "RETRACTED: Experimental Study on the Influence of Apigenin K and Melatonin in Socket Preservation as Bone Stimulators: An Experimental Study in Beagle Dogs",
+      "publication_year": 2020,
+      "publication_date": "2020-04-25",
+      "is_retracted": true,
+      "journal": "Applied Sciences",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5034074678",
+          "name": "José Luís Calvo‐Guirado"
+        },
+        {
+          "id": "https://openalex.org/A5026461316",
+          "name": "Manuel Fernández‐Domínguez"
+        },
+        {
+          "id": "https://openalex.org/A5059923069",
+          "name": "Juan Manuel Aragoneses"
+        },
+        {
+          "id": "https://openalex.org/A5089591191",
+          "name": "Enrique Férnandez Bodereau"
+        },
+        {
+          "id": "https://openalex.org/A5003767953",
+          "name": "Miguel Ángel Garcés-Villalá"
+        },
+        {
+          "id": "https://openalex.org/A5078629723",
+          "name": "Félix de Carlos Villafranca"
+        },
+        {
+          "id": "https://openalex.org/A5037706963",
+          "name": "Manuel Cabello-Colás"
+        },
+        {
+          "id": "https://openalex.org/A5085481064",
+          "name": "Rocío Jiménez-López"
+        },
+        {
+          "id": "https://openalex.org/A5087521741",
+          "name": "Carlos Pérez Martı́nez"
+        },
+        {
+          "id": "https://openalex.org/A5002607122",
+          "name": "Rafael Arcesio Delgado Ruiz"
+        }
+      ],
+      "cites_retracted": [
+        "W2003510900",
+        "W2067049827",
+        "W2466873903",
+        "W2791494413"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W3034569480",
+      "doi": "https://doi.org/10.22037/iej.v15i2.27569",
+      "title": "Odontoblast-like Cytodifferentiation of Dental Stem Cells: A Review.",
+      "publication_year": 2020,
+      "publication_date": "2020-01-01",
+      "is_retracted": false,
+      "journal": "Iranian endodontic Journal/Iranian endodontic journal.",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5010476243",
+          "name": "Danial Babaki"
+        },
+        {
+          "id": "https://openalex.org/A5024926055",
+          "name": "Maryam Moghaddam Matin"
+        }
+      ],
+      "cites_retracted": [
+        "W2603825787"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W3038118054",
+      "doi": "https://doi.org/10.4236/msce.2020.86002",
+      "title": "Evaluation of Two Highly Porous Microcrystalline Biphasic Calcium Phosphate-Based Bone Grafts for Bone Regeneration: An Experimental Study in Rabbits",
+      "publication_year": 2020,
+      "publication_date": "2020-01-01",
+      "is_retracted": false,
+      "journal": "Journal of Materials Science and Chemical Engineering",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5003767953",
+          "name": "Miguel Ángel Garcés-Villalá"
+        },
+        {
+          "id": "https://openalex.org/A5048390050",
+          "name": "Sergio David Rico"
+        },
+        {
+          "id": "https://openalex.org/A5051000531",
+          "name": "Sergio Gustavo Nazar"
+        },
+        {
+          "id": "https://openalex.org/A5028607078",
+          "name": "Mariano Escudero-Pinel"
+        },
+        {
+          "id": "https://openalex.org/A5089243155",
+          "name": "Víctor Galván-Josa"
+        },
+        {
+          "id": "https://openalex.org/A5034074678",
+          "name": "José Luís Calvo‐Guirado"
+        }
+      ],
+      "cites_retracted": [
+        "W1993806921",
+        "W2289841874"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W3163753979",
+      "doi": "https://doi.org/10.17219/dmp/130057",
+      "title": "Clinical and radiographic evaluation of jumping distance management using a collagen matrix in flapless immediate implant placement",
+      "publication_year": 2021,
+      "publication_date": "2021-05-11",
+      "is_retracted": false,
+      "journal": "Dental and Medical Problems",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5014150933",
+          "name": "Mahdi Kadkhodazadeh"
+        },
+        {
+          "id": "https://openalex.org/A5090876799",
+          "name": "Reza Amid"
+        },
+        {
+          "id": "https://openalex.org/A5025604938",
+          "name": "Anahita Moscowchi"
+        },
+        {
+          "id": "https://openalex.org/A5008560399",
+          "name": "Vahid Khoshkam"
+        }
+      ],
+      "cites_retracted": [
+        "W2234625253"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W4244185188",
+      "doi": "https://doi.org/10.1016/j.ehmc.2011.11.005",
+      "title": "Adrenal Insufficiency",
+      "publication_year": 2011,
+      "publication_date": "2011-12-22",
+      "is_retracted": false,
+      "journal": "Hospital Medicine Clinics",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5028509435",
+          "name": "Sharon Hsiao-Han Chou"
+        }
+      ],
+      "cites_retracted": [
+        "W2164748822"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W4312128823",
+      "doi": "https://doi.org/10.1007/s00784-022-04826-x",
+      "title": "Effects of customized CAD/CAM abutments on cytokine levels in peri-implant crevicular fluid during early implant healing: a pilot study",
+      "publication_year": 2022,
+      "publication_date": "2022-12-24",
+      "is_retracted": false,
+      "journal": "Clinical Oral Investigations",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5058205596",
+          "name": "Christian Wehner"
+        },
+        {
+          "id": "https://openalex.org/A5113665021",
+          "name": "Gabor Fuerst"
+        },
+        {
+          "id": "https://openalex.org/A5068298558",
+          "name": "Tom Vaskovich"
+        },
+        {
+          "id": "https://openalex.org/A5048952889",
+          "name": "Oleh Andrukhov"
+        },
+        {
+          "id": "https://openalex.org/A5000570070",
+          "name": "Christoph Vasak"
+        },
+        {
+          "id": "https://openalex.org/A5078161780",
+          "name": "Andreas Moritz"
+        },
+        {
+          "id": "https://openalex.org/A5032773909",
+          "name": "Xiaohui Rausch‐Fan"
+        }
+      ],
+      "cites_retracted": [
+        "W2234625253"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W3004533989",
+      "doi": "https://doi.org/10.1016/j.amjsurg.2020.01.051",
+      "title": "Impact of glucocorticoid supplementation on reducing perioperative complications in patients on long-term glucocorticoid medication: A propensity score analysis using a nationwide inpatient database",
+      "publication_year": 2020,
+      "publication_date": "2020-02-03",
+      "is_retracted": false,
+      "journal": "The American Journal of Surgery",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5080710533",
+          "name": "Hideyuki Mouri"
+        },
+        {
+          "id": "https://openalex.org/A5040813020",
+          "name": "Taisuke Jo"
+        },
+        {
+          "id": "https://openalex.org/A5023007444",
+          "name": "Hiroki Matsui"
+        },
+        {
+          "id": "https://openalex.org/A5010721603",
+          "name": "Kiyohide Fushimi"
+        },
+        {
+          "id": "https://openalex.org/A5076707735",
+          "name": "Hideo Yasunaga"
+        }
+      ],
+      "cites_retracted": [
+        "W2164748822"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W2270560506",
+      "doi": "https://doi.org/10.1007/978-3-319-21960-8_12",
+      "title": "Perioperative Care of Children with Neuromuscular Disease",
+      "publication_year": 2015,
+      "publication_date": "2015-11-09",
+      "is_retracted": false,
+      "journal": "Anesthesia, Intensive care and pain in neonates and children",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5088794987",
+          "name": "Fabrizio Racca"
+        },
+        {
+          "id": "https://openalex.org/A5083869827",
+          "name": "Chiara Robba"
+        }
+      ],
+      "cites_retracted": [
+        "W2164748822"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W3212390677",
+      "doi": "https://doi.org/10.22074/cellj.2021.7606",
+      "title": "The Role of MicroRNA 143 and MicroRNA 206 in The Regulation of Apoptosis in Mouse Lukemia Cancer Cells and Spermatogonial Cells.",
+      "publication_year": 2021,
+      "publication_date": "2021-10-01",
+      "is_retracted": false,
+      "journal": "PubMed",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5007498971",
+          "name": "Azar Shams"
+        },
+        {
+          "id": "https://openalex.org/A5052646994",
+          "name": "Ronak Shabani"
+        },
+        {
+          "id": "https://openalex.org/A5059950211",
+          "name": "Mohammad Najafi"
+        },
+        {
+          "id": "https://openalex.org/A5057290060",
+          "name": "Mahdi Karimi"
+        },
+        {
+          "id": "https://openalex.org/A5046520925",
+          "name": "Vahid Pirhajati"
+        },
+        {
+          "id": "https://openalex.org/A5040188320",
+          "name": "Mohammad Asghari Jafarabadi"
+        },
+        {
+          "id": "https://openalex.org/A5043292434",
+          "name": "Hamid Reza Asgari"
+        },
+        {
+          "id": "https://openalex.org/A5038461927",
+          "name": "Chad B. Maki"
+        },
+        {
+          "id": "https://openalex.org/A5061545354",
+          "name": "Seyed Mohsen Razavi"
+        },
+        {
+          "id": "https://openalex.org/A5013389904",
+          "name": "Morteza Koruji"
+        }
+      ],
+      "cites_retracted": [
+        "W2417021417"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W2148835572",
+      "doi": "https://doi.org/10.1200/jco.2005.03.172",
+      "title": "Risk Markers of Oral Cancer in Clinically Normal Mucosa As an Aid in Smoking Cessation Counseling",
+      "publication_year": 2005,
+      "publication_date": "2005-03-17",
+      "is_retracted": true,
+      "journal": "Journal of Clinical Oncology",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5044099421",
+          "name": "Jon Sudbø"
+        },
+        {
+          "id": "https://openalex.org/A5028031209",
+          "name": "Roy Samuelsson"
+        },
+        {
+          "id": "https://openalex.org/A5110188074",
+          "name": "Björn Åke Risberg"
+        },
+        {
+          "id": "https://openalex.org/A5075016585",
+          "name": "Stig Heistein"
+        },
+        {
+          "id": "https://openalex.org/A5032916907",
+          "name": "Christian Nyhus"
+        },
+        {
+          "id": "https://openalex.org/A5020256915",
+          "name": "Margaretha Samuelsson"
+        },
+        {
+          "id": "https://openalex.org/A5090541392",
+          "name": "Ruth Puntervold"
+        },
+        {
+          "id": "https://openalex.org/A5000824721",
+          "name": "Eva Sigstad"
+        },
+        {
+          "id": "https://openalex.org/A5078288814",
+          "name": "Ben Davidson"
+        },
+        {
+          "id": "https://openalex.org/A5004793700",
+          "name": "Albrecht Reith"
+        },
+        {
+          "id": "https://openalex.org/A5104068965",
+          "name": "Åsmund Berner"
+        }
+      ],
+      "cites_retracted": [
+        "W1976282634",
+        "W2327972628"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W2032380711",
+      "doi": "https://doi.org/10.1155/2003/971748",
+      "title": "Analysis of Ploidy in Hypopharyngeal Cancer by Laser Scanning Cytometry on Fine Needle Aspirate Biopsies",
+      "publication_year": 2002,
+      "publication_date": "2002-07-10",
+      "is_retracted": false,
+      "journal": "Analytical Cellular Pathology",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5010046875",
+          "name": "Andreas O. H. Gerstner"
+        },
+        {
+          "id": "https://openalex.org/A5002763335",
+          "name": "Julia Machlitt"
+        },
+        {
+          "id": "https://openalex.org/A5049137188",
+          "name": "Hans‐Jürgen Welkoborsky"
+        },
+        {
+          "id": "https://openalex.org/A5012229709",
+          "name": "Friedrich Bootz"
+        },
+        {
+          "id": "https://openalex.org/A5029537086",
+          "name": "Attila Tárnok"
+        }
+      ],
+      "cites_retracted": [
+        "W2327972628"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W2056494730",
+      "doi": "https://doi.org/10.1016/s1532-3382(01)70023-1",
+      "title": "A man with a 30-year history of oral lesions",
+      "publication_year": 2001,
+      "publication_date": "2001-10-01",
+      "is_retracted": false,
+      "journal": "Journal of Evidence Based Dental Practice",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5063554757",
+          "name": "Mark Thomas Drangsholt"
+        },
+        {
+          "id": "https://openalex.org/A5036850212",
+          "name": "Edmond L. Truelove"
+        },
+        {
+          "id": "https://openalex.org/A5033528539",
+          "name": "Joel Brian Epstein"
+        }
+      ],
+      "cites_retracted": [
+        "W2327972628"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W2325442164",
+      "doi": "https://doi.org/10.1097/00008486-200507000-00007",
+      "title": "Oropharyngeal Cancer",
+      "publication_year": 2005,
+      "publication_date": "2005-07-01",
+      "is_retracted": false,
+      "journal": "Topics in Clinical Nutrition",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5029642482",
+          "name": "Rakefet Czreninski"
+        },
+        {
+          "id": "https://openalex.org/A5002777386",
+          "name": "Ilana Kaplan"
+        }
+      ],
+      "cites_retracted": [
+        "W2327972628"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W2082338796",
+      "doi": "https://doi.org/10.1056/nejm200104263441709",
+      "title": "Polysaccharide Conjugate Typhoid Vaccine",
+      "publication_year": 2001,
+      "publication_date": "2001-04-26",
+      "is_retracted": false,
+      "journal": "New England Journal of Medicine",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5111975237",
+          "name": "Richard L. Guerrant"
+        },
+        {
+          "id": "https://openalex.org/A5039433364",
+          "name": "Margaret  N. Kosek"
+        }
+      ],
+      "cites_retracted": [
+        "W2327972628"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W2072140186",
+      "doi": "https://doi.org/10.1016/j.ejca.2005.06.007",
+      "title": "Chemoprevention: From research to clinical oncology",
+      "publication_year": 2005,
+      "publication_date": "2005-08-04",
+      "is_retracted": false,
+      "journal": "European Journal of Cancer",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5108460148",
+          "name": "Umberto Veronesi"
+        },
+        {
+          "id": "https://openalex.org/A5079114893",
+          "name": "Bernardo Bonanni"
+        }
+      ],
+      "cites_retracted": [
+        "W1976282634",
+        "W2327972628"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W147737473",
+      "doi": "https://doi.org/10.1007/978-1-59259-938-7_19",
+      "title": "Chemoprevention in Head and Neck Cancer",
+      "publication_year": 2007,
+      "publication_date": "2007-11-05",
+      "is_retracted": false,
+      "journal": "Humana Press eBooks",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5036672833",
+          "name": "Nabil F. Saba"
+        },
+        {
+          "id": "https://openalex.org/A5059710197",
+          "name": "Fadlo Raja Khuri"
+        }
+      ],
+      "cites_retracted": [
+        "W1976282634",
+        "W2327972628"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W1972381611",
+      "doi": "https://doi.org/10.1080/01926230500459435",
+      "title": "Immunohistochemical Analysis of Acetylation, Proliferation, Mitosis, and Apoptosis in Tumor Xenografts Following Administration of a Histone Deacetylase Inhibitor—A Pilot Study",
+      "publication_year": 2005,
+      "publication_date": "2005-12-01",
+      "is_retracted": false,
+      "journal": "Toxicologic Pathology",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5033166208",
+          "name": "Tijana Mitiæ"
+        },
+        {
+          "id": "https://openalex.org/A5111566978",
+          "name": "Jennifer S. McKay"
+        }
+      ],
+      "cites_retracted": [
+        "W2327972628"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W2006542119",
+      "doi": "https://doi.org/10.1034/j.1600-0714.2002.310411.x",
+      "title": "The role of molecular techniques in preventing oral cancer and improving its poor prognosis: an illusion?",
+      "publication_year": 2002,
+      "publication_date": "2002-04-01",
+      "is_retracted": false,
+      "journal": "Journal of Oral Pathology and Medicine",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5051913918",
+          "name": "Michele Davide Mignogna"
+        },
+        {
+          "id": "https://openalex.org/A5057610879",
+          "name": "Stefano Fedele"
+        },
+        {
+          "id": "https://openalex.org/A5064621420",
+          "name": "Elvira Ruoppo"
+        },
+        {
+          "id": "https://openalex.org/A5078682951",
+          "name": "Lucio Lo Russo"
+        }
+      ],
+      "cites_retracted": [
+        "W2327972628"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W2028012385",
+      "doi": "https://doi.org/10.1001/archotol.127.12.1516",
+      "title": "Inner Ear and Explosions in the History of Otology",
+      "publication_year": 2001,
+      "publication_date": "2001-12-01",
+      "is_retracted": false,
+      "journal": "Archives of Otolaryngology - Head and Neck Surgery",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5035600186",
+          "name": "Albert C. Mudry"
+        }
+      ],
+      "cites_retracted": [
+        "W2327972628"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W2114089959",
+      "doi": "https://doi.org/10.1016/j.oraloncology.2009.06.009",
+      "title": "The assessment of the DNA content of oral cytology via virtual microscopy for the early detection of epithelial dysplasia and neoplasia in oral mucosal lesions",
+      "publication_year": 2009,
+      "publication_date": "2009-08-09",
+      "is_retracted": false,
+      "journal": "Oral Oncology",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5066457815",
+          "name": "Michael John McCullough"
+        },
+        {
+          "id": "https://openalex.org/A5020715146",
+          "name": "Camile Selim Farah"
+        }
+      ],
+      "cites_retracted": [
+        "W1976282634",
+        "W2327972628"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W1984039904",
+      "doi": "https://doi.org/10.1007/s00292-003-0667-0",
+      "title": "Laryngeale Epitheldysplasie vs. laryngeale intraepitheliale Neoplasie",
+      "publication_year": 2004,
+      "publication_date": "2004-02-01",
+      "is_retracted": false,
+      "journal": "Der Pathologe",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5054584117",
+          "name": "Thomas Dreyer"
+        },
+        {
+          "id": "https://openalex.org/A5030243344",
+          "name": "Hiltrud Katharina Glanz"
+        }
+      ],
+      "cites_retracted": [
+        "W2327972628"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W2071713605",
+      "doi": "https://doi.org/10.1186/1471-2431-11-106",
+      "title": "A double blind, randomised placebo controlled trial of topical 2% viscous lidocaine in improving oral intake in children with painful infectious mouth conditions",
+      "publication_year": 2011,
+      "publication_date": "2011-11-21",
+      "is_retracted": false,
+      "journal": "BMC Pediatrics",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5019209954",
+          "name": "Sandy M Hopper"
+        },
+        {
+          "id": "https://openalex.org/A5049394027",
+          "name": "Franz E Babl"
+        },
+        {
+          "id": "https://openalex.org/A5003143667",
+          "name": "Chasari Tancharoen"
+        },
+        {
+          "id": "https://openalex.org/A5101740736",
+          "name": "Katherine J. Lee"
+        },
+        {
+          "id": "https://openalex.org/A5065318049",
+          "name": "Ed A Oakley"
+        }
+      ],
+      "cites_retracted": [
+        "W2170321254"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W2079764259",
+      "doi": "https://doi.org/10.1016/j.jebdp.2012.03.028",
+      "title": "The Hall Technique may be an Effective Treatment Modality for Caries in Primary Molars",
+      "publication_year": 2012,
+      "publication_date": "2012-06-01",
+      "is_retracted": false,
+      "journal": "Journal of Evidence Based Dental Practice",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5047703543",
+          "name": "Margherita Fontana"
+        },
+        {
+          "id": "https://openalex.org/A5034305293",
+          "name": "Barbara F. Gooch"
+        },
+        {
+          "id": "https://openalex.org/A5022814998",
+          "name": "Michele L. Junger"
+        }
+      ],
+      "cites_retracted": [
+        "W1638893512",
+        "W2595332161"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W2100608124",
+      "doi": "https://doi.org/10.1046/j.1365-2273.2002.00547.x",
+      "title": "Head and neck cancer: a screening strategy",
+      "publication_year": 2002,
+      "publication_date": "2002-06-01",
+      "is_retracted": false,
+      "journal": "Clinical Otolaryngology",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5064200945",
+          "name": "James O’Hara"
+        },
+        {
+          "id": "https://openalex.org/A5070347072",
+          "name": "Patrick James Bradley"
+        }
+      ],
+      "cites_retracted": [
+        "W2327972628"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W2128347245",
+      "doi": "https://doi.org/10.1586/14737140.3.3.339",
+      "title": "Progress and perspectives in chemoprevention of head and neck cancer",
+      "publication_year": 2003,
+      "publication_date": "2003-06-01",
+      "is_retracted": false,
+      "journal": "Expert Review of Anticancer Therapy",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5026698479",
+          "name": "Lori J. Wirth"
+        },
+        {
+          "id": "https://openalex.org/A5080875822",
+          "name": "Robert I. Haddad"
+        },
+        {
+          "id": "https://openalex.org/A5090322942",
+          "name": "Marshall R. Posner"
+        }
+      ],
+      "cites_retracted": [
+        "W2327972628"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W2890380407",
+      "doi": "https://doi.org/10.1016/b978-0-323-39307-2.00030-8",
+      "title": "Adrenal Corticosteroids",
+      "publication_year": 2017,
+      "publication_date": "2017-01-01",
+      "is_retracted": false,
+      "journal": "Elsevier eBooks",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5045258157",
+          "name": "Binnaz Leblebicioğlu"
+        }
+      ],
+      "cites_retracted": [
+        "W2164748822"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W2003238213",
+      "doi": "https://doi.org/10.1158/1078-0432.ccr-1217-3",
+      "title": "Cyclooxygenase Inhibition as a Target for Prevention of Tobacco-Related Cancers",
+      "publication_year": 2004,
+      "publication_date": "2004-03-01",
+      "is_retracted": false,
+      "journal": "Clinical Cancer Research",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5060031638",
+          "name": "Jay O. Boyle"
+        }
+      ],
+      "cites_retracted": [
+        "W2327972628"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W2031523582",
+      "doi": "https://doi.org/10.1159/000111737",
+      "title": "Cell Proliferation and DNA Content in Rat Urothelial Lesions after Repeat Intravesical Instillations of Mitomycin C and Bacillus Calmette-Guérin",
+      "publication_year": 2008,
+      "publication_date": "2008-01-01",
+      "is_retracted": false,
+      "journal": "Urologia Internationalis",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5052493209",
+          "name": "Paula A. Oliveira"
+        },
+        {
+          "id": "https://openalex.org/A5020773278",
+          "name": "Carlos Palmeira"
+        },
+        {
+          "id": "https://openalex.org/A5083485693",
+          "name": "Aura Antunes Colaço"
+        },
+        {
+          "id": "https://openalex.org/A5030062739",
+          "name": "Luis F. De la Cruz P"
+        },
+        {
+          "id": "https://openalex.org/A5101815107",
+          "name": "Catarina Isabel Lopes"
+        }
+      ],
+      "cites_retracted": [
+        "W2327972628"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W2079720122",
+      "doi": "https://doi.org/10.1159/000348664",
+      "title": "What's New in the Benefits of Restoring Primary Teeth?",
+      "publication_year": 2013,
+      "publication_date": "2013-01-01",
+      "is_retracted": false,
+      "journal": "Medical Principles and Practice",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5110024941",
+          "name": "Eino J. Honkala"
+        },
+        {
+          "id": "https://openalex.org/A5112729884",
+          "name": "Jawad M. Behbehani"
+        }
+      ],
+      "cites_retracted": [
+        "W2595332161"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W2169664469",
+      "doi": "https://doi.org/10.1017/s002221510700761x",
+      "title": "Allelic imbalance on chromosomes 3p, 9p and 17p in malignant progression of laryngeal mucosa",
+      "publication_year": 2007,
+      "publication_date": "2007-05-14",
+      "is_retracted": false,
+      "journal": "The Journal of Laryngology & Otology",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5065846583",
+          "name": "Jiachun Sun"
+        },
+        {
+          "id": "https://openalex.org/A5063032265",
+          "name": "X G Li"
+        }
+      ],
+      "cites_retracted": [
+        "W2327972628"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W2486078979",
+      "doi": "https://doi.org/10.1016/b978-1-4377-0412-9.00015-0",
+      "title": "Viral Diseases of the Skin",
+      "publication_year": 2011,
+      "publication_date": "2011-01-01",
+      "is_retracted": false,
+      "journal": "Elsevier eBooks",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5020095047",
+          "name": "Amy S. Paller"
+        },
+        {
+          "id": "https://openalex.org/A5075969132",
+          "name": "Anthony J. Mancini"
+        }
+      ],
+      "cites_retracted": [
+        "W2170321254"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W1531926119",
+      "doi": "https://doi.org/10.1001/archotol.127.12.1519",
+      "title": "Chromosomal Aneuploidy as a Predictor for Poor Outcome in Patients With Head and Neck Cancer",
+      "publication_year": 2001,
+      "publication_date": "2001-12-01",
+      "is_retracted": false,
+      "journal": "Archives of Otolaryngology - Head and Neck Surgery",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5078237908",
+          "name": "Jose Enrique Barrera"
+        },
+        {
+          "id": "https://openalex.org/A5024045160",
+          "name": "Marileila Varella‐Garcia"
+        }
+      ],
+      "cites_retracted": [
+        "W2327972628"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W2004996937",
+      "doi": "https://doi.org/10.1159/000071954",
+      "title": "Increased Wave Latency in Auditory Brainstem Response to Anemia in Newborn and Adult Sheep",
+      "publication_year": 2003,
+      "publication_date": "2003-01-01",
+      "is_retracted": false,
+      "journal": "Neonatology",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5003665721",
+          "name": "Rafael E. Quiñónez"
+        },
+        {
+          "id": "https://openalex.org/A5042100491",
+          "name": "John A. Widness"
+        }
+      ],
+      "cites_retracted": [
+        "W2327972628"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W2318069186",
+      "doi": "https://doi.org/10.1097/00020840-200204000-00003",
+      "title": "The significance of oral leukoplakia",
+      "publication_year": 2002,
+      "publication_date": "2002-04-01",
+      "is_retracted": false,
+      "journal": "Current Opinion in Otolaryngology & Head & Neck Surgery",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5102230771",
+          "name": "Sanjai Sood"
+        },
+        {
+          "id": "https://openalex.org/A5064200945",
+          "name": "James O’Hara"
+        },
+        {
+          "id": "https://openalex.org/A5025864696",
+          "name": "Muhammad Shahed Quraishi"
+        }
+      ],
+      "cites_retracted": [
+        "W2327972628"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W2002232972",
+      "doi": "https://doi.org/10.1016/j.ehmc.2012.04.015",
+      "title": "Perioperative Medication Management",
+      "publication_year": 2012,
+      "publication_date": "2012-06-15",
+      "is_retracted": false,
+      "journal": "Hospital Medicine Clinics",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5013857983",
+          "name": "K Sopko"
+        },
+        {
+          "id": "https://openalex.org/A5000382749",
+          "name": "Kelly Cunningham Sponsler"
+        }
+      ],
+      "cites_retracted": [
+        "W2164748822"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W2048796550",
+      "doi": "https://doi.org/10.4236/health.2010.24052",
+      "title": "Inhibition of salivary peroxidase by cigarette smoke",
+      "publication_year": 2010,
+      "publication_date": "2010-01-01",
+      "is_retracted": false,
+      "journal": "Health",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5006967515",
+          "name": "Reyhaneh Sariri"
+        }
+      ],
+      "cites_retracted": [
+        "W2327972628"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W2082094728",
+      "doi": "https://doi.org/10.1016/j.ajodo.2009.03.048",
+      "title": "Identification and prevention of digital forgery in orthodontic records",
+      "publication_year": 2010,
+      "publication_date": "2010-12-01",
+      "is_retracted": false,
+      "journal": "American Journal of Orthodontics and Dentofacial Orthopedics",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5051176963",
+          "name": "Balasubramanian Madhan"
+        },
+        {
+          "id": "https://openalex.org/A5041615939",
+          "name": "Haritheertham Gayathri"
+        }
+      ],
+      "cites_retracted": [
+        "W2327972628"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W2113010069",
+      "doi": "https://doi.org/10.12691/jcrt-2-2-1",
+      "title": "Quantitative DNA Assay (Ploidy), Koilocytotic Changes and AgNOR Expression for Risk Estimation in Oral Leukoplakia",
+      "publication_year": 2014,
+      "publication_date": "2014-01-23",
+      "is_retracted": false,
+      "journal": "The Journal of Cancer Research",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5100902605",
+          "name": "Asoke Roy"
+        },
+        {
+          "id": "https://openalex.org/A5009902213",
+          "name": "Satyendra Prasad Bhatnagar"
+        },
+        {
+          "id": "https://openalex.org/A5110492699",
+          "name": "Malay Chatterjee"
+        },
+        {
+          "id": "https://openalex.org/A5000539771",
+          "name": "Goutam Mandal"
+        },
+        {
+          "id": "https://openalex.org/A5114132377",
+          "name": "Dipanwita Ghosh"
+        }
+      ],
+      "cites_retracted": [
+        "W2327972628"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W2120782917",
+      "doi": "https://doi.org/10.1007/978-3-662-44800-7_9",
+      "title": "Managing the Prevention of Dental Caries and Sensitivity in Teeth with Enamel Defects",
+      "publication_year": 2014,
+      "publication_date": "2014-10-02",
+      "is_retracted": false,
+      "journal": "Springer eBooks",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5059445470",
+          "name": "Felicity A. Crombie"
+        },
+        {
+          "id": "https://openalex.org/A5009232294",
+          "name": "David John Manton"
+        }
+      ],
+      "cites_retracted": [
+        "W2595332161"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W220061662",
+      "doi": "https://doi.org/10.17827/aktd.07534",
+      "title": "Cognitive Dysfunction in Fibromyalgia",
+      "publication_year": 2014,
+      "publication_date": "2014-11-17",
+      "is_retracted": false,
+      "journal": "DergiPark (Istanbul University)",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5020562342",
+          "name": "Tuba Tülay Koca"
+        }
+      ],
+      "cites_retracted": [
+        "W2295582261"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W2568910410",
+      "doi": "https://doi.org/10.1111/cge.12961",
+      "title": "EDA mutation by exome sequencing in non‐syndromic X‐linked oligodontia",
+      "publication_year": 2017,
+      "publication_date": "2017-01-04",
+      "is_retracted": false,
+      "journal": "Clinical Genetics",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5062012973",
+          "name": "Luciane Martins"
+        },
+        {
+          "id": "https://openalex.org/A5009676558",
+          "name": "Renato Assis Machado"
+        },
+        {
+          "id": "https://openalex.org/A5110362959",
+          "name": "Darlle Santos Araujo"
+        },
+        {
+          "id": "https://openalex.org/A5033236094",
+          "name": "Priscila Alves Giovani"
+        },
+        {
+          "id": "https://openalex.org/A5033590345",
+          "name": "Pedro Diniz Rebouças"
+        },
+        {
+          "id": "https://openalex.org/A5011568757",
+          "name": "Lívia Pagotto Rodrigues"
+        },
+        {
+          "id": "https://openalex.org/A5076502185",
+          "name": "Luciana Souto Mofatto"
+        },
+        {
+          "id": "https://openalex.org/A5080529521",
+          "name": "Luiz Lehmann Coutinho"
+        },
+        {
+          "id": "https://openalex.org/A5037492086",
+          "name": "Regina Maria Puppin‐Rontani"
+        },
+        {
+          "id": "https://openalex.org/A5029843488",
+          "name": "Ricardo D. Coletta"
+        },
+        {
+          "id": "https://openalex.org/A5060915194",
+          "name": "Francisco Humberto Nociti"
+        },
+        {
+          "id": "https://openalex.org/A5085896085",
+          "name": "Kamila Rosamilia Kantovitz"
+        }
+      ],
+      "cites_retracted": [
+        "W2346699313"
+      ]
+    }
+  ]
+}
