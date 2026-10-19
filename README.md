@@ -120,7 +120,7 @@ Matching papers between two datasets is messy, so here is what we chose and why.
 
 The question: does a paper *look like* the retracted ones? The answer is a probability, always labelled as a **hypothesis** to prioritise checks, never as evidence that a paper is flawed.
 
-- **Features:** a FastRP embedding (GDS, 16 dimensions, fixed seed) of the paper's neighbourhood in the citation graph, its year, and its number of references (`reference_count` from OpenAlex, stored at loading).
+- **Features:** a FastRP embedding (GDS, 16 dimensions, fixed seed) of the paper's neighbourhood in the citation graph, its year, and its number of references (`reference_count` from OpenAlex; the loader does not store it yet, so for now this feature is constant and carries no signal).
 - **Model:** logistic regression with balanced class weights, after scaling.
 - **Honest scores:** stratified 5-fold cross-validation. The score a paper gets comes from a model that never saw its label, and precision/recall are compared with the baseline of always answering "retracted".
 
@@ -155,7 +155,7 @@ A DOI that was not in the graph at training time gets a 404, and an untrained mo
 
 ### Results
 
-Trained on the full graph (Kenza's data, 8,975 papers of which 456 retracted, plus the 20 sample papers), 5-fold cross-validation, out-of-fold scores:
+Trained on the full graph: 8,975 papers with a DOI (Kenza's data plus the 20 sample papers; citers without a DOI are skipped), 456 of them retracted. 5-fold cross-validation, out-of-fold scores:
 
 | Metric | Model | Always "retracted" (baseline) |
 | --- | --- | --- |

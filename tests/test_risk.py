@@ -128,7 +128,6 @@ def test_command_line_saves_a_model_the_api_can_load(tmp_path, monkeypatch):
     monkeypatch.setattr(risk, "MODEL_PATH", path)
     monkeypatch.setattr(risk, "Neo4jClient", FakeClient)
     monkeypatch.setattr(risk, "fetch_rows", lambda *a, **k: synthetic_rows())
-    monkeypatch.setattr(risk.train, "__defaults__", (risk.GRAPH_NAME, "Paper", path))
     runpy.run_module("app.services.risk", run_name="__main__")
     with open(path, "rb") as handle:
         assert b"__main__" not in handle.read()

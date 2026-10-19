@@ -206,7 +206,7 @@ def main() -> None:
 
     db = Neo4jClient.from_settings(get_settings())
     try:
-        model = train(db)
+        model = train(db, path=MODEL_PATH)
     finally:
         db.close()
     print(f"Trained on {model.n_papers} papers ({model.n_retracted} retracted), saved to {MODEL_PATH.name}")
