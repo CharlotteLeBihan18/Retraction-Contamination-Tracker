@@ -10,9 +10,6 @@ exposes graph queries, and an LLM component answers questions in plain English.
 The app reports **exposure and risk**, never that a paper is invalid: retraction is not
 contagious, and citing a retracted paper can mean mentioning, criticising or relying on it.
 
-> Status: in progress. Each section marked *TODO* names the team member who will write it
-> (roles and task lists are in the project proposal).
-
 ## Quick start
 
 Requirements: Docker Desktop, Python 3.11+, make, git.
@@ -34,6 +31,19 @@ Check that Neo4j and its plugins are ready:
 ```bash
 .venv/bin/python -m scripts.check_neo4j
 ```
+
+Then load some data. Both commands can be run again safely, and neither needs an API key:
+
+```bash
+.venv/bin/python -m scripts.load_sample   # 20 hand-written papers, a few seconds: enough to try every endpoint
+.venv/bin/python -m scripts.ingest        # the real data from data/cache/: about 9,300 papers and 10,000 citations
+```
+
+On Windows (Git Bash), replace `.venv/bin/python` with `.venv/Scripts/python` in these commands, or run
+`source .venv/Scripts/activate` once and then simply type `python`.
+
+The examples below say which of the two they use. The AI endpoints (`/api/ask`, `/api/audit`) also need
+a Gemini key in `.env`, see [LLM setup](#llm-setup).
 
 ## Makefile commands
 
@@ -78,6 +88,11 @@ The graph algorithms (PageRank, Louvain, FastRP) run on a GDS in-memory copy of 
 - **Container tests** (`-m containers`): check the running stack through Nginx, skipped when it is down.
 
 In GitHub Actions, the test workflow starts its own Neo4j, so the Neo4j tests always run in CI.
+
+Tests that run on the sample graph (`tests/test_sample_graph_endpoints.py`, `tests/test_ask_sample.py`) must give the
+same results whether or not the real data is loaded too. So the graph-algorithm tests first add a temporary label to
+the 20 sample papers and run PageRank and Louvain only on those, and the Ask tests filter their results to the sample
+DOIs. The label is removed at the end of the tests.
 
 ## Data sources
 
@@ -170,7 +185,53 @@ The full comparison, with what ChatGPT got right and the ideas we chose not to u
 
 ## API examples
 
-*TODO (everyone): one example per endpoint, written by its owner (see the team table in the proposal).*
+Every endpoint is documented, with its parameters and possible answers, in Swagger at http://localhost/docs.
+Lists are paginated with `limit` and `offset`, and invalid parameters (for example `limit=0`) answer **422**.
+The graph-algorithm endpoints answer **503** "load the data first" when the database is empty.
+
+**Health** (Person 1): is the API up, and can it reach Neo4j?
+
+```bash
+curl http://localhost/health/ready
+```
+
+`{"status": "ok", "version": "0.1.0", "neo4j": "up"}`, or **503** while Neo4j is still starting. `/health` answers 200 as long as the API runs, and reports Neo4j as `"down"` instead.
+
+**Zombie citations** (Person 1): which journals keep citing papers after they were retracted.
+
+```bash
+curl "http://localhost/api/journals/zombie-citations?limit=5&min_zombie=1"
+```
+
+On the sample graph alone, *Journal of Sample Dentistry* comes first: 3 of its 4 citations to retracted papers
+were made after the retraction (`zombie_share` 0.75), with up to 3 examples of citing and retracted titles.
+*Clinical Periodontology Notes* follows with 2 zombie citations, then *International Dental Reports* with 1.
+
+**Top spreaders** (Person 1): the retracted papers that did the most damage, ranked by PageRank.
+
+```bash
+curl "http://localhost/api/retractions/top-spreaders?limit=10"
+```
+
+PageRank scores a paper high when many papers, and influential ones, build on it. On the sample graph the
+fluoride trial ranks first (5 direct citers, 3 of them after its retraction, plus a chain of papers behind
+them), then the peptide gel (3 citers), then the mouthwash study (2). Each paper also comes with its number of
+direct citations and of citations after the retraction.
+
+**Communities** (Person 1): research communities found by Louvain, ranked by their share of retracted papers.
+
+```bash
+curl "http://localhost/api/communities?limit=10&min_size=3"
+```
+
+Each community comes with its size, its number and share of retracted papers, and a few titles to see what it is
+about. On the sample graph, the communities that contain the three retracted papers come first, and the implant
+papers form a community with no retracted paper at all. `min_size` hides very small communities, which
+would otherwise rank high with a single retracted paper.
+
+The three algorithms run on an in-memory copy of the citation graph (GDS), built on the first request and
+dropped by the loading scripts, so they always see the latest data. Rebuilding it is never possible from a
+public request.
 
 **Contamination** (Person 2): which papers built on a retracted paper, up to `depth` steps (1 to 3).
 
@@ -424,6 +485,15 @@ Every question took the expected route, and all hand-checked values match (expos
 - Relies-on judgements only read abstracts, not full texts, so "unclear" is common and expected.
 - Gemini has per-minute rate limits (and the prepaid credits can run out); the endpoints then return 503, and the evaluation waits a minute and retries.
 - Vector search over abstracts is not wired in yet (it needs the embeddings created at ingestion).
+
+## Team
+
+| | Name | Part of the project |
+| --- | --- | --- |
+| Person 1 (lead) | Charlotte Le Bihan | Platform (Docker, Nginx, Makefile, CI, tests), GDS setup, Zombie citations, Top spreaders (PageRank) and Communities (Louvain) endpoints, architecture diagram, README, demo notebook, reviews of Person 2 |
+| Person 2 | Kenza Gueddas | Data: Retraction Watch + OpenAlex download, loading into Neo4j, sample graph, Contamination and Exposure endpoints, index benchmark, graph model and anti-genericity appendix, reviews of Person 3 |
+| Person 3 | Lara Normand | AI and machine learning: guardrails, Ask endpoint, Audit agent (LangGraph), evaluation, at-risk model and Risk endpoint, reviews of Person 1 |
+
 ## Merged pull requests
 
 Every change goes through a pull request reviewed by another team member (at least 2 constructive comments each). The full list is in the [closed pull requests](https://github.com/CharlotteLeBihan18/Retraction-Contamination-Tracker/pulls?q=is%3Apr+is%3Amerged).
@@ -435,5 +505,25 @@ Every change goes through a pull request reviewed by another team member (at lea
 | [#3](https://github.com/CharlotteLeBihan18/Retraction-Contamination-Tracker/pull/3) | GDS in-memory projection | Person 1 | Person 3 |
 | [#4](https://github.com/CharlotteLeBihan18/Retraction-Contamination-Tracker/pull/4) | Top spreaders endpoint (PageRank) | Person 1 | Person 3 |
 | [#5](https://github.com/CharlotteLeBihan18/Retraction-Contamination-Tracker/pull/5) | Communities endpoint (Louvain) | Person 1 | Person 3 |
+| [#6](https://github.com/CharlotteLeBihan18/Retraction-Contamination-Tracker/pull/6) | Architecture diagram and merged pull requests in the README | Person 1 | Person 3 |
+| [#7](https://github.com/CharlotteLeBihan18/Retraction-Contamination-Tracker/pull/7) | Hand-written sample graph and its loader | Person 2 | Person 1 |
+| [#8](https://github.com/CharlotteLeBihan18/Retraction-Contamination-Tracker/pull/8) | Cypher guardrails | Person 3 | Person 2 |
+| [#9](https://github.com/CharlotteLeBihan18/Retraction-Contamination-Tracker/pull/9) | Ask endpoint (intent routing, guardrails, cited answers) | Person 3 | Person 2 |
+| [#10](https://github.com/CharlotteLeBihan18/Retraction-Contamination-Tracker/pull/10) | Download the retracted dentistry papers from OpenAlex | Person 2 | Person 1 |
+| [#11](https://github.com/CharlotteLeBihan18/Retraction-Contamination-Tracker/pull/11) | Load the data into Neo4j with constraints and indexes | Person 2 | Person 1 |
+| [#12](https://github.com/CharlotteLeBihan18/Retraction-Contamination-Tracker/pull/12) | Agent tools and the Audit agent (LangGraph) | Person 3 | Person 2 |
+| [#13](https://github.com/CharlotteLeBihan18/Retraction-Contamination-Tracker/pull/13) | Download the papers that cite the retracted ones | Person 2 | Person 1 |
+| [#14](https://github.com/CharlotteLeBihan18/Retraction-Contamination-Tracker/pull/14) | Load the citing papers into Neo4j | Person 2 | Person 1 |
+| [#15](https://github.com/CharlotteLeBihan18/Retraction-Contamination-Tracker/pull/15) | Contamination endpoint | Person 2 | Person 1 |
+| [#16](https://github.com/CharlotteLeBihan18/Retraction-Contamination-Tracker/pull/16) | AI evaluation (20 questions) and README section | Person 3 | Person 2 |
+| [#17](https://github.com/CharlotteLeBihan18/Retraction-Contamination-Tracker/pull/17) | At-risk model (FastRP + logistic regression) and Risk endpoint | Person 3 | Person 2 |
+| [#18](https://github.com/CharlotteLeBihan18/Retraction-Contamination-Tracker/pull/18) | Exposure endpoint | Person 2 | Person 1 |
+| [#19](https://github.com/CharlotteLeBihan18/Retraction-Contamination-Tracker/pull/19) | Index benchmark with PROFILE before and after | Person 2 | Person 1 |
+| [#20](https://github.com/CharlotteLeBihan18/Retraction-Contamination-Tracker/pull/20) | Graph schema diagram and modeling rationale | Person 2 | Person 1 |
+| [#21](https://github.com/CharlotteLeBihan18/Retraction-Contamination-Tracker/pull/21) | README sections for the data, the graph model and the endpoints | Person 2 | Person 1 |
+| [#22](https://github.com/CharlotteLeBihan18/Retraction-Contamination-Tracker/pull/22) | Two demo fixes, AI API examples, risk results on the real data | Person 3 | Person 2 |
+
+Who reviews whom: Person 3 reviews Person 1, Person 2 reviews Person 3, and Person 1 reviews Person 2. The
+review comments, and the commits that answer them, are visible in each pull request.
 
 *To avoid Git conflicts, only Person 1 edits this file: each author writes their row in their pull request description, and Person 1 adds the rows together.*
