@@ -99,10 +99,24 @@ def test_markdown_reports_the_speed_up():
         bench.Measure("Find a paper", False, 20_000, 1, ["NodeByLabelScan", "Filter"], 9.0),
         bench.Measure("Find a paper", True, 4, 1, ["NodeUniqueIndexSeek"], 1.5),
     ]
-    report = bench.to_markdown([bench.CaseResult("paper_doi", measures)], {"doi": "10.1/x", "year": 2020}, 9354)
+    params = {"doi": "10.1/x", "openalex_id": "W1", "year": 2020}
+    report = bench.to_markdown([bench.CaseResult("paper_doi", measures, note="Why it differs.")], params, 9354)
     assert "| Find a paper | before (without) | NodeByLabelScan → Filter | 20,000 | 9.0 ms |" in report
     assert "5,000x fewer database hits" in report
-    assert "9354 papers" in report
+    assert "9354 papers" in report and "`W1`" in report
+    assert report.index("5,000x") < report.index("Why it differs.")  # the note comes under the table
+
+
+def test_run_case_keeps_the_note_of_the_case():
+    case = bench.IndexCase(CASE.name, CASE.create, CASE.drop, CASE.queries, CASE.param, note="a note")
+    assert bench.run_case(FakeRunner(), case, {"doi": "10.1/x"}).note == "a note"
+
+
+def test_the_openalex_id_constraint_is_benchmarked_like_the_loader_creates_it():
+    from scripts.ingest import SCHEMA_STATEMENTS  # pylint: disable=import-outside-toplevel
+
+    case = next(c for c in bench.CASES if c.param == "openalex_id")
+    assert case.create in SCHEMA_STATEMENTS
 
 
 def test_every_case_drops_and_creates_the_same_index():
