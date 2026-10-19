@@ -114,6 +114,35 @@ Matching papers between two datasets is messy, so here is what we chose and why.
 
 *TODO (everyone): one example per endpoint, written by its owner (see the team table in the proposal).*
 
+## At-risk model (machine learning)
+
+*Person 3. Code in `app/services/risk.py`, endpoint `GET /api/papers/{doi}/risk`.*
+
+The question: does a paper *look like* the retracted ones? The answer is a probability, always labelled as a **hypothesis** to prioritise checks, never as evidence that a paper is flawed.
+
+- **Features:** a FastRP embedding (GDS, 16 dimensions, fixed seed) of the paper's neighbourhood in the citation graph, its year, and its number of references (`reference_count` from OpenAlex, stored at loading).
+- **Model:** logistic regression with balanced class weights, after scaling.
+- **Honest scores:** stratified 5-fold cross-validation. The score a paper gets comes from a model that never saw its label, and precision/recall are compared with the baseline of always answering "retracted".
+
+Train it, then rebuild the API so it serves the new model (the image copies `app/`, there is no volume):
+
+```bash
+python -m app.services.risk          # trains on the graph in Neo4j and prints the metrics
+docker compose up -d --build api     # until then, /risk keeps the old model (or answers 503)
+```
+
+The trained file `app/services/risk_model.joblib` is git-ignored: it takes seconds to rebuild and always matches the data in your own Neo4j.
+
+### Results
+
+*TODO (Person 3): metrics on the real data, filled in once it is loaded.*
+
+### Known bias: the model can learn how the dataset was built
+
+Our dataset starts from retracted papers and adds the papers that cite them, so a paper's *position* can give its label away. Kenza caught this in review: the first version counted references from the `CITES` links inside our graph when `reference_count` was missing. Since we only loaded citations *to* retracted papers, every citing paper had at least one and almost no retracted paper had any. With only that count and the year, the model reached precision 0.89 and ROC AUC 0.93 (the year alone: 0.61). We dropped that fallback.
+
+The same trap can hide in the graph features: a retracted paper is a cited hub, a citing paper is a leaf, and an uncited retracted paper has no neighbours at all. So training also scores each group of features on its own (`ablation`, printed by the command above). If the graph features alone score close to 1.0, the model mostly recognises the shape of our dataset, not what makes a paper risky. The fix would be to add papers chosen independently of retractions (for example random dental papers from OpenAlex) as negatives; we report this as a limitation rather than hide it.
+
 ## LLM component and guardrails
 
 *Person 3. Code in `app/agent/`, endpoints `GET /api/ask` and `POST /api/audit`.*
