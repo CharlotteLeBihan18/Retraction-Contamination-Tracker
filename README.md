@@ -63,7 +63,7 @@ How to read it (the numbers match the arrows):
 
 1. **User requests** go to Nginx on port 80, which forwards them to the API on port 8000. The API is never exposed directly.
 2. **AI requests** (`/api/ask` and `/api/audit` only) make the API call the LLM provider over HTTPS.
-3. **Loading the data** runs once, not on each request: the scripts fetch Retraction Watch and OpenAlex, cache the raw files in `data/cache/`, then write them into Neo4j, with an embedding of each abstract for vector search. `/api/ask` embeds the question with the same model, otherwise the vector search would silently return unrelated papers.
+3. **Loading the data** runs once, not on each request: the scripts fetch Retraction Watch and OpenAlex, cache the raw files in `data/cache/`, then write them into Neo4j. The loader computes `before_retraction` on each citation once, so the endpoints only compare a flag.
 4. **Developers** can inspect the graph in the Neo4j Browser on port 7474.
 5. **Delivery**: every push runs lint and tests in GitHub Actions, and the API image is published on Docker Hub.
 
