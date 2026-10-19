@@ -131,7 +131,7 @@ A retracted paper alone doesn't tell us much, what we care about is who cited it
 - **OpenAlex flags 208 citing papers as retracted, we don't.** Retraction Watch has no notice for them, so we have no date and no reasons. They stay normal papers and we keep the flag as `openalex_retracted = true`, so the information isn't lost.
 - **Citing papers have no abstract in the graph.** We didn't need them for the graph questions, and the audit agent fetches the abstract from OpenAlex when it judges a citation.
 - **464 citing papers have no journal** in OpenAlex, so they have no `PUBLISHED_IN` link. They are still in the graph and in Contamination / Exposure, but their 250 zombie citations don't show up in the Zombie citations endpoint, because it groups the citations by journal.
-- **Every paper has its `reference_count`** (its number of references in OpenAlex), for the at-risk model. The citer pages only keep the references to our retracted papers, so `python -m scripts.fetch_reference_counts` asks OpenAlex for the full count of each citing paper (about 180 requests) and saves it in `data/cache/reference_counts.json`. The retracted papers already have their full reference list, except 27 whose list is empty in OpenAlex: their count stays empty instead of a fake 0.
+- **Every paper has its `reference_count`** (its number of references in OpenAlex), for the at-risk model. The citer pages only keep the references to our retracted papers, so `python -m scripts.fetch_reference_counts` asks OpenAlex for the full count of each citing paper (about 180 requests) and saves it in `data/cache/reference_counts.json`. The retracted papers already have their full reference list, except 26 whose list is empty in OpenAlex: their count stays empty instead of a fake 0.
 - **We stop at one level.** We didn't download the papers that cite the citing papers: it would multiply the size of the graph for a small demo gain. So a contamination path of 2 or 3 steps in our data goes through another retracted paper.
 
 **A real zombie example.** The paper with the most zombie citations in our data is *"Marsupialization as a Definitive Treatment for the Odontogenic Keratocyst"* (2004). It was retracted in February 2007, but it's still cited every year until 2026: 268 citations came after the retraction, 25 of them in 2021 alone. This query finds it:
@@ -255,7 +255,7 @@ On the sample graph, `sample.023` reaches the retracted `sample.001` in 3 steps,
 
 The question: does a paper *look like* the retracted ones? The answer is a probability, always labelled as a **hypothesis** to prioritise checks, never as evidence that a paper is flawed.
 
-- **Features:** a FastRP embedding (GDS, 16 dimensions, fixed seed) of the paper's neighbourhood in the citation graph, its year, and its number of references (`reference_count` from OpenAlex; the loader does not store it yet, so for now this feature is constant and carries no signal).
+- **Features:** a FastRP embedding (GDS, 16 dimensions, fixed seed) of the paper's neighbourhood in the citation graph, its year, and its number of references (`reference_count` from OpenAlex, stored by the loader; the few papers without one get the median).
 - **Model:** logistic regression with balanced class weights, after scaling.
 - **Honest scores:** stratified 5-fold cross-validation. The score a paper gets comes from a model that never saw its label, and precision/recall are compared with the baseline of always answering "retracted".
 
@@ -292,22 +292,24 @@ A DOI that was not in the graph at training time gets a 404, and an untrained mo
 
 Trained on the full graph: 8,975 papers with a DOI (Kenza's data plus the 20 sample papers; citers without a DOI are skipped), 456 of them retracted. 5-fold cross-validation, out-of-fold scores:
 
-| Metric | Model | Always "retracted" (baseline) |
-| --- | --- | --- |
-| Precision (threshold 0.5) | 0.072 | 0.051 |
-| Recall (threshold 0.5) | 0.55 | 1.0 |
-| F1 | 0.127 | |
-| ROC AUC | 0.644 | 0.5 |
+| Metric | Model | Without `reference_count` (first run) | Always "retracted" (baseline) |
+| --- | --- | --- | --- |
+| Precision (threshold 0.5) | 0.082 | 0.072 | 0.051 |
+| Recall (threshold 0.5) | 0.588 | 0.55 | 1.0 |
+| F1 | 0.144 | 0.127 | |
+| ROC AUC | 0.679 | 0.644 | 0.5 |
 
 | Features used alone | ROC AUC |
 | --- | --- |
-| FastRP graph embedding only | 0.588 |
-| Year + references only | 0.615 |
-| All together | 0.644 |
+| FastRP graph embedding only | 0.590 |
+| Year + references only | 0.662 |
+| All together | 0.679 |
 
-**What this means.** The model is weak, and we say so: a paper's place in the citation graph and its year say only a little about whether it will be retracted (retraction is about the content, which these features cannot see). It is still useful as a ranking: the 73 papers that score at least 0.8 include 15 retracted ones (21%, four times the 5% base rate). That is how the endpoint presents it: a hint for where to look first, labelled as a hypothesis.
+`reference_count` is known for 8,929 of the 8,975 papers (the 20 sample papers and the 26 retracted papers with an empty reference list in OpenAlex have none).
 
-**The leak is gone.** With the old in-graph reference count, year + references alone reached ROC AUC 0.93 (Kenza's review). Now they reach 0.615, close to the year alone (0.61), and the graph features alone stay at 0.588, so the model is not simply recognising how the dataset was built. `reference_count` is not stored by the loader yet (`reference_count known for 0/8975 papers`), so for now that column is constant and the "references" feature carries no signal.
+**What this means.** The model is weak, and we say so: a paper's place in the citation graph, its year and its number of references say only a little about whether it will be retracted (retraction is about the content, which these features cannot see). It is still useful as a ranking: the 50 papers with the highest scores include 16 retracted ones (32%, six times the 5% base rate), and the 197 papers that score at least 0.8 include 37 (19%). That is how the endpoint presents it: a hint for where to look first, labelled as a hypothesis.
+
+**The leak is gone.** With the old in-graph reference count, year + references alone reached ROC AUC 0.93 (Kenza's review). With the real count from OpenAlex they reach 0.662: the number of references helps a little (the year alone gives 0.61), but it no longer gives the answer away. Even that small gain should be read with care: our citing papers have more references than the retracted ones (median 40 vs 29), partly because of how we built the dataset (the more references a paper has, the more likely it is to cite one of our retracted papers and be picked as a citer), so part of it may come from that selection rather than from a real signal. The graph features alone stay at 0.590, so the model is not simply recognising how the dataset was built.
 
 ### Known bias: the model can learn how the dataset was built
 
