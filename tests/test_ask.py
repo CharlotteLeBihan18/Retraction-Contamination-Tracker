@@ -165,3 +165,9 @@ def test_every_template_passes_the_guardrails():
     for name in ask_module.TEMPLATES:
         cypher, _ = ask_module.build_template({"intent": name, "doi": DOI, "depth": 3})
         ask_module.validate(cypher)  # raises if a template ever breaks a guardrail
+
+
+def test_contamination_template_returns_before_retraction():
+    cypher, _ = ask_module.build_template({"intent": "contamination", "doi": DOI, "depth": 2})
+    assert "direct.before_retraction AS before_retraction" in cypher
+    ask_module.validate(cypher)
