@@ -255,7 +255,7 @@ On the sample graph, `sample.023` reaches the retracted `sample.001` in 3 steps,
 
 The question: does a paper *look like* the retracted ones? The answer is a probability, always labelled as a **hypothesis** to prioritise checks, never as evidence that a paper is flawed.
 
-- **Features:** a FastRP embedding (GDS, 16 dimensions, fixed seed) of the paper's neighbourhood in the citation graph, its year, and its number of references (`reference_count` from OpenAlex; the loader does not store it yet, so for now this feature is constant and carries no signal).
+- **Features:** a FastRP embedding (GDS, 16 dimensions, fixed seed) of the paper's neighbourhood in the citation graph, its year, and its number of references (`reference_count` from OpenAlex, stored by the loader; the few papers without one get the median).
 - **Model:** logistic regression with balanced class weights, after scaling.
 - **Honest scores:** stratified 5-fold cross-validation. The score a paper gets comes from a model that never saw its label, and precision/recall are compared with the baseline of always answering "retracted".
 
@@ -292,22 +292,24 @@ A DOI that was not in the graph at training time gets a 404, and an untrained mo
 
 Trained on the full graph: 8,975 papers with a DOI (Kenza's data plus the 20 sample papers; citers without a DOI are skipped), 456 of them retracted. 5-fold cross-validation, out-of-fold scores:
 
-| Metric | Model | Always "retracted" (baseline) |
-| --- | --- | --- |
-| Precision (threshold 0.5) | 0.072 | 0.051 |
-| Recall (threshold 0.5) | 0.55 | 1.0 |
-| F1 | 0.127 | |
-| ROC AUC | 0.644 | 0.5 |
+| Metric | Model | Without `reference_count` (first run) | Always "retracted" (baseline) |
+| --- | --- | --- | --- |
+| Precision (threshold 0.5) | 0.082 | 0.072 | 0.051 |
+| Recall (threshold 0.5) | 0.588 | 0.55 | 1.0 |
+| F1 | 0.144 | 0.127 | |
+| ROC AUC | 0.679 | 0.644 | 0.5 |
 
 | Features used alone | ROC AUC |
 | --- | --- |
-| FastRP graph embedding only | 0.588 |
-| Year + references only | 0.615 |
-| All together | 0.644 |
+| FastRP graph embedding only | 0.590 |
+| Year + references only | 0.662 |
+| All together | 0.679 |
 
-**What this means.** The model is weak, and we say so: a paper's place in the citation graph and its year say only a little about whether it will be retracted (retraction is about the content, which these features cannot see). It is still useful as a ranking: the 73 papers that score at least 0.8 include 15 retracted ones (21%, four times the 5% base rate). That is how the endpoint presents it: a hint for where to look first, labelled as a hypothesis.
+`reference_count` is known for 8,929 of the 8,975 papers (the 20 sample papers and the retracted papers with an empty reference list in OpenAlex have none).
 
-**The leak is gone.** With the old in-graph reference count, year + references alone reached ROC AUC 0.93 (Kenza's review). Now they reach 0.615, close to the year alone (0.61), and the graph features alone stay at 0.588, so the model is not simply recognising how the dataset was built. `reference_count` is not stored by the loader yet (`reference_count known for 0/8975 papers`), so for now that column is constant and the "references" feature carries no signal.
+**What this means.** The model is weak, and we say so: a paper's place in the citation graph, its year and its number of references say only a little about whether it will be retracted (retraction is about the content, which these features cannot see). It is still useful as a ranking: the 50 papers with the highest scores include 16 retracted ones (32%, six times the 5% base rate), and the 197 papers that score at least 0.8 include 37 (19%). That is how the endpoint presents it: a hint for where to look first, labelled as a hypothesis.
+
+**The leak is gone.** With the old in-graph reference count, year + references alone reached ROC AUC 0.93 (Kenza's review). With the real count from OpenAlex they reach 0.662: the number of references helps a little (the year alone gives 0.61), but it no longer gives the answer away. The graph features alone stay at 0.590, so the model is not simply recognising how the dataset was built.
 
 ### Known bias: the model can learn how the dataset was built
 
