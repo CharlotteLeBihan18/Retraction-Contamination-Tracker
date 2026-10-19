@@ -22,6 +22,9 @@ htmlcov/
 # Raw downloads (the processed cache in data/cache/ is committed on purpose)
 data/raw/
 
+# Trained at-risk model: rebuilt from your own Neo4j with python -m app.services.risk
+app/services/risk_model.joblib
+
 # Editors and OS
 .vscode/
 .idea/

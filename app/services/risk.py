@@ -11,8 +11,11 @@ Features, for every paper:
 * a FastRP embedding (16 numbers) of its neighbourhood in the citation graph, computed
   by GDS on the undirected projection from app/services/gds.py
 * its publication year (missing years get the median year)
-* its number of references (``log(1 + n)``): ``reference_count`` when the loader stored it,
-  otherwise the citations it makes inside our graph
+* its number of references (``log(1 + n)``), only from ``reference_count`` as stored by the
+  loader (OpenAlex's count). Missing counts get the median. We do NOT fall back on the
+  citations a paper makes inside our graph: we only loaded citations *to* retracted papers,
+  so every citing paper has at least one and almost no retracted paper has any, which gives
+  the label away (Kenza measured AUC 0.93 from that count and the year alone).
 
 Training (``python -m app.services.risk``) runs stratified k-fold cross-validation.
 Each paper's served score is its *out-of-fold* probability: it comes from a model that
@@ -20,7 +23,9 @@ never saw that paper's label, so the scores and the precision/recall are honest.
 Everything is saved to ``risk_model.joblib`` next to this file, which the endpoint reads.
 
 Known bias: the dataset is built around retracted papers and the papers citing them, so
-being heavily cited is itself a strong signal here. The README discusses it.
+the graph position itself (cited hub vs. citing leaf) is a strong signal here. To make that
+visible, training also scores each feature group on its own (``ablation``); the README
+section "At-risk model" discusses it.
 """
 
 import math
@@ -46,6 +51,9 @@ EMBEDDING_DIM = 16
 SEED = 42
 MAX_FOLDS = 5
 THRESHOLD = 0.5
+# Columns of the feature matrix, used to score each group of features on its own.
+GRAPH_COLUMNS = list(range(EMBEDDING_DIM))
+METADATA_COLUMNS = [EMBEDDING_DIM, EMBEDDING_DIM + 1]
 
 FASTRP_QUERY = """
 CALL gds.fastRP.stream($graph, {
@@ -59,7 +67,7 @@ WITH gds.util.asNode(nodeId) AS p, embedding
 RETURN p.doi AS doi,
        embedding,
        p.year AS year,
-       coalesce(p.reference_count, COUNT { (p)-[:CITES]->() }) AS references,
+       p.reference_count AS references,
        p:Retracted AS retracted
 """
 
@@ -84,25 +92,52 @@ class RiskModel:  # pylint: disable=too-many-instance-attributes
     n_retracted: int
     trained_at: str
     features: list[str] = field(default_factory=list)
+    # Cross-validated ROC AUC of each feature group alone: how much each one carries.
+    ablation: dict[str, float] = field(default_factory=dict)
+    references_known: int = 0
+
+
+def _known(rows: list[dict[str, Any]], key: str) -> list[int]:
+    return [r[key] for r in rows if isinstance(r.get(key), int)]
 
 
 def to_features(rows: list[dict[str, Any]]) -> tuple[list[str], np.ndarray, np.ndarray]:
-    """Turn the FastRP rows into (dois, X, y). Papers without a DOI are skipped."""
+    """Turn the FastRP rows into (dois, X, y). Papers without a DOI are skipped.
+
+    A missing year or reference count gets the median of the known ones (0 references
+    when no paper has a count: the column is then constant and carries no signal).
+    """
     rows = [r for r in rows if r.get("doi")]
-    years = [r["year"] for r in rows if isinstance(r.get("year"), int)]
+    years, counts = _known(rows, "year"), _known(rows, "references")
     default_year = median(years) if years else 2000
+    default_references = median(counts) if counts else 0
     dois, features, labels = [], [], []
     for row in rows:
         year = row["year"] if isinstance(row.get("year"), int) else default_year
-        references = row.get("references") or 0
+        references = row["references"] if isinstance(row.get("references"), int) else default_references
         features.append([*row["embedding"], float(year), math.log1p(references)])
         labels.append(1 if row.get("retracted") else 0)
         dois.append(row["doi"])
     return dois, np.array(features, dtype=float), np.array(labels, dtype=int)
 
 
+def _new_pipeline() -> Any:
+    return make_pipeline(StandardScaler(), LogisticRegression(class_weight="balanced", max_iter=1000))
+
+
+def _ablation(x: np.ndarray, y: np.ndarray, cv: StratifiedKFold) -> dict[str, float]:
+    """Cross-validated ROC AUC with only the graph features, then only year + references."""
+    groups = {"graph_only": GRAPH_COLUMNS, "year_and_references_only": METADATA_COLUMNS}
+    return {
+        name: round(float(roc_auc_score(y, cross_val_predict(_new_pipeline(), x[:, columns], y, cv=cv,
+                                                             method="predict_proba")[:, 1])), 3)
+        for name, columns in groups.items()
+    }
+
+
 def train_from_rows(rows: list[dict[str, Any]]) -> RiskModel:
     """Cross-validate, compute honest out-of-fold scores, then fit on everything."""
+    references_known = len(_known([r for r in rows if r.get("doi")], "references"))
     dois, x, y = to_features(rows)
     positives, negatives = int(y.sum()), int(len(y) - y.sum())
     folds = min(MAX_FOLDS, positives, negatives)
@@ -110,7 +145,7 @@ def train_from_rows(rows: list[dict[str, Any]]) -> RiskModel:
         raise NotEnoughDataError(
             f"Need at least 2 retracted and 2 non-retracted papers (got {positives} and {negatives})"
         )
-    pipeline = make_pipeline(StandardScaler(), LogisticRegression(class_weight="balanced", max_iter=1000))
+    pipeline = _new_pipeline()
     cv = StratifiedKFold(n_splits=folds, shuffle=True, random_state=SEED)
     probabilities = cross_val_predict(pipeline, x, y, cv=cv, method="predict_proba")[:, 1]
     predicted = (probabilities >= THRESHOLD).astype(int)
@@ -133,6 +168,8 @@ def train_from_rows(rows: list[dict[str, Any]]) -> RiskModel:
         n_retracted=positives,
         trained_at=datetime.now(timezone.utc).isoformat(timespec="seconds"),
         features=[f"fastrp_{i}" for i in range(EMBEDDING_DIM)] + ["year", "log1p_references"],
+        ablation=_ablation(x, y, cv),
+        references_known=references_known,
     )
 
 
@@ -175,6 +212,11 @@ def main() -> None:
     print(f"Trained on {model.n_papers} papers ({model.n_retracted} retracted), saved to {MODEL_PATH.name}")
     for name, value in model.metrics.items():
         print(f"  {name}: {value}")
+    print(f"  reference_count known for {model.references_known}/{model.n_papers} papers")
+    print(f"ROC AUC of each feature group alone (all features together: {model.metrics['roc_auc']}):")
+    for name, value in model.ablation.items():
+        print(f"  {name}: {value}")
+    print("Remember to rebuild the API image so it serves the new model: docker compose up -d --build api")
 
 
 if __name__ == "__main__":

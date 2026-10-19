@@ -1,5 +1,6 @@
 """Tests for the at-risk model (app/services/risk.py) and GET /api/papers/{doi}/risk."""
 
+import math
 import random
 
 import pytest
@@ -44,6 +45,30 @@ def test_features_fill_missing_year_and_log_references():
     assert list(y) == [1, 0]
 
 
+def test_missing_reference_counts_get_the_median():
+    rows = [
+        {"doi": f"10.1/{i}", "embedding": [0.0] * risk.EMBEDDING_DIM, "year": 2010, "references": refs,
+         "retracted": False}
+        for i, refs in enumerate([9, 99, None])
+    ]
+    _, x, _ = risk.to_features(rows)
+    assert x[2, -1] == pytest.approx(math.log1p(54))  # median of 9 and 99
+
+
+def test_no_reference_count_at_all_gives_a_constant_column():
+    rows = synthetic_rows(n=8)
+    for row in rows:
+        row["references"] = None
+    _, x, _ = risk.to_features(rows)
+    assert set(x[:, -1]) == {0.0}
+
+
+def test_references_never_come_from_the_citations_in_our_graph():
+    # Kenza's review: counting CITES inside our graph gives the label away (citers >= 1, retracted ~0).
+    assert "COUNT {" not in risk.FASTRP_QUERY and "CITES" not in risk.FASTRP_QUERY
+    assert "p.reference_count AS references" in risk.FASTRP_QUERY
+
+
 # ---------- Training ----------
 
 
@@ -57,6 +82,15 @@ def test_training_gives_honest_metrics_and_a_score_per_paper():
     # The synthetic signal is learnable, so the model must beat the always-retracted baseline.
     assert model.metrics["roc_auc"] > 0.8
     assert model.metrics["precision"] > model.metrics["baseline_precision"]
+    assert model.references_known == 40
+
+
+def test_ablation_shows_where_the_signal_comes_from():
+    model = risk.train_from_rows(synthetic_rows())
+    assert set(model.ablation) == {"graph_only", "year_and_references_only"}
+    # The synthetic signal is only in the embedding: the graph features carry it, the others do not.
+    assert model.ablation["graph_only"] > 0.8
+    assert model.ablation["year_and_references_only"] < model.ablation["graph_only"]
 
 
 def test_training_is_reproducible():
