@@ -56,9 +56,18 @@ def test_contamination_of_the_fluoride_trial(sample_db):
 
 
 def test_most_cited_retracted_papers(sample_db):
+    # Works on the sample alone and with the real data loaded too: the guardrails keep the
+    # top 100, and real papers with many more citers can push the sample ones out of it.
     rows = run(sample_db, {"intent": "most_cited_retracted"})
+    citers = [r["citers"] for r in rows]
+    assert citers == sorted(citers, reverse=True)
+    expected = {R001: 5, R002: 3, R003: 2}
     counts = {r["doi"]: r["citers"] for r in rows if r["doi"].startswith("10.0000/")}
-    assert counts == {R001: 5, R002: 3, R003: 2}
+    assert counts == {doi: n for doi, n in expected.items() if doi in counts}
+    if len(rows) < 100:
+        assert counts == expected
+    else:  # a sample paper may only be missing because 100 papers have at least as many citers
+        assert all(n <= citers[-1] for doi, n in expected.items() if doi not in counts)
 
 
 def test_retraction_reasons(sample_db):
