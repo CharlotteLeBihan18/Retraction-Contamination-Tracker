@@ -108,7 +108,9 @@ OpenAlex flag has errors.
 OpenAlex flags 208 of the citing papers as retracted, but we have no Retraction Watch notice for them (so no date
 and no reasons). Labelling them would break the rule "every retracted paper has a dated notice", and
 `before_retraction` could not be computed for their citers. So they stay plain papers, with
-`openalex_retracted = true`, and the information is not lost.
+`openalex_retracted = true`, and the information is not lost. (`citers_manifest.json` counts 265 flagged citing
+papers: the other 57 are retracted papers of our own Retraction Watch set, which already have the label and are
+skipped when the citing papers are loaded.)
 
 **4. Reasons are nodes, not a text field.**
 351 of the 453 Retraction Watch notices give two reasons or more (up to 11). As nodes, "how many retractions
@@ -142,45 +144,47 @@ chains that go through another retracted paper.
 
 ## Comparison with a basic AI-generated schema
 
-To check that our model is more than the obvious answer, we gave the free version of ChatGPT this one-line
-prompt, in a new conversation, without our data or our questions:
-
-> Design a Neo4j graph schema for a project that tracks retracted scientific papers and the papers that cite them.
-> List the node labels, relationship types and properties.
+To check that our model is more than the obvious answer, we gave the free version of ChatGPT, in a new
+conversation, the same project description as the course (the "project in simple terms" text with its 3 questions)
+and asked it for a Neo4j graph schema. It had no data and no numbers, only the description.
 
 Its answer, summarised:
 
-- Nodes: `Paper {doi, title, publicationDate, journal, abstract, url}`,
-  `Retraction {date, reason, noticeUrl, retractionType, status}`,
-  `Author {authorId, name, orcid, affiliation}`, `Journal {name, issn, publisher}`
-- Relationships: `(:Paper)-[:CITES {context, section, citationDate}]->(:Paper)`,
-  `(:Paper)-[:HAS_RETRACTION {source, recordedAt}]->(:Retraction)`,
-  `(:Author)-[:AUTHORED {authorOrder, corresponding}]->(:Paper)`,
-  `(:Paper)-[:PUBLISHED_IN {volume, issue, pages}]->(:Journal)`
-- Unique constraints on `Paper.doi`, `Author.authorId` and `Journal.issn`
-- A closing remark: a paper may cite another one *before* it is retracted, so publication and retraction dates
-  should be kept apart.
+- Nodes: `Paper {paper_id, title, abstract, publication_date, doi, citation_count}`,
+  `Retraction {retraction_id, retraction_date, reason, notice_doi, source}`,
+  `Journal {journal_id (preferably the ISSN), name, publisher, issn}`
+- Relationships: `(:Paper)-[:CITES {citation_date, context, citation_type}]->(:Paper)`,
+  `(:Paper)-[:PUBLISHED_IN {volume, issue, pages}]->(:Journal)`,
+  `(:Paper)-[:RETRACTED_BY {recorded_at, status}]->(:Retraction)`
+- One query per question: contamination with `[:CITES*1..2]` towards a paper that has a `RETRACTED_BY` link,
+  exposure with `[:CITES*1..5]`, and zombie journals with `WHERE c.citation_date > r.retraction_date`
+- Unique constraints on `Paper.paper_id`, `Retraction.retraction_id` and `Journal.journal_id`
+- A few principles: keep an internal id because not every paper has a DOI, always point `CITES` from the citing
+  paper to the cited one, record where the retraction information comes from, compute `citation_count` instead of
+  storing it, and "a citation path to retracted work indicates potential contamination, not necessarily that the
+  citing paper relied on invalid results".
 
-**What it gets right, and what we share with it.** Retractions are a separate node instead of a boolean on the
-paper (our `RetractionNotice`), the source of a retraction is recorded, authors have a stable id instead of their
-name, `CITES` points from the citing paper to the cited one, and DOIs are unique. It even raises the
-before/after-retraction problem on its own.
+**What it gets right, and what we share with it.** A retraction is a separate node with its own date and source
+(our `RetractionNotice`), `CITES` points from the citing paper to the cited one, papers without a DOI still get a
+key (our `openalex_id`), `citation_count` is not stored but computed from the links, and a path to a retracted
+paper means "exposed", not "wrong". That last point is exactly why our API says *exposed* and why we added
+`RELIES_ON`.
 
 **Where it does not fit our data and our questions:**
 
-| Basic schema | What happens with our data | Our model |
+| ChatGPT's schema | What happens with our data | Our model |
 | --- | --- | --- |
-| It notes the before/after problem but stores nothing for it | The zombie-citation question compares `citing.publicationDate` with `r.date` in every query, and each query must repeat the same rules for year-only and unknown dates (or forget them) | `before_retraction` computed once by the loader, with one written rule and a final check that no citation is missing it |
-| `CITES {context, section, citationDate}` | A good idea, but OpenAlex does not give citation contexts or citation dates, so these properties would stay empty | `CITES` only stores what we can fill; "does it really rely on it?" is answered by `RELIES_ON` from the abstract |
+| Zombie citations found with `c.citation_date > r.retraction_date` in the query | OpenAlex gives no citation date. The only date we have is the citing paper's publication date, and sometimes only its year. With this query, a citation with a missing date gives `null` and silently disappears from the results | `before_retraction` computed once by the loader, with one written rule for year-only and unknown dates, and a final check that no citation is missing it |
+| `CITES {context, citation_type}` | A good idea, but OpenAlex does not give citation contexts or types, so these properties would stay empty | `CITES` only stores what we can fill; "does it really rely on it?" is answered by `RELIES_ON` from the abstract |
 | `Retraction.reason` is one string | 351 of our 453 Retraction Watch notices give 2 to 11 reasons: counting by reason means splitting strings in every query | `Reason` nodes and `FOR_REASON` links |
-| "Retracted" = "has a `HAS_RETRACTION` link" | Any source can make a paper retracted: OpenAlex's flag would mark 208 citing papers as retracted with no date and no reason, and every query must filter on `source` to avoid them | the `:Retracted` label is given by Retraction Watch only; OpenAlex's flag is kept as `openalex_retracted` |
-| No label for retracted papers | Each query that starts from retracted papers needs an extra hop through `Retraction` nodes; GDS projections and the guardrails also need a simple way to name them | `:Retracted` label on `Paper`: `(:Paper:Retracted)` in any query, and the planner scans only those 456 papers (see the benchmark) |
-| `Paper.doi` is the only key | 379 of our citing papers have no DOI: they cannot be merged by DOI | both `doi` and `openalex_id` are unique keys |
-| No place for AI judgements | Adding "relies on" later as a `CITES` property would mix AI guesses with facts | `RELIES_ON` kept apart, with confidence, evidence and the model name |
-| `Paper.journal` property *and* a `Journal` node | The same fact is stored twice and can drift apart | only the `PUBLISHED_IN` link |
+| "Retracted" = "has a `RETRACTED_BY` link", whatever the source | OpenAlex's flag would mark 208 citing papers as retracted with no date and no reason, and every query would have to filter on `source` to avoid them | the `:Retracted` label is given by Retraction Watch only; OpenAlex's flag is kept as `openalex_retracted` |
+| No label for retracted papers: every query hops through `RETRACTED_BY` | An extra hop in each query; GDS projections and the guardrails also need a simple way to name the retracted papers | `:Retracted` label on `Paper`: `(:Paper:Retracted)` in any query, and the planner scans only those 456 papers (see the benchmark) |
+| Exposure up to 5 citation steps (`[:CITES*1..5]`) | The number of paths grows very fast with each extra step, so a deep variable-length match can get slow on a well-cited paper | depth checked in Python and capped at 3 for both Contamination and Exposure |
+| `paper_id` as the only unique key, `doi` as a normal property | We match Retraction Watch by DOI, and 379 of our citing papers have no DOI | both `doi` and `openalex_id` are unique keys |
+| "Detection is not proof" only as a principle | Nothing in the schema can store an AI judgement, so it would end up mixed with the facts | `RELIES_ON` kept apart, with confidence, evidence and the model name |
 
 **Ideas from it that we did not use, on purpose.** `Journal.issn` as the journal key is better than the name, but
-our cached OpenAlex data only keeps the journal name, so we kept the name for now. `authorOrder`, `noticeUrl`,
+our cached OpenAlex data only keeps the journal name, so we kept the name for now. `publisher`, `notice_doi`,
 `volume`, `issue` and `pages` are fine metadata, but none of our questions use them, so we did not load them.
 
 ## Limits

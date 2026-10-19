@@ -99,7 +99,7 @@ def test_graph(neo4j_client):
 
 
 def _test_journals(db):
-    _, rows = zombie_journals(db, limit=100, offset=0, min_zombie=1)
+    _, rows = zombie_journals(db, limit=10_000, offset=0, min_zombie=1)
     return {row["journal"]: row for row in rows if row["journal"].startswith("TEST ")}
 
 
@@ -122,7 +122,7 @@ def test_cypher_examples_are_zombie_citations_newest_first(test_graph):
 
 @pytest.mark.neo4j
 def test_cypher_min_zombie_filters_journals(test_graph):
-    _, rows = zombie_journals(test_graph, limit=100, offset=0, min_zombie=2)
+    _, rows = zombie_journals(test_graph, limit=10_000, offset=0, min_zombie=2)
     names = {row["journal"] for row in rows}
     assert "TEST Journal A" in names
     assert "TEST Journal B" not in names
