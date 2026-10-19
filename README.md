@@ -45,6 +45,17 @@ On Windows (Git Bash), replace `.venv/bin/python` with `.venv/Scripts/python` in
 The examples below say which of the two they use. The AI endpoints (`/api/ask`, `/api/audit`) also need
 a Gemini key in `.env`, see [LLM setup](#llm-setup).
 
+## Docker image
+
+The API image is published on Docker Hub, built for both Intel/AMD and Apple Silicon machines:
+
+```bash
+docker pull charlottelebihan/retraction-tracker-api:1.0
+```
+
+`make docker-run` builds the same image from the `Dockerfile`, so you don't need to pull it to run the project.
+Neo4j and Nginx use their official images (`neo4j:5.26`, `nginx:1.27-alpine`).
+
 ## Makefile commands
 
 | Command | What it does |
@@ -524,6 +535,11 @@ Every change goes through a pull request reviewed by another team member (at lea
 | [#20](https://github.com/CharlotteLeBihan18/Retraction-Contamination-Tracker/pull/20) | Graph schema diagram and modeling rationale | Kenza Gueddas | Charlotte Le Bihan |
 | [#21](https://github.com/CharlotteLeBihan18/Retraction-Contamination-Tracker/pull/21) | README sections for the data, the graph model and the endpoints | Kenza Gueddas | Charlotte Le Bihan |
 | [#22](https://github.com/CharlotteLeBihan18/Retraction-Contamination-Tracker/pull/22) | Two demo fixes, AI API examples, risk results on the real data | Lara Normand | Kenza Gueddas |
+| [#23](https://github.com/CharlotteLeBihan18/Retraction-Contamination-Tracker/pull/23) | `reference_count` on every paper (for the at-risk model) | Kenza Gueddas | Charlotte Le Bihan |
+| [#24](https://github.com/CharlotteLeBihan18/Retraction-Contamination-Tracker/pull/24) | Graph endpoints tested on the sample graph, diagram aligned with the code | Charlotte Le Bihan | Lara Normand |
+| [#25](https://github.com/CharlotteLeBihan18/Retraction-Contamination-Tracker/pull/25) | Final README: data loading, API examples, team, merged pull requests | Charlotte Le Bihan | Lara Normand |
+| [#26](https://github.com/CharlotteLeBihan18/Retraction-Contamination-Tracker/pull/26) | Demo notebook (graph exploration, charts, API and AI demo) | Charlotte Le Bihan | Lara Normand |
+| [#27](https://github.com/CharlotteLeBihan18/Retraction-Contamination-Tracker/pull/27) | At-risk model results with `reference_count` | Lara Normand | Kenza Gueddas |
 
 Who reviews whom: Lara reviews Charlotte, Kenza reviews Lara, and Charlotte reviews Kenza. The
 review comments, and the commits that answer them, are visible in each pull request.
