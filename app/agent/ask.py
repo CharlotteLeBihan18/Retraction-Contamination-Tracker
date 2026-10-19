@@ -21,7 +21,7 @@ import json
 import re
 from typing import Any
 
-from app.agent.guardrails import run_validated, uses_hypotheses, validate
+from app.agent.guardrails import MAX_LIMIT, run_validated, uses_hypotheses, validate
 from app.agent.llm import LLM, LLMUnavailableError
 from app.database import Neo4jClient
 from app.models.ask import AskResponse, CitedPaper
@@ -158,10 +158,16 @@ def cited_papers(rows: list[dict[str, Any]]) -> list[CitedPaper]:
 def summarize(llm: LLM, question: str, rows: list[dict[str, Any]]) -> str:
     """Short answer from the rows. If the LLM fails here, fall back to a plain count."""
     payload = json.dumps(rows[:SUMMARY_ROWS], default=str, ensure_ascii=False)
+    count = f"{len(rows)} in total"
+    if len(rows) >= MAX_LIMIT:
+        # The guardrails cut every answer at MAX_LIMIT rows: without this note the LLM
+        # would report "100 papers" as the full answer.
+        count = f"the first {len(rows)}: the list was cut by our {MAX_LIMIT}-row limit, so say 'at least {len(rows)}'"
     try:
-        return llm(SUMMARY_PROMPT, f"Question: {question}\nRows ({len(rows)} in total): {payload}")
+        return llm(SUMMARY_PROMPT, f"Question: {question}\nRows ({count}): {payload}")
     except LLMUnavailableError:
-        return f"{len(rows)} result(s) found. (The AI summary is unavailable right now.)"
+        found = f"At least {len(rows)}" if len(rows) >= MAX_LIMIT else str(len(rows))
+        return f"{found} result(s) found. (The AI summary is unavailable right now.)"
 
 
 def answer_question(question: str, db: Neo4jClient, llm: LLM) -> AskResponse:

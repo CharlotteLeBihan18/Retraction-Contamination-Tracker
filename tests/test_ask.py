@@ -143,6 +143,25 @@ def test_summary_failure_still_returns_the_rows(client, fake_db, use_llm):
     assert body["rows"] == ROWS and "2 result(s)" in body["answer"]
 
 
+def test_summary_says_when_the_row_limit_cut_the_list():
+    seen = []
+
+    def llm(_system, user):
+        seen.append(user)
+        return "ok"
+
+    rows = [{"doi": f"10.1/{i}"} for i in range(100)]
+    ask_module.summarize(llm, "who cites it?", rows)
+    assert "cut by our 100-row limit" in seen[0] and "at least 100" in seen[0]
+    ask_module.summarize(llm, "who cites it?", rows[:7])
+    assert "Rows (7 in total)" in seen[1]
+
+    def broken(_system, _user):
+        raise LLMUnavailableError("down")
+
+    assert ask_module.summarize(broken, "q", rows).startswith("At least 100 result(s)")
+
+
 def test_missing_llm_settings_give_a_clear_error(monkeypatch):
     monkeypatch.setattr("app.agent.llm._chat_model", lambda: (_ for _ in ()).throw(LLMUnavailableError("Set LLM_API_KEY")))
     with pytest.raises(LLMUnavailableError):
