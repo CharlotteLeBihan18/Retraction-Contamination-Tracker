@@ -1,6 +1,6 @@
 # Graph model
 
-*Person 2 (Data). The loader that builds this graph is `scripts/ingest.py`.*
+*Kenza Gueddas (data). The loader that builds this graph is `scripts/ingest.py`.*
 
 ## Schema
 
@@ -46,7 +46,7 @@ A PNG of the same diagram is in [`graph_schema.png`](graph_schema.png) (for slid
 | `(:RetractionNotice)-[:FOR_REASON]->(:Reason)` | this notice gives this reason | |
 | `(:Author)-[:AUTHORED]->(:Paper)` | authorship | |
 | `(:Paper)-[:PUBLISHED_IN]->(:Journal)` | where it was published | |
-| `(:Paper)-[:RELIES_ON]->(:Paper:Retracted)` | the citing paper *probably* depends on the retracted one (AI judgement, Person 3) | `confidence`, `evidence`, `verdict`, `model`, `judged_at`, `source = 'llm'` |
+| `(:Paper)-[:RELIES_ON]->(:Paper:Retracted)` | the citing paper *probably* depends on the retracted one (AI judgement, Lara Normand's audit agent) | `confidence`, `evidence`, `verdict`, `model`, `judged_at`, `source = 'llm'` |
 
 Three extra properties on `Paper`: `openalex_retracted` (OpenAlex's own retraction flag on the citing papers, see
 decision 3), `reference_count` (how many references the paper has in OpenAlex, a feature of the at-risk model) and

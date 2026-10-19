@@ -45,6 +45,17 @@ On Windows (Git Bash), replace `.venv/bin/python` with `.venv/Scripts/python` in
 The examples below say which of the two they use. The AI endpoints (`/api/ask`, `/api/audit`) also need
 a Gemini key in `.env`, see [LLM setup](#llm-setup).
 
+## Docker image
+
+The API image is published on Docker Hub, built for both Intel/AMD and Apple Silicon machines:
+
+```bash
+docker pull charlottelebihan/retraction-tracker-api:1.0
+```
+
+`make docker-run` builds the same image from the `Dockerfile`, so you don't need to pull it to run the project.
+Neo4j and Nginx use their official images (`neo4j:5.26`, `nginx:1.27-alpine`).
+
 ## Makefile commands
 
 | Command | What it does |
@@ -189,7 +200,7 @@ Every endpoint is documented, with its parameters and possible answers, in Swagg
 Lists are paginated with `limit` and `offset`, and invalid parameters (for example `limit=0`) answer **422**.
 The graph-algorithm endpoints answer **503** "load the data first" when the database is empty.
 
-**Health** (Person 1): is the API up, and can it reach Neo4j?
+**Health** (Charlotte Le Bihan): is the API up, and can it reach Neo4j?
 
 ```bash
 curl http://localhost/health/ready
@@ -197,7 +208,7 @@ curl http://localhost/health/ready
 
 `{"status": "ok", "version": "0.1.0", "neo4j": "up"}`, or **503** while Neo4j is still starting. `/health` answers 200 as long as the API runs, and reports Neo4j as `"down"` instead.
 
-**Zombie citations** (Person 1): which journals keep citing papers after they were retracted.
+**Zombie citations** (Charlotte Le Bihan): which journals keep citing papers after they were retracted.
 
 ```bash
 curl "http://localhost/api/journals/zombie-citations?limit=5&min_zombie=1"
@@ -207,7 +218,7 @@ On the sample graph alone, *Journal of Sample Dentistry* comes first: 3 of its 4
 were made after the retraction (`zombie_share` 0.75), with up to 3 examples of citing and retracted titles.
 *Clinical Periodontology Notes* follows with 2 zombie citations, then *International Dental Reports* with 1.
 
-**Top spreaders** (Person 1): the retracted papers that did the most damage, ranked by PageRank.
+**Top spreaders** (Charlotte Le Bihan): the retracted papers that did the most damage, ranked by PageRank.
 
 ```bash
 curl "http://localhost/api/retractions/top-spreaders?limit=10"
@@ -218,7 +229,7 @@ fluoride trial ranks first (5 direct citers, 3 of them after its retraction, plu
 them), then the peptide gel (3 citers), then the mouthwash study (2). Each paper also comes with its number of
 direct citations and of citations after the retraction.
 
-**Communities** (Person 1): research communities found by Louvain, ranked by their share of retracted papers.
+**Communities** (Charlotte Le Bihan): research communities found by Louvain, ranked by their share of retracted papers.
 
 ```bash
 curl "http://localhost/api/communities?limit=10&min_size=3"
@@ -233,7 +244,7 @@ The three algorithms run on an in-memory copy of the citation graph (GDS), built
 dropped by the loading scripts, so they always see the latest data. Rebuilding it is never possible from a
 public request.
 
-**Contamination** (Person 2): which papers built on a retracted paper, up to `depth` steps (1 to 3).
+**Contamination** (Kenza Gueddas): which papers built on a retracted paper, up to `depth` steps (1 to 3).
 
 ```bash
 curl "http://localhost/api/papers/10.1002/14651858.cd001724.pub2/contamination?depth=2&limit=20"
@@ -241,7 +252,7 @@ curl "http://localhost/api/papers/10.1002/14651858.cd001724.pub2/contamination?d
 
 On our data this paper has 373 direct citers, 118 of them after its retraction, and 383 papers at depth 2. Each paper comes with `hops`, and direct citations with `before_retraction`. Unknown DOI → 404, `depth=5` → 422.
 
-**Exposure** (Person 2): does a paper rely on retracted work, and through which chain.
+**Exposure** (Kenza Gueddas): does a paper rely on retracted work, and through which chain.
 
 ```bash
 curl "http://localhost/api/papers/10.0000/sample.023/exposure?depth=3"
@@ -251,7 +262,7 @@ On the sample graph, `sample.023` reaches the retracted `sample.001` in 3 steps,
 
 ## At-risk model (machine learning)
 
-*Person 3. Code in `app/services/risk.py`, endpoint `GET /api/papers/{doi}/risk`.*
+*Lara Normand. Code in `app/services/risk.py`, endpoint `GET /api/papers/{doi}/risk`.*
 
 The question: does a paper *look like* the retracted ones? The answer is a probability, always labelled as a **hypothesis** to prioritise checks, never as evidence that a paper is flawed.
 
@@ -319,7 +330,7 @@ The same trap can hide in the graph features: a retracted paper is a cited hub, 
 
 ## LLM component and guardrails
 
-*Person 3. Code in `app/agent/`, endpoints `GET /api/ask` and `POST /api/audit`.*
+*Lara Normand. Code in `app/agent/`, endpoints `GET /api/ask` and `POST /api/audit`.*
 
 ### LLM setup
 
@@ -490,11 +501,11 @@ Every question took the expected route, and all hand-checked values match (expos
 
 ## Team
 
-| | Name | Part of the project |
+| Name | Role | Part of the project |
 | --- | --- | --- |
-| Person 1 (lead) | Charlotte Le Bihan | Platform (Docker, Nginx, Makefile, CI, tests), GDS setup, Zombie citations, Top spreaders (PageRank) and Communities (Louvain) endpoints, architecture diagram, README, demo notebook, reviews of Person 2 |
-| Person 2 | Kenza Gueddas | Data: Retraction Watch + OpenAlex download, loading into Neo4j, sample graph, Contamination and Exposure endpoints, index benchmark, graph model and anti-genericity appendix, reviews of Person 3 |
-| Person 3 | Lara Normand | AI and machine learning: guardrails, Ask endpoint, Audit agent (LangGraph), evaluation, at-risk model and Risk endpoint, reviews of Person 1 |
+| Charlotte Le Bihan | Lead, platform and graph algorithms | Platform (Docker, Nginx, Makefile, CI, tests), GDS setup, Zombie citations, Top spreaders (PageRank) and Communities (Louvain) endpoints, architecture diagram, README, demo notebook, reviews of Kenza's pull requests |
+| Kenza Gueddas | Data | Retraction Watch + OpenAlex download, loading into Neo4j, sample graph, Contamination and Exposure endpoints, index benchmark, graph model and anti-genericity appendix, reviews of Lara's pull requests |
+| Lara Normand | AI and machine learning | Guardrails, Ask endpoint, Audit agent (LangGraph), evaluation, at-risk model and Risk endpoint, reviews of Charlotte's pull requests |
 
 ## Merged pull requests
 
@@ -502,30 +513,35 @@ Every change goes through a pull request reviewed by another team member (at lea
 
 | PR | What it adds | Author | Reviewer |
 | --- | --- | --- | --- |
-| [#1](https://github.com/CharlotteLeBihan18/Retraction-Contamination-Tracker/pull/1) | Placeholder files for every endpoint | Person 1 | Person 3 |
-| [#2](https://github.com/CharlotteLeBihan18/Retraction-Contamination-Tracker/pull/2) | Zombie citations endpoint | Person 1 | Person 3 |
-| [#3](https://github.com/CharlotteLeBihan18/Retraction-Contamination-Tracker/pull/3) | GDS in-memory projection | Person 1 | Person 3 |
-| [#4](https://github.com/CharlotteLeBihan18/Retraction-Contamination-Tracker/pull/4) | Top spreaders endpoint (PageRank) | Person 1 | Person 3 |
-| [#5](https://github.com/CharlotteLeBihan18/Retraction-Contamination-Tracker/pull/5) | Communities endpoint (Louvain) | Person 1 | Person 3 |
-| [#6](https://github.com/CharlotteLeBihan18/Retraction-Contamination-Tracker/pull/6) | Architecture diagram and merged pull requests in the README | Person 1 | Person 3 |
-| [#7](https://github.com/CharlotteLeBihan18/Retraction-Contamination-Tracker/pull/7) | Hand-written sample graph and its loader | Person 2 | Person 1 |
-| [#8](https://github.com/CharlotteLeBihan18/Retraction-Contamination-Tracker/pull/8) | Cypher guardrails | Person 3 | Person 2 |
-| [#9](https://github.com/CharlotteLeBihan18/Retraction-Contamination-Tracker/pull/9) | Ask endpoint (intent routing, guardrails, cited answers) | Person 3 | Person 2 |
-| [#10](https://github.com/CharlotteLeBihan18/Retraction-Contamination-Tracker/pull/10) | Download the retracted dentistry papers from OpenAlex | Person 2 | Person 1 |
-| [#11](https://github.com/CharlotteLeBihan18/Retraction-Contamination-Tracker/pull/11) | Load the data into Neo4j with constraints and indexes | Person 2 | Person 1 |
-| [#12](https://github.com/CharlotteLeBihan18/Retraction-Contamination-Tracker/pull/12) | Agent tools and the Audit agent (LangGraph) | Person 3 | Person 2 |
-| [#13](https://github.com/CharlotteLeBihan18/Retraction-Contamination-Tracker/pull/13) | Download the papers that cite the retracted ones | Person 2 | Person 1 |
-| [#14](https://github.com/CharlotteLeBihan18/Retraction-Contamination-Tracker/pull/14) | Load the citing papers into Neo4j | Person 2 | Person 1 |
-| [#15](https://github.com/CharlotteLeBihan18/Retraction-Contamination-Tracker/pull/15) | Contamination endpoint | Person 2 | Person 1 |
-| [#16](https://github.com/CharlotteLeBihan18/Retraction-Contamination-Tracker/pull/16) | AI evaluation (20 questions) and README section | Person 3 | Person 2 |
-| [#17](https://github.com/CharlotteLeBihan18/Retraction-Contamination-Tracker/pull/17) | At-risk model (FastRP + logistic regression) and Risk endpoint | Person 3 | Person 2 |
-| [#18](https://github.com/CharlotteLeBihan18/Retraction-Contamination-Tracker/pull/18) | Exposure endpoint | Person 2 | Person 1 |
-| [#19](https://github.com/CharlotteLeBihan18/Retraction-Contamination-Tracker/pull/19) | Index benchmark with PROFILE before and after | Person 2 | Person 1 |
-| [#20](https://github.com/CharlotteLeBihan18/Retraction-Contamination-Tracker/pull/20) | Graph schema diagram and modeling rationale | Person 2 | Person 1 |
-| [#21](https://github.com/CharlotteLeBihan18/Retraction-Contamination-Tracker/pull/21) | README sections for the data, the graph model and the endpoints | Person 2 | Person 1 |
-| [#22](https://github.com/CharlotteLeBihan18/Retraction-Contamination-Tracker/pull/22) | Two demo fixes, AI API examples, risk results on the real data | Person 3 | Person 2 |
+| [#1](https://github.com/CharlotteLeBihan18/Retraction-Contamination-Tracker/pull/1) | Placeholder files for every endpoint | Charlotte Le Bihan | Lara Normand |
+| [#2](https://github.com/CharlotteLeBihan18/Retraction-Contamination-Tracker/pull/2) | Zombie citations endpoint | Charlotte Le Bihan | Lara Normand |
+| [#3](https://github.com/CharlotteLeBihan18/Retraction-Contamination-Tracker/pull/3) | GDS in-memory projection | Charlotte Le Bihan | Lara Normand |
+| [#4](https://github.com/CharlotteLeBihan18/Retraction-Contamination-Tracker/pull/4) | Top spreaders endpoint (PageRank) | Charlotte Le Bihan | Lara Normand |
+| [#5](https://github.com/CharlotteLeBihan18/Retraction-Contamination-Tracker/pull/5) | Communities endpoint (Louvain) | Charlotte Le Bihan | Lara Normand |
+| [#6](https://github.com/CharlotteLeBihan18/Retraction-Contamination-Tracker/pull/6) | Architecture diagram and merged pull requests in the README | Charlotte Le Bihan | Lara Normand |
+| [#7](https://github.com/CharlotteLeBihan18/Retraction-Contamination-Tracker/pull/7) | Hand-written sample graph and its loader | Kenza Gueddas | Charlotte Le Bihan |
+| [#8](https://github.com/CharlotteLeBihan18/Retraction-Contamination-Tracker/pull/8) | Cypher guardrails | Lara Normand | Kenza Gueddas |
+| [#9](https://github.com/CharlotteLeBihan18/Retraction-Contamination-Tracker/pull/9) | Ask endpoint (intent routing, guardrails, cited answers) | Lara Normand | Kenza Gueddas |
+| [#10](https://github.com/CharlotteLeBihan18/Retraction-Contamination-Tracker/pull/10) | Download the retracted dentistry papers from OpenAlex | Kenza Gueddas | Charlotte Le Bihan |
+| [#11](https://github.com/CharlotteLeBihan18/Retraction-Contamination-Tracker/pull/11) | Load the data into Neo4j with constraints and indexes | Kenza Gueddas | Charlotte Le Bihan |
+| [#12](https://github.com/CharlotteLeBihan18/Retraction-Contamination-Tracker/pull/12) | Agent tools and the Audit agent (LangGraph) | Lara Normand | Kenza Gueddas |
+| [#13](https://github.com/CharlotteLeBihan18/Retraction-Contamination-Tracker/pull/13) | Download the papers that cite the retracted ones | Kenza Gueddas | Charlotte Le Bihan |
+| [#14](https://github.com/CharlotteLeBihan18/Retraction-Contamination-Tracker/pull/14) | Load the citing papers into Neo4j | Kenza Gueddas | Charlotte Le Bihan |
+| [#15](https://github.com/CharlotteLeBihan18/Retraction-Contamination-Tracker/pull/15) | Contamination endpoint | Kenza Gueddas | Charlotte Le Bihan |
+| [#16](https://github.com/CharlotteLeBihan18/Retraction-Contamination-Tracker/pull/16) | AI evaluation (20 questions) and README section | Lara Normand | Kenza Gueddas |
+| [#17](https://github.com/CharlotteLeBihan18/Retraction-Contamination-Tracker/pull/17) | At-risk model (FastRP + logistic regression) and Risk endpoint | Lara Normand | Kenza Gueddas |
+| [#18](https://github.com/CharlotteLeBihan18/Retraction-Contamination-Tracker/pull/18) | Exposure endpoint | Kenza Gueddas | Charlotte Le Bihan |
+| [#19](https://github.com/CharlotteLeBihan18/Retraction-Contamination-Tracker/pull/19) | Index benchmark with PROFILE before and after | Kenza Gueddas | Charlotte Le Bihan |
+| [#20](https://github.com/CharlotteLeBihan18/Retraction-Contamination-Tracker/pull/20) | Graph schema diagram and modeling rationale | Kenza Gueddas | Charlotte Le Bihan |
+| [#21](https://github.com/CharlotteLeBihan18/Retraction-Contamination-Tracker/pull/21) | README sections for the data, the graph model and the endpoints | Kenza Gueddas | Charlotte Le Bihan |
+| [#22](https://github.com/CharlotteLeBihan18/Retraction-Contamination-Tracker/pull/22) | Two demo fixes, AI API examples, risk results on the real data | Lara Normand | Kenza Gueddas |
+| [#23](https://github.com/CharlotteLeBihan18/Retraction-Contamination-Tracker/pull/23) | `reference_count` on every paper (for the at-risk model) | Kenza Gueddas | Charlotte Le Bihan |
+| [#24](https://github.com/CharlotteLeBihan18/Retraction-Contamination-Tracker/pull/24) | Graph endpoints tested on the sample graph, diagram aligned with the code | Charlotte Le Bihan | Lara Normand |
+| [#25](https://github.com/CharlotteLeBihan18/Retraction-Contamination-Tracker/pull/25) | Final README: data loading, API examples, team, merged pull requests | Charlotte Le Bihan | Lara Normand |
+| [#26](https://github.com/CharlotteLeBihan18/Retraction-Contamination-Tracker/pull/26) | Demo notebook (graph exploration, charts, API and AI demo) | Charlotte Le Bihan | Lara Normand |
+| [#27](https://github.com/CharlotteLeBihan18/Retraction-Contamination-Tracker/pull/27) | At-risk model results with `reference_count` | Lara Normand | Kenza Gueddas |
 
-Who reviews whom: Person 3 reviews Person 1, Person 2 reviews Person 3, and Person 1 reviews Person 2. The
+Who reviews whom: Lara reviews Charlotte, Kenza reviews Lara, and Charlotte reviews Kenza. The
 review comments, and the commits that answer them, are visible in each pull request.
 
-*To avoid Git conflicts, only Person 1 edits this file: each author writes their row in their pull request description, and Person 1 adds the rows together.*
+*To avoid Git conflicts, only Charlotte edits this file: each author writes their row in their pull request description, and Charlotte adds the rows together.*
