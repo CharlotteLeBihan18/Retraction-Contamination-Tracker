@@ -12,7 +12,8 @@ property ``openalex_retracted`` on the citing paper, so the information is not l
 
 Every paper also gets ``reference_count``, its number of references in OpenAlex (the at-risk model
 uses it). For the retracted papers it is the length of ``referenced_works`` in their records; for the
-citing papers it comes from ``reference_counts.json``, and stays empty when that step was not run.
+citing papers it comes from ``reference_counts.json``. It stays empty when the number is unknown (an
+empty list in OpenAlex, or the counts step was not run), never a fake 0.
 
 Every write is a ``MERGE``, so running the script twice gives the same graph.
 
@@ -242,7 +243,7 @@ def paper_row(row: dict[str, Any], work: dict[str, Any]) -> dict[str, Any]:
         "openalex_id": short_id(work["id"]),
         "publication_date": work.get("publication_date"),
         "journal": journal_name(work, row["journal"]),
-        "reference_count": len(work.get("referenced_works") or []),
+        "reference_count": len(work.get("referenced_works") or []) or None,  # empty list: unknown, not 0
     }
 
 

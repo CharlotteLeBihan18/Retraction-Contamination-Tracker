@@ -154,10 +154,9 @@ def test_paper_row_counts_all_the_references_of_a_retracted_paper():
         ingest.paper_row(make_selection("10.1/a"), make_work("W1", "10.1/a", referenced_works=refs))["reference_count"]
         == 3
     )
-    assert (
-        ingest.paper_row(make_selection("10.1/a"), make_work("W1", "10.1/a", referenced_works=None))["reference_count"]
-        == 0
-    )
+    for unknown in (None, []):  # OpenAlex has no reference list for the paper: unknown, not a real 0
+        work = make_work("W1", "10.1/a", referenced_works=unknown)
+        assert ingest.paper_row(make_selection("10.1/a"), work)["reference_count"] is None
 
 
 # --- build_rows --------------------------------------------------------------------------------
@@ -523,7 +522,7 @@ def test_load_into_neo4j_is_complete_and_idempotent(clean_db):
     reasons = clean_db.read("MATCH (r:Reason {name: 'Ingest Test Reason'}) RETURN count(r) AS n")
     assert reasons == [{"n": 1}]  # one Reason node shared by both notices
     counts = "MATCH (p:Paper) WHERE p.doi IN $dois RETURN p.reference_count AS n ORDER BY p.doi"
-    assert clean_db.read(counts, dois) == [{"n": 1}, {"n": 0}]
+    assert clean_db.read(counts, dois) == [{"n": 1}, {"n": None}]
 
 
 CITER_IDS = ("W-ingest-citer-1", "W-ingest-citer-2")
