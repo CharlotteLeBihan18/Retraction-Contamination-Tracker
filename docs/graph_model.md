@@ -108,7 +108,9 @@ OpenAlex flag has errors.
 OpenAlex flags 208 of the citing papers as retracted, but we have no Retraction Watch notice for them (so no date
 and no reasons). Labelling them would break the rule "every retracted paper has a dated notice", and
 `before_retraction` could not be computed for their citers. So they stay plain papers, with
-`openalex_retracted = true`, and the information is not lost.
+`openalex_retracted = true`, and the information is not lost. (`citers_manifest.json` counts 265 flagged citing
+papers: the other 57 are retracted papers of our own Retraction Watch set, which already have the label and are
+skipped when the citing papers are loaded.)
 
 **4. Reasons are nodes, not a text field.**
 351 of the 453 Retraction Watch notices give two reasons or more (up to 11). As nodes, "how many retractions
