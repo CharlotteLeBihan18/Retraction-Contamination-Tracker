@@ -155,7 +155,24 @@ A DOI that was not in the graph at training time gets a 404, and an untrained mo
 
 ### Results
 
-*TODO (Person 3): metrics on the real data, filled in once it is loaded.*
+Trained on the full graph (Kenza's data, 8,975 papers of which 456 retracted, plus the 20 sample papers), 5-fold cross-validation, out-of-fold scores:
+
+| Metric | Model | Always "retracted" (baseline) |
+| --- | --- | --- |
+| Precision (threshold 0.5) | 0.072 | 0.051 |
+| Recall (threshold 0.5) | 0.55 | 1.0 |
+| F1 | 0.127 | |
+| ROC AUC | 0.644 | 0.5 |
+
+| Features used alone | ROC AUC |
+| --- | --- |
+| FastRP graph embedding only | 0.588 |
+| Year + references only | 0.615 |
+| All together | 0.644 |
+
+**What this means.** The model is weak, and we say so: a paper's place in the citation graph and its year say only a little about whether it will be retracted (retraction is about the content, which these features cannot see). It is still useful as a ranking: the 73 papers that score at least 0.8 include 15 retracted ones (21%, four times the 5% base rate). That is how the endpoint presents it: a hint for where to look first, labelled as a hypothesis.
+
+**The leak is gone.** With the old in-graph reference count, year + references alone reached ROC AUC 0.93 (Kenza's review). Now they reach 0.615, close to the year alone (0.61), and the graph features alone stay at 0.588, so the model is not simply recognising how the dataset was built. `reference_count` is not stored by the loader yet (`reference_count known for 0/8975 papers`), so for now that column is constant and the "references" feature carries no signal.
 
 ### Known bias: the model can learn how the dataset was built
 
