@@ -1,0 +1,472 @@
+{
+  "cites": [
+    "W1986822434",
+    "W1986933151",
+    "W1987009002",
+    "W1993793604",
+    "W1993806921",
+    "W1996274869",
+    "W1999617772",
+    "W2000407321",
+    "W2001871607",
+    "W2003274878",
+    "W2003510900",
+    "W2005426500",
+    "W2007384607",
+    "W2009743426",
+    "W2010039902",
+    "W2010393550",
+    "W2010546786",
+    "W2012653598",
+    "W2013723281",
+    "W2017635495",
+    "W2017641618",
+    "W2017818911",
+    "W2018328710",
+    "W2018657059",
+    "W2021495733",
+    "W2024929000",
+    "W2025326872",
+    "W2028672619",
+    "W2029296070",
+    "W2034073858",
+    "W2035904067",
+    "W2041063491",
+    "W2042890992",
+    "W2044088938",
+    "W2045647414",
+    "W2045671643",
+    "W2047776417",
+    "W2048856458",
+    "W2051079302",
+    "W2054243767",
+    "W2054774541",
+    "W2055254402",
+    "W2056134469",
+    "W2058870421",
+    "W2060025850",
+    "W2060249591",
+    "W2061082120",
+    "W2061920830",
+    "W2062048161",
+    "W2062931713"
+  ],
+  "cursor": "IlsnLUluZmluaXR5JywgMCwgJ2h0dHBzOi8vb3BlbmFsZXgub3JnL1c3MTE4MDY3NDI0J10i",
+  "next_cursor": null,
+  "results": [
+    {
+      "id": "https://openalex.org/W7127405441",
+      "doi": "https://doi.org/10.2174/0118742106416194251208064234",
+      "title": "Association between Salivary Vitamin D Levels and Periodontal Disease Severity: A Cross-Sectional Study",
+      "publication_year": 2026,
+      "publication_date": "2026-02-03",
+      "is_retracted": false,
+      "journal": "The Open Dentistry Journal",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5017669601",
+          "name": "Sepideh Bohlouli"
+        },
+        {
+          "id": "https://openalex.org/A5051888459",
+          "name": "Paria Motahari"
+        },
+        {
+          "id": "https://openalex.org/A5032949900",
+          "name": "Masoumeh Faramarzi"
+        },
+        {
+          "id": "https://openalex.org/A5035812960",
+          "name": "Mojtaba Sheikhian"
+        }
+      ],
+      "cites_retracted": [
+        "W1987009002",
+        "W2072173517"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W7130837977",
+      "doi": "https://doi.org/10.1177/22808000261422958",
+      "title": "Does melatonin gel improve alveolar preservation? A triple-blind randomized controlled clinical trial",
+      "publication_year": 2026,
+      "publication_date": "2026-02-01",
+      "is_retracted": false,
+      "journal": "Journal of Applied Biomaterials & Functional Materials",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5089103008",
+          "name": "Ingrid Chaves Cavalcante Kischinhevsky"
+        },
+        {
+          "id": "https://openalex.org/A5080468770",
+          "name": "Adriana Terezinha Neves Novellino Alves"
+        },
+        {
+          "id": "https://openalex.org/A5052448289",
+          "name": "Caio Márcio Sorrentino de Freitas Farias dos Santos"
+        },
+        {
+          "id": "https://openalex.org/A5045598119",
+          "name": "Rafael Bonato"
+        },
+        {
+          "id": "https://openalex.org/A5024562805",
+          "name": "Suelen Cristina Sartoretto"
+        },
+        {
+          "id": "https://openalex.org/A5121398432",
+          "name": "Carlos Fernando Mourão"
+        },
+        {
+          "id": "https://openalex.org/A5002718524",
+          "name": "José Mauro Granjeiro"
+        },
+        {
+          "id": "https://openalex.org/A5006957553",
+          "name": "Mônica Diuana Calasans‐Maia"
+        }
+      ],
+      "cites_retracted": [
+        "W2003510900"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W7139088265",
+      "doi": "https://doi.org/10.1080/20002297.2026.2645306",
+      "title": "Bacterial contamination and diversity of dental unit waterlines across dental specialties, outlets and distinct times: heterotrophic bacteria counting and sequencing analysis",
+      "publication_year": 2026,
+      "publication_date": "2026-03-17",
+      "is_retracted": false,
+      "journal": "Journal of Oral Microbiology",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5006054867",
+          "name": "Yuanhui Qiu"
+        },
+        {
+          "id": "https://openalex.org/A5100954542",
+          "name": "Xinyang Xu"
+        },
+        {
+          "id": "https://openalex.org/A5129803459",
+          "name": "Yuru Wang"
+        },
+        {
+          "id": "https://openalex.org/A5100444001",
+          "name": "Dan Chen"
+        },
+        {
+          "id": "https://openalex.org/A5122528351",
+          "name": "Shaohua Ge"
+        },
+        {
+          "id": "https://openalex.org/A5130107201",
+          "name": "Peng Chen"
+        }
+      ],
+      "cites_retracted": [
+        "W1999617772"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W7148999466",
+      "doi": "https://doi.org/10.70675/a2dc41b4zc93ez4fa9za3b0z92693dea83f5",
+      "title": "Analyse de l'écologie microbienne des conduites d'eau d'unités de soins dentaires",
+      "publication_year": 2015,
+      "publication_date": "2015-12-10",
+      "is_retracted": false,
+      "journal": null,
+      "authors": [
+        {
+          "id": "https://openalex.org/A5057460351",
+          "name": "Damien Costa"
+        }
+      ],
+      "cites_retracted": [
+        "W1999617772"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W7152115515",
+      "doi": "https://doi.org/10.70675/7645b94az84adz449dzb4eezda5539e815c5",
+      "title": "Microbiote vaginal, de la flore normale à la dysbiose : Caractérisations, diagnostics et impacts",
+      "publication_year": 2023,
+      "publication_date": "2023-12-08",
+      "is_retracted": false,
+      "journal": null,
+      "authors": [
+        {
+          "id": "https://openalex.org/A5060695893",
+          "name": "Linda Abou Chacra"
+        }
+      ],
+      "cites_retracted": [
+        "W2042890992"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W7157251812",
+      "doi": "https://doi.org/10.1007/s12070-025-06157-1",
+      "title": "Efficacy of Pentoxifylline as Adjuvant in Oral Submucous Fibrosis",
+      "publication_year": 2026,
+      "publication_date": "2026-04-28",
+      "is_retracted": false,
+      "journal": "Indian Journal of Otolaryngology and Head & Neck Surgery",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5012316965",
+          "name": "Smruti Ranjan Samal"
+        },
+        {
+          "id": "https://openalex.org/A5003034925",
+          "name": "Fakir Mohan Mohanta"
+        },
+        {
+          "id": "https://openalex.org/A5064426801",
+          "name": "Arunima Kar"
+        },
+        {
+          "id": "https://openalex.org/A5085023061",
+          "name": "Sayambika Mishra"
+        },
+        {
+          "id": "https://openalex.org/A5112336443",
+          "name": "Souvagini Acharya"
+        }
+      ],
+      "cites_retracted": [
+        "W2054243767"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W7161993728",
+      "doi": "https://doi.org/10.69537/vkniiran.2026.24.1.013",
+      "title": "ВЛИЯНИЕ ДИЕТЫ И НУТРИТИВНОЙ ПОДДЕРЖКИ НА ВОСПАЛИТЕЛЬНЫЕ ПРОЦЕССЫ В ПАРОДОНТЕ СИСТЕМАТИЧЕСКИЙ ОБЗОР И МЕТААНАЛИЗ РАНДОМИЗИРОВАННЫХ КОНТРОЛИРУЕМЫХ ИССЛЕДОВАНИЙ",
+      "publication_year": 2026,
+      "publication_date": "2026-05-04",
+      "is_retracted": false,
+      "journal": "Вестник КНИИ РАН. Серия \"Естественные и технические науки\".",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5120122978",
+          "name": "Alfiya R. Bersanova"
+        },
+        {
+          "id": "https://openalex.org/A5114827672",
+          "name": "Р.У. Берсанов"
+        }
+      ],
+      "cites_retracted": [
+        "W1987009002"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W7163050011",
+      "doi": "https://doi.org/10.66224/jrdms.10.4.285",
+      "title": "In Vitro Comparison of Morphological and Mechanical Properties, and Antimicrobial Efficacy of Silk Sutures Coated with Curcumin and Honey Extract",
+      "publication_year": 2025,
+      "publication_date": "2025-12-01",
+      "is_retracted": false,
+      "journal": "Journal of Research in Dental and Maxillofacial Sciences",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5093852130",
+          "name": "Lakshmi Rathan A C"
+        },
+        {
+          "id": "https://openalex.org/A5137518128",
+          "name": "Suryakala Nadarajan"
+        },
+        {
+          "id": "https://openalex.org/A5058401697",
+          "name": "V Narayanan"
+        },
+        {
+          "id": "https://openalex.org/A5071670694",
+          "name": "Damodharan Narayanasamy"
+        },
+        {
+          "id": "https://openalex.org/A5118992660",
+          "name": "C V Swapna Manjari"
+        },
+        {
+          "id": "https://openalex.org/A5137551544",
+          "name": "Bakyalakshmi Kolanji"
+        }
+      ],
+      "cites_retracted": [
+        "W2001871607"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W7169501064",
+      "doi": "https://doi.org/10.1016/j.radcr.2026.05.081",
+      "title": "Radiographic evolution of a dentigerous cyst associated with a deeply impacted mandibular first molar in a pediatric patient: a CBCT-based longitudinal case report with minimal-visit orthodontic management",
+      "publication_year": 2026,
+      "publication_date": "2026-07-17",
+      "is_retracted": false,
+      "journal": "Radiology Case Reports",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5141051563",
+          "name": "Huyen Nguyen Thanh"
+        },
+        {
+          "id": "https://openalex.org/A5141059254",
+          "name": "Manh Nguyen Truong"
+        },
+        {
+          "id": "https://openalex.org/A5007040700",
+          "name": "A Bui Viet"
+        },
+        {
+          "id": "https://openalex.org/A5002285759",
+          "name": "Do Hoang Viet"
+        },
+        {
+          "id": "https://openalex.org/A5114638976",
+          "name": "Trang Thi Thu Vu"
+        }
+      ],
+      "cites_retracted": [
+        "W2024929000"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W7203795739",
+      "doi": "https://doi.org/10.1038/s41432-026-01244-w",
+      "title": "The effect of vitamin D supplementation on periodontal health: a systematic review and meta-analysis",
+      "publication_year": 2026,
+      "publication_date": "2026-08-19",
+      "is_retracted": false,
+      "journal": "Evidence-Based Dentistry",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5147611774",
+          "name": "Aafreen Gillani Haji"
+        },
+        {
+          "id": "https://openalex.org/A5004765948",
+          "name": "Benedetta Ghezzi"
+        },
+        {
+          "id": "https://openalex.org/A5001453843",
+          "name": "Sara Tagliaferri"
+        },
+        {
+          "id": "https://openalex.org/A5025915071",
+          "name": "Nagihan Bostancı"
+        },
+        {
+          "id": "https://openalex.org/A5003143284",
+          "name": "Elena Calciolari"
+        }
+      ],
+      "cites_retracted": [
+        "W1987009002"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W7204188292",
+      "doi": "https://doi.org/10.1016/j.joms.2026.07.023",
+      "title": "Predictors of Bone Cavity Volume Reduction Rate Following Marsupialization of Jaw Cysts",
+      "publication_year": 2026,
+      "publication_date": "2026-08-01",
+      "is_retracted": false,
+      "journal": "Journal of Oral and Maxillofacial Surgery",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5147238826",
+          "name": "Huan Hu"
+        },
+        {
+          "id": "https://openalex.org/A5124112874",
+          "name": "Jiahang Wu"
+        },
+        {
+          "id": "https://openalex.org/A5124139244",
+          "name": "Yan Niu"
+        },
+        {
+          "id": "https://openalex.org/A5147255674",
+          "name": "Jichao Liang"
+        },
+        {
+          "id": "https://openalex.org/A5143857104",
+          "name": "Bo Chen"
+        }
+      ],
+      "cites_retracted": [
+        "W2024929000"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W7222528293",
+      "doi": "https://doi.org/10.7759/cureus.117999",
+      "title": "Anterior Maxillary Odontogenic Keratocyst Mimicking an Infected Radicular Cyst: A Case Report",
+      "publication_year": 2026,
+      "publication_date": "2026-10-16",
+      "is_retracted": false,
+      "journal": "Cureus",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5016278163",
+          "name": "Laavanya Marimuthu"
+        },
+        {
+          "id": "https://openalex.org/A5149889203",
+          "name": "Sri Devi"
+        },
+        {
+          "id": "https://openalex.org/A5158895198",
+          "name": "A Saneem Ahamed"
+        },
+        {
+          "id": "https://openalex.org/A5158866176",
+          "name": "N S Rajessh"
+        }
+      ],
+      "cites_retracted": [
+        "W2024929000"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W752850507",
+      "doi": null,
+      "title": "ALTERAÇÕES CITOGENÉTICAS EM PORTADORES DE DESORDENS POTENCIALMENTE MALIGNAS E CARCINOMA ORAL",
+      "publication_year": 2011,
+      "publication_date": "2011-05-05",
+      "is_retracted": false,
+      "journal": "Americanae (AECID Library)",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5071160253",
+          "name": "Luciana Maria Feliciano"
+        }
+      ],
+      "cites_retracted": [
+        "W2005426500",
+        "W2017818911"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W769741990",
+      "doi": null,
+      "title": "EXPRESSÃO DE APOPTOSE E ÓXIDO NÍTRICO SINTASE INDUTIVA EM QUEILITES ACTÍNICAS E CARCINOMAS ESPINOCELULARES DO LÁBIO INFERIOR: CORRELAÇÃO CLÍNICA, HISTOLÓGICA E IMUNOISTOQUÍMICA",
+      "publication_year": 2011,
+      "publication_date": "2011-01-28",
+      "is_retracted": false,
+      "journal": "Americanae (AECID Library)",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5103293369",
+          "name": "Renata Aparecida Martinez Antunes Ribeiro Vieira"
+        }
+      ],
+      "cites_retracted": [
+        "W2017818911"
+      ]
+    }
+  ]
+}
