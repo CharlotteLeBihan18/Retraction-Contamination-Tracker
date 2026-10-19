@@ -148,6 +148,17 @@ def test_paper_row_falls_back_to_retraction_watch_title():
     assert row["journal"] == "Journal of Teeth"
 
 
+def test_paper_row_counts_all_the_references_of_a_retracted_paper():
+    refs = ["https://openalex.org/W7", "https://openalex.org/W8", "https://openalex.org/W9"]
+    assert (
+        ingest.paper_row(make_selection("10.1/a"), make_work("W1", "10.1/a", referenced_works=refs))["reference_count"]
+        == 3
+    )
+    for unknown in (None, []):  # OpenAlex has no reference list for the paper: unknown, not a real 0
+        work = make_work("W1", "10.1/a", referenced_works=unknown)
+        assert ingest.paper_row(make_selection("10.1/a"), work)["reference_count"] is None
+
+
 # --- build_rows --------------------------------------------------------------------------------
 
 
@@ -238,7 +249,9 @@ def test_citer_rows_leaves_out_missing_journals_and_keeps_openalex_flag_as_prope
     assert rows["citer_journals"] == []
     assert rows["citer_authors"] == []
     paper = rows["citer_papers"][0]
-    assert set(paper) == {"openalex_id", "doi", "title", "year", "publication_date", "openalex_retracted"}
+    assert set(paper) == {
+        "openalex_id", "doi", "title", "year", "publication_date", "openalex_retracted", "reference_count",
+    }  # fmt: skip
     assert paper["openalex_retracted"] is True  # kept as a property, never as the Retracted label
 
 
@@ -260,6 +273,26 @@ def test_load_citers_reads_every_page_and_keeps_each_paper_once(tmp_path):
 
 def test_load_citers_returns_nothing_when_the_fetch_step_was_not_run(tmp_path):
     assert ingest.load_citers(tmp_path) == {}
+
+
+def test_load_citers_adds_the_reference_counts_and_none_when_unknown(tmp_path):
+    (tmp_path / "citers").mkdir()
+    page = {"results": [make_citer("W10", "10.2/a", ["W1"]), make_citer("W11", "10.2/b", ["W1"])]}
+    (tmp_path / "citers" / "a.json").write_text(json.dumps(page))
+    (tmp_path / "reference_counts.json").write_text(json.dumps({"counts": {"W10": 42}}))
+
+    citers = ingest.load_citers(tmp_path)
+    assert citers["W10"]["reference_count"] == 42
+    assert citers["W11"]["reference_count"] is None  # not counted: stays empty, never a fake 0
+
+    rows = ingest.build_rows(*retracted_set(), citers)
+    assert {p["openalex_id"]: p["reference_count"] for p in rows["citer_papers"]} == {"W10": 42, "W11": None}
+
+
+def test_load_citers_without_the_counts_file_leaves_every_count_empty(tmp_path):
+    (tmp_path / "citers").mkdir()
+    (tmp_path / "citers" / "a.json").write_text(json.dumps({"results": [make_citer("W10", "10.2/a", ["W1"])]}))
+    assert ingest.load_citers(tmp_path)["W10"]["reference_count"] is None
 
 
 # --- load_cache --------------------------------------------------------------------------------
@@ -300,6 +333,8 @@ def test_committed_citers_give_consistent_rows():
     assert not set(ids) & retracted_ids
     assert all(isinstance(c["before_retraction"], bool) for c in rows["citer_citations"])
     assert all(c["citing"] in set(ids) and c["cited"] in retracted_ids for c in rows["citer_citations"])
+    counts = [paper["reference_count"] for paper in rows["citer_papers"]]
+    assert all(count is None or (isinstance(count, int) and count >= 0) for count in counts)
 
 
 # --- Database calls, with the fake client ------------------------------------------------------
@@ -486,6 +521,8 @@ def test_load_into_neo4j_is_complete_and_idempotent(clean_db):
 
     reasons = clean_db.read("MATCH (r:Reason {name: 'Ingest Test Reason'}) RETURN count(r) AS n")
     assert reasons == [{"n": 1}]  # one Reason node shared by both notices
+    counts = "MATCH (p:Paper) WHERE p.doi IN $dois RETURN p.reference_count AS n ORDER BY p.doi"
+    assert clean_db.read(counts, dois) == [{"n": 1}, {"n": None}]
 
 
 CITER_IDS = ("W-ingest-citer-1", "W-ingest-citer-2")
@@ -517,6 +554,7 @@ def test_load_citers_into_neo4j_is_complete_and_idempotent(clean_citers):
             ["W-ingest-test-1"],
             journal="Ingest Citer Journal",
             authors=[{"id": "https://openalex.org/A-ingest-citer", "name": "Citer Author"}],
+            reference_count=17,
         ),
         CITER_IDS[1]: make_citer(
             CITER_IDS[1],
@@ -555,6 +593,8 @@ def test_load_citers_into_neo4j_is_complete_and_idempotent(clean_citers):
     assert clean_citers.read(authored, ids) == [{"n": 2}]
     journals = "MATCH (j:Journal {name: 'Ingest Citer Journal'}) RETURN count(j) AS n"
     assert clean_citers.read(journals) == [{"n": 1}]
+    counts = "MATCH (p:Paper) WHERE p.openalex_id IN $ids RETURN p.reference_count AS n ORDER BY p.openalex_id"
+    assert clean_citers.read(counts, ids) == [{"n": 17}, {"n": None}]  # unknown count: no property
 
 
 @pytest.mark.neo4j

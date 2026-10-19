@@ -48,8 +48,9 @@ A PNG of the same diagram is in [`graph_schema.png`](graph_schema.png) (for slid
 | `(:Paper)-[:PUBLISHED_IN]->(:Journal)` | where it was published | |
 | `(:Paper)-[:RELIES_ON]->(:Paper:Retracted)` | the citing paper *probably* depends on the retracted one (AI judgement, Person 3) | `confidence`, `evidence`, `verdict`, `model`, `judged_at`, `source = 'llm'` |
 
-Two extra properties on `Paper`: `openalex_retracted` (OpenAlex's own retraction flag on the citing papers, see
-decision 3) and `sample = true` on the 20 hand-made papers of `data/sample/`.
+Three extra properties on `Paper`: `openalex_retracted` (OpenAlex's own retraction flag on the citing papers, see
+decision 3), `reference_count` (how many references the paper has in OpenAlex, a feature of the at-risk model) and
+`sample = true` on the 20 hand-made papers of `data/sample/`.
 
 **Constraints and indexes.** Unique constraints on `Paper.doi`, `Paper.openalex_id`, `Author.openalex_id`,
 `Journal.name` and `Reason.name` (each one also creates an index), plus a range index on `Paper.year`.
