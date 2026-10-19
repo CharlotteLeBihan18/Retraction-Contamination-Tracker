@@ -86,6 +86,11 @@ The graph algorithms (PageRank, Louvain, FastRP) run on a GDS in-memory copy of 
 
 In GitHub Actions, the test workflow starts its own Neo4j, so the Neo4j tests always run in CI.
 
+Tests that run on the sample graph (`tests/test_sample_graph_endpoints.py`, `tests/test_ask_sample.py`) must give the
+same results whether or not the real data is loaded too. So the graph-algorithm tests first add a temporary label to
+the 20 sample papers and run PageRank and Louvain only on those, and the Ask tests filter their results to the sample
+DOIs. The label is removed at the end of the tests.
+
 ## Data sources
 
 We use two sources and join them on the DOI of each paper.
