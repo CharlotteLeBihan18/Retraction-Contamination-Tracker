@@ -37,6 +37,12 @@ def test_exposure_needs_three_steps_to_reach_the_retracted_trial(sample_db):
     assert [(r["doi"], r["hops"]) for r in rows] == [(R001, 3)]
 
 
+def test_exposure_flags_a_zombie_citation(sample_db):
+    # sample.013 cites the trial directly, in 2020, after its 2019 retraction.
+    rows = run(sample_db, {"intent": "exposure", "doi": "10.0000/sample.013", "depth": 1})
+    assert [(r["doi"], r["hops"], r["before_retraction"]) for r in rows] == [(R001, 1, False)]
+
+
 def test_contamination_of_the_fluoride_trial(sample_db):
     rows = run(sample_db, {"intent": "contamination", "doi": R001, "depth": 2})
     hops = {r["doi"]: r["hops"] for r in rows}

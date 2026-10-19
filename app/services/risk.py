@@ -220,4 +220,8 @@ def main() -> None:
 
 
 if __name__ == "__main__":
-    main()
+    # Run main() from the real module, not from __main__: the saved model must reference
+    # app.services.risk.RiskModel, or the API cannot load the file (it would look for __main__.RiskModel).
+    from app.services import risk  # pylint: disable=import-self
+
+    risk.main()

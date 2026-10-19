@@ -51,7 +51,9 @@ ORDER BY hops, title
 """,
     "exposure": """
 MATCH path = (p:Paper {doi: $doi})-[:CITES*1..{depth}]->(r:Paper:Retracted)
-RETURN r.doi AS doi, r.title AS title, min(length(path)) AS hops
+WITH p, r, min(length(path)) AS hops
+OPTIONAL MATCH (p)-[direct:CITES]->(r)
+RETURN r.doi AS doi, r.title AS title, hops, direct.before_retraction AS before_retraction
 ORDER BY hops, title
 """,
     "retraction_reasons": """

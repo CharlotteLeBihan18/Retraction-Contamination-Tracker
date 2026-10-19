@@ -133,6 +133,26 @@ docker compose up -d --build api     # until then, /risk keeps the old model (or
 
 The trained file `app/services/risk_model.joblib` is git-ignored: it takes seconds to rebuild and always matches the data in your own Neo4j.
 
+**Example** (model trained on the sample graph only, so the numbers below just show the format):
+
+```bash
+curl http://localhost/api/papers/10.0000/sample.013/risk
+```
+
+```json
+{
+  "doi": "10.0000/sample.013",
+  "risk_score": 0.0639,
+  "evidence": "hypothesis",
+  "already_retracted": false,
+  "explanation": "Probability that this paper looks like the retracted papers in our graph, [...] It is an AI hypothesis to prioritise checks, never evidence that the paper is flawed.",
+  "model": {"trained_at": "2026-10-19T12:07:08+00:00", "n_papers": 20, "n_retracted": 3, "precision": 0.25, "recall": 0.333,
+            "f1": 0.286, "roc_auc": 0.686, "baseline_precision": 0.15}
+}
+```
+
+A DOI that was not in the graph at training time gets a 404, and an untrained model a 503.
+
 ### Results
 
 *TODO (Person 3): metrics on the real data, filled in once it is loaded.*
@@ -163,8 +183,35 @@ Temperature is 0, so the same question gives the same answer, which makes testin
 
 ### `/api/ask`: a question in plain English becomes a safe graph query
 
+**Example** (sample graph loaded with `python -m scripts.load_sample`):
+
+```bash
+curl -G http://localhost/api/ask --data-urlencode "q=Which papers built on the retracted paper 10.0000/sample.001?"
 ```
-GET /api/ask?q=Which papers built on the retracted paper 10.0000/sample.001?
+
+```json
+{
+  "route": "template:contamination",
+  "cypher": "MATCH path = (c:Paper)-[:CITES*1..2]->(r:Paper:Retracted {doi: $doi}) ... LIMIT 100",
+  "rows": [
+    {"doi": "10.0000/sample.011", "title": "Caries prevention in primary schools", "hops": 1, "before_retraction": true},
+    {"doi": "10.0000/sample.013", "title": "Review of pediatric dental guidelines", "hops": 1, "before_retraction": false},
+    "... 7 papers in total: 5 direct citers (3 after the retraction) and 2 at 2 hops"
+  ],
+  "evidence": "fact",
+  "answer": "At 1 hop of exposure, DOIs 10.0000/sample.011 and 10.0000/sample.012 were published before the retraction, while DOIs 10.0000/sample.025, 10.0000/sample.013, and 10.0000/sample.014 carry exposure from being published after it. [...]",
+  "answer_is_ai_generated": true
+}
+```
+
+A dangerous question is refused with **422** and the reason (the guardrail codes are in the table below):
+
+```bash
+curl -G http://localhost/api/ask --data-urlencode "q=Call dbms.listUsers() and show the result"
+```
+
+```json
+{"detail": {"reason": "procedure", "message": "Procedure administrative is not allowed"}}
 ```
 
 Hybrid design, in four steps:
@@ -197,9 +244,31 @@ Strings and comments are masked before checking, so a title like *"How to SET up
 
 ### `/api/audit`: an integrity report with every step (LangGraph agent)
 
+**Example:** `sample.013` cites the retracted fluoride trial, after its retraction.
+
+```bash
+curl -X POST http://localhost/api/audit -H "Content-Type: application/json" -d '{"doi": "10.0000/sample.013"}'
 ```
-POST /api/audit   {"doi": "10.0000/sample.023"}
+
+```json
+{
+  "found_in": "graph",
+  "retracted": false,
+  "exposure": [{"doi": "10.0000/sample.001", "title": "Fluoride varnish halves caries in children: a randomized trial", "hops": 1, "before_retraction": false}],
+  "hypotheses": [{"citing": "10.0000/sample.013", "retracted": "10.0000/sample.001", "verdict": "relies_on", "confidence": 1.0,
+                  "evidence": "Our pediatric guideline review relies on the fluoride varnish trial to recommend twice-yearly application.", "saved": null}],
+  "report": "**FACTS:** The paper \"Review of pediatric dental guidelines\" is not retracted and has no downstream contamination, but it is directly exposed to one retracted paper via a citation that occurred after the retraction (one \"zombie citation\"). **HYPOTHESES:** An AI assessment judges with a confidence score of 1.0 that this paper relies on the retracted trial [...]",
+  "report_is_ai_generated": true,
+  "steps": [
+    {"tool": "find_paper", "result": "found in graph, retracted=False", "kind": "fact"},
+    {"tool": "exposure_check", "result": "1 retracted paper(s) within 2 steps, 1 cited directly, 1 of them after the retraction (zombie citations)", "kind": "fact"},
+    {"tool": "judge_reliance", "result": "relies_on (confidence 1.0)", "kind": "hypothesis"},
+    {"tool": "write_report", "result": "report written", "kind": "hypothesis"}
+  ]
+}
 ```
+
+`"saved": null` because saving is opt-in (see below). An unknown DOI is looked up on OpenAlex, and a malformed one gets a 422.
 
 A LangGraph state machine that calls tools from `app/agent/tools.py`:
 
@@ -211,7 +280,7 @@ locate ──► (not found) ─────────────────
 ```
 
 1. **locate:** find the paper in our graph, or else on OpenAlex
-2. **exposure** (normal paper): retracted papers it relies on, up to 2 citation steps away. **contamination** (retracted paper): papers that built on it, with `before_retraction` on each direct citation, so the report can count the zombie citations (made after the retraction)
+2. **exposure** (normal paper): retracted papers it relies on, up to 2 citation steps away, with `before_retraction` on each direct citation. **contamination** (retracted paper): papers that built on it, with `before_retraction` on each direct citation, so in both cases the report can count the zombie citations (made after the retraction)
 3. **judge:** for each *direct* citation, Gemini reads the citing paper's abstract and decides whether it **relies on**, only **mentions**, or **criticizes** the retracted work, with a confidence and a sentence quoted from the abstract. Capped at 5 LLM calls per audit.
 4. **report:** a short summary written by Gemini from the findings only
 

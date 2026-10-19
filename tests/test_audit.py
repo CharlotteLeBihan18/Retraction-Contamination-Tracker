@@ -203,3 +203,16 @@ def test_contamination_counts_zombie_citations(run, monkeypatch):
     body = run(make_db(), FakeLLM(judge='{"verdict": "unclear", "confidence": 0}'), doi=RETRACTED).json()
     assert body["contamination"][1]["before_retraction"] is False
     assert "2 directly, 1 of them after the retraction" in body["steps"][1]["result"]
+
+
+def test_exposure_step_counts_zombie_citations(monkeypatch):
+    rows = [
+        {"doi": "10.1/a", "title": "A", "hops": 1, "before_retraction": False},
+        {"doi": "10.1/b", "title": "B", "hops": 1, "before_retraction": True},
+        {"doi": "10.1/c", "title": "C", "hops": 2, "before_retraction": None},
+    ]
+    monkeypatch.setattr("app.agent.graph.tools.exposure_check", lambda *a, **k: {"rows": rows})
+    state = graph_module.AuditAgent(None, None).exposure({"doi": PAPER})
+    assert state["steps"][0]["result"] == (
+        "3 retracted paper(s) within 2 steps, 2 cited directly, 1 of them after the retraction (zombie citations)"
+    )
