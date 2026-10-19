@@ -9,9 +9,10 @@ compare a boolean instead of comparing dates on every request.
 
 Rules the loading script must follow (Person 2):
 
-* Always set ``before_retraction`` on every CITES relationship. If it is missing,
-  ``c.before_retraction = false`` is null in Cypher and the citation would be
-  silently ignored here.
+* Always set ``before_retraction`` on every CITES relationship that points at a
+  retracted paper. If it is missing, ``c.before_retraction = false`` is null in
+  Cypher and the citation would be silently ignored here. Citations to papers that
+  are not retracted leave it empty: "before the retraction" means nothing there.
 * Compare full dates when both are known (OpenAlex ``publication_date`` with the
   Retraction Watch retraction date). When only the year is known and it is the
   same as the retraction year, set ``before_retraction = true``: we only count a
