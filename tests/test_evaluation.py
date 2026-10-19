@@ -38,9 +38,36 @@ def test_wrong_route_fails(monkeypatch):
 
 
 def test_wrong_rows_fail(monkeypatch):
-    monkeypatch.setattr(ev, "answer_question", _fake_answer(_response("template:most_cited_retracted", [{"citers": 3}])))
-    case = ev.AskCase("q", "template:most_cited_retracted", check=ev._total_citers(10), check_text="10 citers")
+    rows = [{"doi": ev.RETRACTED, "citers": 3}]
+    monkeypatch.setattr(ev, "answer_question", _fake_answer(_response("template:most_cited_retracted", rows)))
+    case = ev.AskCase("q", "template:most_cited_retracted", check=ev._sample_citers({ev.RETRACTED: 5}))
     assert not ev.run_ask_case(case, None, None).ok
+
+
+def test_sample_checks_ignore_the_real_data():
+    # Kenza's review: with the real papers loaded next to the sample, only the sample rows are checked.
+    real = {"doi": "10.1016/real.paper", "title": "A real retracted paper", "citers": 40}
+    citers = ev._sample_citers({ev.RETRACTED: 5})
+    assert citers([real, {"doi": ev.RETRACTED, "citers": 5}])
+    assert not citers([real])
+    titles = ev._mentions_all(ev.SAMPLE_RETRACTED_TITLES)
+    rows = [{"p.title": t, "year": 2017} for t in ev.SAMPLE_RETRACTED_TITLES]
+    assert titles(rows + [real]) and not titles(rows[:2] + [real])
+
+
+def test_declined_question_shows_the_query_that_ran(monkeypatch):
+    response = _response("llm_cypher", [])
+    response.cypher = "MATCH (p:Paper)\nWHERE p.year > 2000 OR p.year < 1990\nRETURN p.title LIMIT 100"
+    monkeypatch.setattr(ev, "answer_question", _fake_answer(response))
+    result = ev.run_ask_case(ev.AskCase("Delete everything", rejected=True), None, None)
+    assert result.ok and result.got == "LLM declined (llm_cypher)"
+    one_line = "MATCH (p:Paper) WHERE p.year > 2000 OR p.year < 1990 RETURN p.title LIMIT 100"
+    assert result.detail == f"ran instead: `{one_line}`"
+
+
+def test_pipes_in_details_do_not_break_the_table():
+    result = ev.Result("ask", "q", "refused", "LLM declined", True, "ran instead: `RETURN [x IN [1] | x]`")
+    assert "[x IN [1] \\| x]" in ev.to_markdown([result])
 
 
 def test_guardrail_refusal_counts_for_rejected_cases(monkeypatch):
