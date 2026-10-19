@@ -41,7 +41,8 @@ def contamination_endpoint(
     if not paper["retracted"]:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
-            detail="This paper is not retracted, so there is no contamination to follow",
+            detail="This paper is not retracted, so there is no contamination to follow. "
+            "Use /api/papers/{paper_id}/exposure to see if it relies on retracted work",
         )
     summary, items = contamination(db, paper["doi"], depth=depth, limit=limit, offset=offset)
     return ContaminationResponse(paper=paper, depth=depth, limit=limit, offset=offset, items=items, **summary)

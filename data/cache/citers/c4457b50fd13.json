@@ -1,0 +1,193 @@
+{
+  "cites": [
+    "W4410193066",
+    "W4410616088",
+    "W827637273"
+  ],
+  "cursor": "*",
+  "next_cursor": null,
+  "results": [
+    {
+      "id": "https://openalex.org/W7155215249",
+      "doi": "https://doi.org/10.1039/d5ra10131j",
+      "title": "Preparation of amorphous calcium phosphate nanoparticles using small organic molecules for biomimetic mineralization of dentin",
+      "publication_year": 2026,
+      "publication_date": "2026-01-01",
+      "is_retracted": false,
+      "journal": "RSC Advances",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5134225827",
+          "name": "Zhenni Liu"
+        },
+        {
+          "id": "https://openalex.org/A5101489739",
+          "name": "Dan Li"
+        },
+        {
+          "id": "https://openalex.org/A5049001819",
+          "name": "Xiujun Shi"
+        },
+        {
+          "id": "https://openalex.org/A5078186445",
+          "name": "Dongqin Xiao"
+        },
+        {
+          "id": "https://openalex.org/A5033754796",
+          "name": "Feng Shi"
+        },
+        {
+          "id": "https://openalex.org/A5090665711",
+          "name": "Xiaoman Luo"
+        },
+        {
+          "id": "https://openalex.org/A5101991795",
+          "name": "Gang Feng"
+        },
+        {
+          "id": "https://openalex.org/A5009222378",
+          "name": "Yonglin Xie"
+        },
+        {
+          "id": "https://openalex.org/A5134261208",
+          "name": "Chengdong Zhang"
+        }
+      ],
+      "cites_retracted": [
+        "W4410616088"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W7164051971",
+      "doi": "https://doi.org/10.1007/s10266-026-01426-z",
+      "title": "Biomimetic strategies for the dentin mineralization, using bioactive molecules: a scoping review and bibliometric analysis (2015–2025)",
+      "publication_year": 2026,
+      "publication_date": "2026-06-10",
+      "is_retracted": false,
+      "journal": "Odontology",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5084668998",
+          "name": "Letícia Martins PEREIRA"
+        },
+        {
+          "id": "https://openalex.org/A5089500380",
+          "name": "Ranam Moreira Reis"
+        },
+        {
+          "id": "https://openalex.org/A5033246302",
+          "name": "Fábio Dupart Nascimento"
+        },
+        {
+          "id": "https://openalex.org/A5037492086",
+          "name": "Regina Maria Puppin‐Rontani"
+        }
+      ],
+      "cites_retracted": [
+        "W4410616088"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W7155520158",
+      "doi": "https://doi.org/10.1186/s12903-026-08169-x",
+      "title": "Chitosan-arginine/amorphous calcium phosphate nanoparticles-containing orthodontic cement: antibacterial and remineralization strategies against enamel white spot lesions",
+      "publication_year": 2026,
+      "publication_date": "2026-04-24",
+      "is_retracted": false,
+      "journal": "BMC Oral Health",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5046837530",
+          "name": "Jiali An"
+        },
+        {
+          "id": "https://openalex.org/A5111322094",
+          "name": "Zixiang Dai"
+        },
+        {
+          "id": "https://openalex.org/A5021745633",
+          "name": "Haihua Xu"
+        }
+      ],
+      "cites_retracted": [
+        "W4410616088"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W7160557632",
+      "doi": "https://doi.org/10.1016/j.actbio.2026.05.008",
+      "title": "Advancing dentin biomimetic mineralization: From non-collagenous proteins to multifunctional material design",
+      "publication_year": 2026,
+      "publication_date": "2026-05-07",
+      "is_retracted": false,
+      "journal": "Acta Biomaterialia",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5100374413",
+          "name": "Bo Li"
+        },
+        {
+          "id": "https://openalex.org/A5135555723",
+          "name": "Hongye Yang"
+        }
+      ],
+      "cites_retracted": [
+        "W4410616088"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W7162082858",
+      "doi": "https://doi.org/10.3390/ma19112181",
+      "title": "Bioactive Fillers in Bulk-Fill Composite Resins: A Comprehensive Review of the Effects on Polymerization Shrinkage Behavior and Mechanical Performance",
+      "publication_year": 2026,
+      "publication_date": "2026-05-22",
+      "is_retracted": false,
+      "journal": "Materials",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5134757766",
+          "name": "Vlad Constantin"
+        },
+        {
+          "id": "https://openalex.org/A5028556752",
+          "name": "Ionut Alexandru Luchian"
+        },
+        {
+          "id": "https://openalex.org/A5044329308",
+          "name": "Ionut Tărăboanţă"
+        },
+        {
+          "id": "https://openalex.org/A5084539150",
+          "name": "Teona Anamaria Tudorici"
+        },
+        {
+          "id": "https://openalex.org/A5039279861",
+          "name": "Nicoleta Tofan"
+        },
+        {
+          "id": "https://openalex.org/A5052269056",
+          "name": "Florinel Cosmin Bida"
+        },
+        {
+          "id": "https://openalex.org/A5119278666",
+          "name": "Florin Razvan Curca"
+        },
+        {
+          "id": "https://openalex.org/A5057382214",
+          "name": "Dana Gabriela Budală"
+        },
+        {
+          "id": "https://openalex.org/A5081016974",
+          "name": "Dragoș Ioan Virvescu"
+        },
+        {
+          "id": "https://openalex.org/A5062038759",
+          "name": "Andrei Georgescu"
+        }
+      ],
+      "cites_retracted": [
+        "W4410616088"
+      ]
+    }
+  ]
+}

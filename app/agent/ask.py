@@ -29,7 +29,9 @@ from app.models.ask import AskResponse, CitedPaper
 MAX_DEPTH = 3
 SUMMARY_ROWS = 20  # rows shown to the LLM when it writes the summary
 
-# Pre-written queries. ``{depth}`` is filled with a checked integer (1 to 3),
+# Pre-written queries. In "contamination", ``before_retraction`` is only set for direct
+# citations: false means the paper cited the work after it was retracted (a zombie citation).
+# ``{depth}`` is filled with a checked integer (1 to 3),
 # never with text from the question; the DOI is always a query parameter.
 TEMPLATES: dict[str, str] = {
     "paper_info": """
@@ -42,7 +44,9 @@ RETURN p.doi AS doi, p.title AS title, p.year AS year, j.name AS journal,
 """,
     "contamination": """
 MATCH path = (c:Paper)-[:CITES*1..{depth}]->(r:Paper:Retracted {doi: $doi})
-RETURN c.doi AS doi, c.title AS title, min(length(path)) AS hops
+WITH c, min(length(path)) AS hops
+OPTIONAL MATCH (c)-[direct:CITES]->(:Paper {doi: $doi})
+RETURN c.doi AS doi, c.title AS title, hops, direct.before_retraction AS before_retraction
 ORDER BY hops, title
 """,
     "exposure": """
