@@ -37,6 +37,12 @@ def test_exposure_needs_three_steps_to_reach_the_retracted_trial(sample_db):
     assert [(r["doi"], r["hops"]) for r in rows] == [(R001, 3)]
 
 
+def test_exposure_flags_a_zombie_citation(sample_db):
+    # sample.013 cites the trial directly, in 2020, after its 2019 retraction.
+    rows = run(sample_db, {"intent": "exposure", "doi": "10.0000/sample.013", "depth": 1})
+    assert [(r["doi"], r["hops"], r["before_retraction"]) for r in rows] == [(R001, 1, False)]
+
+
 def test_contamination_of_the_fluoride_trial(sample_db):
     rows = run(sample_db, {"intent": "contamination", "doi": R001, "depth": 2})
     hops = {r["doi"]: r["hops"] for r in rows}
@@ -50,9 +56,18 @@ def test_contamination_of_the_fluoride_trial(sample_db):
 
 
 def test_most_cited_retracted_papers(sample_db):
+    # Works on the sample alone and with the real data loaded too: the guardrails keep the
+    # top 100, and real papers with many more citers can push the sample ones out of it.
     rows = run(sample_db, {"intent": "most_cited_retracted"})
+    citers = [r["citers"] for r in rows]
+    assert citers == sorted(citers, reverse=True)
+    expected = {R001: 5, R002: 3, R003: 2}
     counts = {r["doi"]: r["citers"] for r in rows if r["doi"].startswith("10.0000/")}
-    assert counts == {R001: 5, R002: 3, R003: 2}
+    assert counts == {doi: n for doi, n in expected.items() if doi in counts}
+    if len(rows) < 100:
+        assert counts == expected
+    else:  # a sample paper may only be missing because 100 papers have at least as many citers
+        assert all(n <= citers[-1] for doi, n in expected.items() if doi not in counts)
 
 
 def test_retraction_reasons(sample_db):

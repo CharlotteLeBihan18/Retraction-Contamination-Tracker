@@ -206,7 +206,7 @@ def main() -> None:
 
     db = Neo4jClient.from_settings(get_settings())
     try:
-        model = train(db)
+        model = train(db, path=MODEL_PATH)
     finally:
         db.close()
     print(f"Trained on {model.n_papers} papers ({model.n_retracted} retracted), saved to {MODEL_PATH.name}")
@@ -220,4 +220,8 @@ def main() -> None:
 
 
 if __name__ == "__main__":
-    main()
+    # Run main() from the real module, not from __main__: the saved model must reference
+    # app.services.risk.RiskModel, or the API cannot load the file (it would look for __main__.RiskModel).
+    from app.services import risk  # pylint: disable=import-self
+
+    risk.main()

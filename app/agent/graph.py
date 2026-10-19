@@ -114,8 +114,10 @@ class AuditAgent:
         rows = result.get("rows") or []
         direct = _direct(rows)
         to_judge = [{"citing": doi, "retracted": r["doi"], "retracted_title": r.get("title") or ""} for r in direct]
+        zombies = sum(r.get("before_retraction") is False for r in direct)
         summary = result.get("error") or (
-            f"{len(rows)} retracted paper(s) within {DEPTH} steps, {len(direct)} cited directly"
+            f"{len(rows)} retracted paper(s) within {DEPTH} steps, {len(direct)} cited directly, "
+            f"{zombies} of them after the retraction (zombie citations)"
         )
         step = _step("exposure_check", {"doi": doi, "depth": DEPTH}, summary)
         return {"exposure": rows, "to_judge": to_judge, "steps": step}

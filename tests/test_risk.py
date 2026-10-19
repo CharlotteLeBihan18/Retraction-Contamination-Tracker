@@ -2,6 +2,7 @@
 
 import math
 import random
+import runpy
 
 import pytest
 
@@ -110,6 +111,27 @@ def test_train_saves_and_reloads(tmp_path, monkeypatch):
     trained = risk.train(None, path=path)
     loaded = risk.load_model(path)
     assert loaded.scores == trained.scores
+
+
+def test_command_line_saves_a_model_the_api_can_load(tmp_path, monkeypatch):
+    """`python -m app.services.risk` must save app.services.risk.RiskModel, not __main__.RiskModel."""
+
+    class FakeClient:  # pylint: disable=too-few-public-methods
+        @classmethod
+        def from_settings(cls, _settings):
+            return cls()
+
+        def close(self):
+            pass
+
+    path = tmp_path / "model.joblib"
+    monkeypatch.setattr(risk, "MODEL_PATH", path)
+    monkeypatch.setattr(risk, "Neo4jClient", FakeClient)
+    monkeypatch.setattr(risk, "fetch_rows", lambda *a, **k: synthetic_rows())
+    runpy.run_module("app.services.risk", run_name="__main__")
+    with open(path, "rb") as handle:
+        assert b"__main__" not in handle.read()
+    assert risk.load_model(path).n_papers == 40
 
 
 def test_untrained_model_raises(tmp_path):
