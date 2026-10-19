@@ -10,9 +10,6 @@ exposes graph queries, and an LLM component answers questions in plain English.
 The app reports **exposure and risk**, never that a paper is invalid: retraction is not
 contagious, and citing a retracted paper can mean mentioning, criticising or relying on it.
 
-> Status: in progress. Each section marked *TODO* names the team member who will write it
-> (roles and task lists are in the project proposal).
-
 ## Quick start
 
 Requirements: Docker Desktop, Python 3.11+, make, git.
@@ -34,6 +31,16 @@ Check that Neo4j and its plugins are ready:
 ```bash
 .venv/bin/python -m scripts.check_neo4j
 ```
+
+Then load some data. Both commands can be run again safely, and neither needs an API key:
+
+```bash
+.venv/bin/python -m scripts.load_sample   # 20 hand-written papers, a few seconds: enough to try every endpoint
+.venv/bin/python -m scripts.ingest        # the real data from data/cache/: about 9,300 papers and 10,000 citations
+```
+
+The examples below say which of the two they use. The AI endpoints (`/api/ask`, `/api/audit`) also need
+a Gemini key in `.env`, see [LLM setup](#llm-setup).
 
 ## Makefile commands
 
@@ -169,7 +176,53 @@ The full comparison, with what ChatGPT got right and the ideas we chose not to u
 
 ## API examples
 
-*TODO (everyone): one example per endpoint, written by its owner (see the team table in the proposal).*
+Every endpoint is documented, with its parameters and possible answers, in Swagger at http://localhost/docs.
+Lists are paginated with `limit` and `offset`, and invalid parameters (for example `limit=0`) answer **422**.
+The graph-algorithm endpoints answer **503** "load the data first" when the database is empty.
+
+**Health** (Person 1): is the API up, and can it reach Neo4j?
+
+```bash
+curl http://localhost/health/ready
+```
+
+`{"status": "ok", "version": "0.1.0", "neo4j": "up"}`, or **503** while Neo4j is still starting. `/health` answers 200 as long as the API runs, and reports Neo4j as `"down"` instead.
+
+**Zombie citations** (Person 1): which journals keep citing papers after they were retracted.
+
+```bash
+curl "http://localhost/api/journals/zombie-citations?limit=5&min_zombie=1"
+```
+
+On the sample graph alone, *Journal of Sample Dentistry* comes first: 3 of its 4 citations to retracted papers
+were made after the retraction (`zombie_share` 0.75), with up to 3 examples of citing and retracted titles.
+*Clinical Periodontology Notes* follows with 2 zombie citations, then *International Dental Reports* with 1.
+
+**Top spreaders** (Person 1): the retracted papers that did the most damage, ranked by PageRank.
+
+```bash
+curl "http://localhost/api/retractions/top-spreaders?limit=10"
+```
+
+PageRank scores a paper high when many papers, and influential ones, build on it. On the sample graph the
+fluoride trial ranks first (5 direct citers, 3 of them after its retraction, plus a chain of papers behind
+them), then the peptide gel (3 citers), then the mouthwash study (2). Each paper also comes with its number of
+direct citations and of citations after the retraction.
+
+**Communities** (Person 1): research communities found by Louvain, ranked by their share of retracted papers.
+
+```bash
+curl "http://localhost/api/communities?limit=10&min_size=3"
+```
+
+Each community comes with its size, its number and share of retracted papers, and a few titles to see what it is
+about. On the sample graph, the communities that contain the three retracted papers come first, and the implant
+papers form a community with no retracted paper at all. `min_size` hides very small communities, which
+would otherwise rank high with a single retracted paper.
+
+The three algorithms run on an in-memory copy of the citation graph (GDS), built on the first request and
+dropped by the loading scripts, so they always see the latest data. Rebuilding it is never possible from a
+public request.
 
 **Contamination** (Person 2): which papers built on a retracted paper, up to `depth` steps (1 to 3).
 
