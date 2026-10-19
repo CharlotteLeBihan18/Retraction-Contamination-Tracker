@@ -39,6 +39,9 @@ Then load some data. Both commands can be run again safely, and neither needs an
 .venv/bin/python -m scripts.ingest        # the real data from data/cache/: about 9,300 papers and 10,000 citations
 ```
 
+On Windows (Git Bash), replace `.venv/bin/python` with `.venv/Scripts/python` in these commands, or run
+`source .venv/Scripts/activate` once and then simply type `python`.
+
 The examples below say which of the two they use. The AI endpoints (`/api/ask`, `/api/audit`) also need
 a Gemini key in `.env`, see [LLM setup](#llm-setup).
 
@@ -481,6 +484,7 @@ Every question took the expected route, and all hand-checked values match (expos
 - Relies-on judgements only read abstracts, not full texts, so "unclear" is common and expected.
 - Gemini has per-minute rate limits (and the prepaid credits can run out); the endpoints then return 503, and the evaluation waits a minute and retries.
 - Vector search over abstracts is not wired in yet (it needs the embeddings created at ingestion).
+
 ## Team
 
 | | Name | Part of the project |
@@ -516,7 +520,7 @@ Every change goes through a pull request reviewed by another team member (at lea
 | [#19](https://github.com/CharlotteLeBihan18/Retraction-Contamination-Tracker/pull/19) | Index benchmark with PROFILE before and after | Person 2 | Person 1 |
 | [#20](https://github.com/CharlotteLeBihan18/Retraction-Contamination-Tracker/pull/20) | Graph schema diagram and modeling rationale | Person 2 | Person 1 |
 | [#21](https://github.com/CharlotteLeBihan18/Retraction-Contamination-Tracker/pull/21) | README sections for the data, the graph model and the endpoints | Person 2 | Person 1 |
-| [#22](https://github.com/CharlotteLeBihan18/Retraction-Contamination-Tracker/pull/22) | Two fixes found while preparing the demo, AI API examples | Person 3 | Person 2 |
+| [#22](https://github.com/CharlotteLeBihan18/Retraction-Contamination-Tracker/pull/22) | Two demo fixes, AI API examples, risk results on the real data | Person 3 | Person 2 |
 
 Who reviews whom: Person 3 reviews Person 1, Person 2 reviews Person 3, and Person 1 reviews Person 2. The
 review comments, and the commits that answer them, are visible in each pull request.
