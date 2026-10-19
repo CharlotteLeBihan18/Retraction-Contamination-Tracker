@@ -23,10 +23,12 @@ def test_endpoint_is_registered(client, method, path):
     assert method in paths[path], f"{method.upper()} {path} is missing"
 
 
-@pytest.mark.parametrize("path", ["/api/papers/{paper_id}/exposure"])
-def test_placeholders_document_their_501(client, path):
-    operation = next(iter(client.get("/openapi.json").json()["paths"][path].values()))
-    assert "501" in operation["responses"]
+def test_no_endpoint_is_still_a_501_placeholder(client):
+    paths = client.get("/openapi.json").json()["paths"]
+    placeholders = [
+        path for path, operations in paths.items() for op in operations.values() if "501" in op["responses"]
+    ]
+    assert not placeholders, f"still placeholders: {placeholders}"
 
 
 def test_ask_rejects_an_empty_question(client):

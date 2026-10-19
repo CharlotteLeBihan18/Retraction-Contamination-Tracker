@@ -7,14 +7,12 @@ from fastapi import APIRouter, Depends, HTTPException, Path, Query, status
 
 from app.database import Neo4jClient
 from app.dependencies import get_db
-from app.models.papers import ContaminationResponse
-from app.services.papers import MAX_DEPTH, contamination, find_paper
+from app.models.papers import ContaminationResponse, ExposureResponse
+from app.services.papers import MAX_DEPTH, contamination, exposure, find_paper
 
 router = APIRouter(prefix="/api/papers", tags=["papers"])
 
-NOT_READY = "Not implemented yet"
-NOT_READY_RESPONSE = {501: {"description": NOT_READY}}
-
+NOT_FOUND = "No paper with this DOI or OpenAlex id"
 PAPER_ID_HELP = "DOI (for example 10.1038/nature12373) or OpenAlex id (for example W2741809807)"
 
 
@@ -39,7 +37,7 @@ def contamination_endpoint(
     """
     paper = find_paper(db, paper_id)
     if paper is None:
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="No paper with this DOI or OpenAlex id")
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=NOT_FOUND)
     if not paper["retracted"]:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
@@ -51,11 +49,34 @@ def contamination_endpoint(
 
 
 @router.get(
-    "/{paper_id}/exposure",
+    "/{paper_id:path}/exposure",
+    response_model=ExposureResponse,
     summary="Whether a paper relies on retracted work",
-    status_code=status.HTTP_200_OK,
-    responses=NOT_READY_RESPONSE,
+    responses={404: {"description": "Paper not found"}},
 )
-def exposure(paper_id: str) -> dict:
-    """Whether a paper relies on retracted work. Returns 501 until implemented."""
-    raise HTTPException(status_code=status.HTTP_501_NOT_IMPLEMENTED, detail=NOT_READY)
+def exposure_endpoint(
+    paper_id: str = Path(description=PAPER_ID_HELP),
+    depth: int = Query(MAX_DEPTH, ge=1, le=MAX_DEPTH, description="How many citation steps to follow"),
+    limit: int = Query(20, ge=1, le=100, description="Retracted papers per page"),
+    offset: int = Query(0, ge=0, description="How many retracted papers to skip (pagination)"),
+    db: Neo4jClient = Depends(get_db),
+) -> ExposureResponse:
+    """List the retracted papers that a paper cites, directly or up to ``depth`` steps away.
+
+    Each one comes with the shortest citation chain that leads to it. ``exposed`` is false when
+    no retracted paper is reached: that is an answer, not an error. Exposed is not the same as wrong.
+    """
+    paper = find_paper(db, paper_id)
+    if paper is None:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=NOT_FOUND)
+    summary, items = exposure(db, paper["node_id"], depth=depth, limit=limit, offset=offset)
+    return ExposureResponse(
+        paper=paper,
+        paper_is_retracted=paper["retracted"],
+        depth=depth,
+        exposed=summary["total"] > 0,
+        limit=limit,
+        offset=offset,
+        items=items,
+        **summary,
+    )
