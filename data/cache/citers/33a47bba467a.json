@@ -1,0 +1,114 @@
+{
+  "cites": [
+    "W2063422145",
+    "W2063445051",
+    "W2064778259",
+    "W2067049827",
+    "W2070308620",
+    "W2071617176",
+    "W2072173517",
+    "W2075986688",
+    "W2076371002",
+    "W2076475693",
+    "W2077700541",
+    "W2079085844",
+    "W2080011614",
+    "W2084986928",
+    "W2087821515",
+    "W2088020778",
+    "W2088322140",
+    "W2093100155",
+    "W2093756962",
+    "W2093867391",
+    "W2094531881",
+    "W2095072237",
+    "W2095153176",
+    "W2095532550",
+    "W2102055809",
+    "W2103689041",
+    "W2103721982",
+    "W2104638399",
+    "W2105576065",
+    "W2112293122",
+    "W2113124004",
+    "W2113461315",
+    "W2121329160",
+    "W2123477366",
+    "W2125454797",
+    "W2126077143",
+    "W2131603046",
+    "W2132042868",
+    "W2135372919",
+    "W2137700329",
+    "W2146324629",
+    "W2149391843",
+    "W2150941660",
+    "W2152511094",
+    "W2152916838",
+    "W2156000087",
+    "W2157551685",
+    "W2158601348",
+    "W2158653881",
+    "W2161438141"
+  ],
+  "cursor": "IlsnLUluZmluaXR5JywgMCwgJ2h0dHBzOi8vb3BlbmFsZXgub3JnL1c3MjIwMzk2NDE0J10i",
+  "next_cursor": null,
+  "results": [
+    {
+      "id": "https://openalex.org/W7220740874",
+      "doi": "https://doi.org/10.21851/obr.26.016",
+      "title": "Mandibular body fracture after decompression of odontogenic keratocyst: a case report with 6-year follow-up",
+      "publication_year": 2026,
+      "publication_date": "2026-09-30",
+      "is_retracted": false,
+      "journal": "Oral Biology Research",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5157710292",
+          "name": "Jang-Hoon Choi"
+        },
+        {
+          "id": "https://openalex.org/A5118670115",
+          "name": "Hwi Mun"
+        },
+        {
+          "id": "https://openalex.org/A5087283468",
+          "name": "Seong‐Yong Moon"
+        },
+        {
+          "id": "https://openalex.org/A5005347806",
+          "name": "Hae-In Choi"
+        }
+      ],
+      "cites_retracted": [
+        "W2103721982"
+      ]
+    },
+    {
+      "id": "https://openalex.org/W827637273",
+      "doi": "https://doi.org/10.1007/s12548-014-0113-3",
+      "title": "RETRACTED ARTICLE: Aeronautic dentistry: an upcoming branch",
+      "publication_year": 2014,
+      "publication_date": "2014-10-29",
+      "is_retracted": true,
+      "journal": "international journal of stomatology & occlusion medicine",
+      "authors": [
+        {
+          "id": "https://openalex.org/A5039122036",
+          "name": "Kanwaldeep Singh Soodan"
+        },
+        {
+          "id": "https://openalex.org/A5080530579",
+          "name": "Pratiksha Priyadarshni"
+        },
+        {
+          "id": "https://openalex.org/A5101965866",
+          "name": "Jatinder Pal Singh"
+        }
+      ],
+      "cites_retracted": [
+        "W2103689041"
+      ]
+    }
+  ]
+}

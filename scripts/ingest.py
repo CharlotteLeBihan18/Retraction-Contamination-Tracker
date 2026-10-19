@@ -1,8 +1,13 @@
 """Load the cached Retraction Watch + OpenAlex data into Neo4j.
 
-The script reads only ``data/cache/`` (written by ``scripts/fetch_openalex.py``), so it needs
-no API key and no internet. It first creates the constraints and indexes, then loads papers,
-retraction notices, reasons, authors, journals and the citations between the retracted papers.
+The script reads only ``data/cache/`` (written by ``scripts/fetch_openalex.py`` and
+``scripts/fetch_citers.py``), so it needs no API key and no internet. It first creates the
+constraints and indexes, then loads the retracted papers, their notices, reasons, authors and
+journals, then the papers that cite them (with their authors, journals and citations).
+
+A citing paper is a plain ``Paper``: only Retraction Watch makes a paper ``Retracted``. OpenAlex's
+``is_retracted`` flag has no date and no reasons, so it doesn't give the label. It is kept as the
+property ``openalex_retracted`` on the citing paper, so the information is not lost.
 
 Every write is a ``MERGE``, so running the script twice gives the same graph.
 
@@ -78,6 +83,42 @@ UNWIND $rows AS row
 MATCH (a:Paper {doi: row.citing})
 WITH a, row
 MATCH (b:Paper {doi: row.cited})
+MERGE (a)-[c:CITES]->(b)
+SET c.before_retraction = row.before_retraction
+"""
+
+# Citing papers are keyed by OpenAlex id, because some of them have no DOI. They never get the
+# Retracted label. Both ends of a citation are found through the unique openalex_id index.
+CITER_PAPERS_QUERY = """
+UNWIND $rows AS row
+MERGE (p:Paper {openalex_id: row.openalex_id})
+SET p.doi = row.doi,
+    p.title = row.title,
+    p.year = row.year,
+    p.publication_date = date(row.publication_date),
+    p.openalex_retracted = row.openalex_retracted
+"""
+
+CITER_JOURNALS_QUERY = """
+UNWIND $rows AS row
+MATCH (p:Paper {openalex_id: row.openalex_id})
+MERGE (j:Journal {name: row.journal})
+MERGE (p)-[:PUBLISHED_IN]->(j)
+"""
+
+CITER_AUTHORS_QUERY = """
+UNWIND $rows AS row
+MATCH (p:Paper {openalex_id: row.openalex_id})
+MERGE (a:Author {openalex_id: row.author_id})
+SET a.name = row.name
+MERGE (a)-[:AUTHORED]->(p)
+"""
+
+CITER_CITATIONS_QUERY = """
+UNWIND $rows AS row
+MATCH (a:Paper {openalex_id: row.citing})
+WITH a, row
+MATCH (b:Paper {openalex_id: row.cited})
 MERGE (a)-[c:CITES]->(b)
 SET c.before_retraction = row.before_retraction
 """
@@ -158,6 +199,18 @@ def load_cache(cache_dir: Path = CACHE_DIR) -> tuple[list[dict[str, Any]], dict[
     return selection, works
 
 
+def load_citers(cache_dir: Path = CACHE_DIR) -> dict[str, dict[str, Any]]:
+    """Read the citing papers saved by ``fetch_citers.py``, keyed by OpenAlex id (each paper once).
+
+    Returns an empty dict when that step has not been run, so the retracted papers still load.
+    """
+    citers: dict[str, dict[str, Any]] = {}
+    for path in sorted((cache_dir / "citers").glob("*.json")):
+        for work in json.loads(path.read_text(encoding="utf-8"))["results"]:
+            citers[short_id(work["id"])] = work
+    return citers
+
+
 def journal_name(work: dict[str, Any], fallback: str) -> str:
     """OpenAlex's journal name when it has one, otherwise the Retraction Watch name.
 
@@ -216,7 +269,7 @@ def citation_rows(works: dict[str, dict[str, Any]], retraction_dates: dict[str, 
     """Citations between two papers of the set (a retracted paper citing another retracted paper).
 
     OpenAlex lists the works each paper cites in ``referenced_works``; we keep the references that
-    are themselves in the set. Citations from papers outside the set come from the next fetch step.
+    are themselves in the set. Citations from papers outside the set are built by ``citer_rows``.
     """
     by_openalex_id = {work["id"]: doi for doi, work in works.items()}
     rows = []
@@ -237,7 +290,57 @@ def citation_rows(works: dict[str, dict[str, Any]], retraction_dates: dict[str, 
     return rows
 
 
-def build_rows(selection: list[dict[str, Any]], works: dict[str, dict[str, Any]]) -> dict[str, list[dict[str, Any]]]:
+def citer_rows(
+    citers: dict[str, dict[str, Any]],
+    retraction_dates: dict[str, str | None],
+    known_dois: set[str],
+) -> dict[str, list[dict[str, Any]]]:
+    """Parameter rows for the citing papers, their journals, their authors and their citations.
+
+    ``retraction_dates`` maps the OpenAlex id of each retracted paper to its retraction date. A citing
+    paper that is itself one of the retracted papers is skipped (it is already loaded, with its
+    citations), and so is a record whose DOI is already taken: the DOI constraint allows one paper each.
+    """
+    seen_dois = set(known_dois)
+    papers, journals, authors, citations = [], [], [], []
+    for openalex_id, work in citers.items():
+        if openalex_id in retraction_dates:
+            continue
+        doi = (work.get("doi") or "").removeprefix(DOI_PREFIX).lower() or None
+        if doi in seen_dois:
+            continue
+        if doi:
+            seen_dois.add(doi)
+        papers.append(
+            {
+                "openalex_id": openalex_id,
+                "doi": doi,
+                "title": work.get("title"),
+                "year": work.get("publication_year"),
+                "publication_date": work.get("publication_date"),
+                "openalex_retracted": bool(work.get("is_retracted")),
+            }
+        )
+        if work.get("journal"):
+            journals.append({"openalex_id": openalex_id, "journal": work["journal"]})
+        for author in work.get("authors") or []:
+            authors.append(
+                {"openalex_id": openalex_id, "author_id": short_id(author["id"]), "name": author.get("name")}
+            )
+        for cited in work.get("cites_retracted") or []:
+            if cited in retraction_dates:
+                flag = before_retraction(
+                    work.get("publication_date"), work.get("publication_year"), retraction_dates[cited]
+                )
+                citations.append({"citing": openalex_id, "cited": cited, "before_retraction": flag})
+    return {"citer_papers": papers, "citer_journals": journals, "citer_authors": authors, "citer_citations": citations}
+
+
+def build_rows(
+    selection: list[dict[str, Any]],
+    works: dict[str, dict[str, Any]],
+    citers: dict[str, dict[str, Any]] | None = None,
+) -> dict[str, list[dict[str, Any]]]:
     """Turn the cache into the parameter rows of each query (no database involved)."""
     kept = [row for row in selection if row["doi"] in works]
     papers, notices, authors = [], [], []
@@ -247,11 +350,13 @@ def build_rows(selection: list[dict[str, Any]], works: dict[str, dict[str, Any]]
         notices.extend(notice_rows(row, work))
         authors.extend(author_rows(row["doi"], work))
     retraction_dates = {row["doi"]: row["retraction_date"] for row in kept}
+    by_openalex_id = {short_id(works[row["doi"]]["id"]): row["retraction_date"] for row in kept}
     return {
         "papers": papers,
         "notices": notices,
         "authors": authors,
         "citations": citation_rows({row["doi"]: works[row["doi"]] for row in kept}, retraction_dates),
+        **citer_rows(citers or {}, by_openalex_id, {row["doi"] for row in kept}),
     }
 
 
@@ -278,6 +383,10 @@ def load(client: Neo4jClient, rows: dict[str, list[dict[str, Any]]]) -> dict[str
     run_batches(client, NOTICES_QUERY, rows["notices"])
     run_batches(client, AUTHORS_QUERY, rows["authors"])
     run_batches(client, CITATIONS_QUERY, rows["citations"])
+    run_batches(client, CITER_PAPERS_QUERY, rows["citer_papers"])
+    run_batches(client, CITER_JOURNALS_QUERY, rows["citer_journals"])
+    run_batches(client, CITER_AUTHORS_QUERY, rows["citer_authors"])
+    run_batches(client, CITER_CITATIONS_QUERY, rows["citer_citations"])
     drop_projection(client)
     missing = client.read(MISSING_FLAG_QUERY)[0]["missing"]
     if missing:
@@ -296,9 +405,13 @@ def main(argv: list[str] | None = None) -> int:
     """Load the cache into Neo4j and return a shell exit code."""
     args = parse_args(argv)
     selection, works = load_cache()
-    rows = build_rows(selection, works)
+    rows = build_rows(selection, works, load_citers())
     print(f"Papers: {len(rows['papers'])} of {len(selection)} selected ({len(selection) - len(works)} not in OpenAlex)")
     print(f"Notices: {len(rows['notices'])}  Author links: {len(rows['authors'])}  Citations: {len(rows['citations'])}")
+    print(
+        f"Citing papers: {len(rows['citer_papers'])}  Their author links: {len(rows['citer_authors'])}"
+        f"  Their citations: {len(rows['citer_citations'])}"
+    )
     if args.dry_run:
         return 0
 
