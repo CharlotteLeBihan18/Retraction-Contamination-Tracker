@@ -1,13 +1,18 @@
 """Load the cached Retraction Watch + OpenAlex data into Neo4j.
 
-The script reads only ``data/cache/`` (written by ``scripts/fetch_openalex.py`` and
-``scripts/fetch_citers.py``), so it needs no API key and no internet. It first creates the
+The script reads only ``data/cache/`` (written by ``scripts/fetch_openalex.py``,
+``scripts/fetch_citers.py`` and ``scripts/fetch_reference_counts.py``), so it needs no API key and no
+internet. It first creates the
 constraints and indexes, then loads the retracted papers, their notices, reasons, authors and
 journals, then the papers that cite them (with their authors, journals and citations).
 
 A citing paper is a plain ``Paper``: only Retraction Watch makes a paper ``Retracted``. OpenAlex's
 ``is_retracted`` flag has no date and no reasons, so it doesn't give the label. It is kept as the
 property ``openalex_retracted`` on the citing paper, so the information is not lost.
+
+Every paper also gets ``reference_count``, its number of references in OpenAlex (the at-risk model
+uses it). For the retracted papers it is the length of ``referenced_works`` in their records; for the
+citing papers it comes from ``reference_counts.json``, and stays empty when that step was not run.
 
 Every write is a ``MERGE``, so running the script twice gives the same graph.
 
@@ -32,6 +37,7 @@ from scripts.fetch_openalex import CACHE_DIR
 BATCH_SIZE = 500
 OPENALEX_PREFIX = "https://openalex.org/"
 DOI_PREFIX = "https://doi.org/"
+REFERENCE_COUNTS_FILE = "reference_counts.json"  # written by scripts/fetch_reference_counts.py
 
 # Same names as data/sample/sample.cypher, so loading both never creates duplicates.
 SCHEMA_STATEMENTS = [
@@ -52,7 +58,8 @@ SET p:Retracted,
     p.year = row.year,
     p.abstract = row.abstract,
     p.openalex_id = row.openalex_id,
-    p.publication_date = date(row.publication_date)
+    p.publication_date = date(row.publication_date),
+    p.reference_count = row.reference_count
 WITH p, row
 MERGE (j:Journal {name: row.journal})
 MERGE (p)-[:PUBLISHED_IN]->(j)
@@ -96,7 +103,8 @@ SET p.doi = row.doi,
     p.title = row.title,
     p.year = row.year,
     p.publication_date = date(row.publication_date),
-    p.openalex_retracted = row.openalex_retracted
+    p.openalex_retracted = row.openalex_retracted,
+    p.reference_count = row.reference_count
 """
 
 CITER_JOURNALS_QUERY = """
@@ -203,11 +211,15 @@ def load_citers(cache_dir: Path = CACHE_DIR) -> dict[str, dict[str, Any]]:
     """Read the citing papers saved by ``fetch_citers.py``, keyed by OpenAlex id (each paper once).
 
     Returns an empty dict when that step has not been run, so the retracted papers still load.
+    Each paper gets its ``reference_count`` from ``reference_counts.json`` (None when unknown).
     """
+    counts_file = cache_dir / REFERENCE_COUNTS_FILE
+    counts = json.loads(counts_file.read_text(encoding="utf-8"))["counts"] if counts_file.exists() else {}
     citers: dict[str, dict[str, Any]] = {}
     for path in sorted((cache_dir / "citers").glob("*.json")):
         for work in json.loads(path.read_text(encoding="utf-8"))["results"]:
-            citers[short_id(work["id"])] = work
+            openalex_id = short_id(work["id"])
+            citers[openalex_id] = {**work, "reference_count": counts.get(openalex_id)}
     return citers
 
 
@@ -230,6 +242,7 @@ def paper_row(row: dict[str, Any], work: dict[str, Any]) -> dict[str, Any]:
         "openalex_id": short_id(work["id"]),
         "publication_date": work.get("publication_date"),
         "journal": journal_name(work, row["journal"]),
+        "reference_count": len(work.get("referenced_works") or []),
     }
 
 
@@ -319,6 +332,7 @@ def citer_rows(
                 "year": work.get("publication_year"),
                 "publication_date": work.get("publication_date"),
                 "openalex_retracted": bool(work.get("is_retracted")),
+                "reference_count": work.get("reference_count"),
             }
         )
         if work.get("journal"):
@@ -412,6 +426,8 @@ def main(argv: list[str] | None = None) -> int:
         f"Citing papers: {len(rows['citer_papers'])}  Their author links: {len(rows['citer_authors'])}"
         f"  Their citations: {len(rows['citer_citations'])}"
     )
+    counted = sum(row["reference_count"] is not None for row in rows["citer_papers"])
+    print(f"Reference counts: {counted} of {len(rows['citer_papers'])} citing papers (run fetch_reference_counts if 0)")
     if args.dry_run:
         return 0
 
