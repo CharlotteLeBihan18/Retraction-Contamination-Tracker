@@ -115,7 +115,17 @@ A retracted paper alone doesn't tell us much, what we care about is who cited it
 - **379 citing papers have no DOI**, so papers are also keyed by their OpenAlex id.
 - **OpenAlex flags 208 citing papers as retracted, we don't.** Retraction Watch has no notice for them, so we have no date and no reasons. They stay normal papers and we keep the flag as `openalex_retracted = true`, so the information isn't lost.
 - **Citing papers have no abstract in the graph.** We didn't need them for the graph questions, and the audit agent fetches the abstract from OpenAlex when it judges a citation.
+- **464 citing papers have no journal** in OpenAlex, so they have no `PUBLISHED_IN` link. They are still in the graph and in Contamination / Exposure, but their 250 zombie citations don't show up in the Zombie citations endpoint, because it groups the citations by journal.
 - **We stop at one level.** We didn't download the papers that cite the citing papers: it would multiply the size of the graph for a small demo gain. So a contamination path of 2 or 3 steps in our data goes through another retracted paper.
+
+**A real zombie example.** The paper with the most zombie citations in our data is *"Marsupialization as a Definitive Treatment for the Odontogenic Keratocyst"* (2004). It was retracted in February 2007, but it's still cited every year until 2026: 268 citations came after the retraction, 25 of them in 2021 alone. This query finds it:
+
+```cypher
+MATCH (c:Paper)-[:CITES {before_retraction: false}]->(r:Paper:Retracted)
+RETURN r.title AS title, r.doi AS doi, count(c) AS zombie_citations
+ORDER BY zombie_citations DESC
+LIMIT 1
+```
 
 ## Graph schema and modeling rationale
 
