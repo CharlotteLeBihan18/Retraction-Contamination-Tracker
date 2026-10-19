@@ -476,6 +476,14 @@ Every question took the expected route, and all hand-checked values match (expos
 - Relies-on judgements only read abstracts, not full texts, so "unclear" is common and expected.
 - Gemini has per-minute rate limits (and the prepaid credits can run out); the endpoints then return 503, and the evaluation waits a minute and retries.
 - Vector search over abstracts is not wired in yet (it needs the embeddings created at ingestion).
+## Team
+
+| | Name | Part of the project |
+| --- | --- | --- |
+| Person 1 (lead) | Charlotte Le Bihan | Platform (Docker, Nginx, Makefile, CI, tests), GDS setup, Zombie citations, Top spreaders (PageRank) and Communities (Louvain) endpoints, architecture diagram, README, demo notebook, reviews of Person 2 |
+| Person 2 | Kenza Gueddas | Data: Retraction Watch + OpenAlex download, loading into Neo4j, sample graph, Contamination and Exposure endpoints, index benchmark, graph model and anti-genericity appendix, reviews of Person 3 |
+| Person 3 | Lara Normand | AI and machine learning: guardrails, Ask endpoint, Audit agent (LangGraph), evaluation, at-risk model and Risk endpoint, reviews of Person 1 |
+
 ## Merged pull requests
 
 Every change goes through a pull request reviewed by another team member (at least 2 constructive comments each). The full list is in the [closed pull requests](https://github.com/CharlotteLeBihan18/Retraction-Contamination-Tracker/pulls?q=is%3Apr+is%3Amerged).
@@ -487,5 +495,25 @@ Every change goes through a pull request reviewed by another team member (at lea
 | [#3](https://github.com/CharlotteLeBihan18/Retraction-Contamination-Tracker/pull/3) | GDS in-memory projection | Person 1 | Person 3 |
 | [#4](https://github.com/CharlotteLeBihan18/Retraction-Contamination-Tracker/pull/4) | Top spreaders endpoint (PageRank) | Person 1 | Person 3 |
 | [#5](https://github.com/CharlotteLeBihan18/Retraction-Contamination-Tracker/pull/5) | Communities endpoint (Louvain) | Person 1 | Person 3 |
+| [#6](https://github.com/CharlotteLeBihan18/Retraction-Contamination-Tracker/pull/6) | Architecture diagram and merged pull requests in the README | Person 1 | Person 3 |
+| [#7](https://github.com/CharlotteLeBihan18/Retraction-Contamination-Tracker/pull/7) | Hand-written sample graph and its loader | Person 2 | Person 1 |
+| [#8](https://github.com/CharlotteLeBihan18/Retraction-Contamination-Tracker/pull/8) | Cypher guardrails | Person 3 | Person 2 |
+| [#9](https://github.com/CharlotteLeBihan18/Retraction-Contamination-Tracker/pull/9) | Ask endpoint (intent routing, guardrails, cited answers) | Person 3 | Person 2 |
+| [#10](https://github.com/CharlotteLeBihan18/Retraction-Contamination-Tracker/pull/10) | Download the retracted dentistry papers from OpenAlex | Person 2 | Person 1 |
+| [#11](https://github.com/CharlotteLeBihan18/Retraction-Contamination-Tracker/pull/11) | Load the data into Neo4j with constraints and indexes | Person 2 | Person 1 |
+| [#12](https://github.com/CharlotteLeBihan18/Retraction-Contamination-Tracker/pull/12) | Agent tools and the Audit agent (LangGraph) | Person 3 | Person 2 |
+| [#13](https://github.com/CharlotteLeBihan18/Retraction-Contamination-Tracker/pull/13) | Download the papers that cite the retracted ones | Person 2 | Person 1 |
+| [#14](https://github.com/CharlotteLeBihan18/Retraction-Contamination-Tracker/pull/14) | Load the citing papers into Neo4j | Person 2 | Person 1 |
+| [#15](https://github.com/CharlotteLeBihan18/Retraction-Contamination-Tracker/pull/15) | Contamination endpoint | Person 2 | Person 1 |
+| [#16](https://github.com/CharlotteLeBihan18/Retraction-Contamination-Tracker/pull/16) | AI evaluation (20 questions) and README section | Person 3 | Person 2 |
+| [#17](https://github.com/CharlotteLeBihan18/Retraction-Contamination-Tracker/pull/17) | At-risk model (FastRP + logistic regression) and Risk endpoint | Person 3 | Person 2 |
+| [#18](https://github.com/CharlotteLeBihan18/Retraction-Contamination-Tracker/pull/18) | Exposure endpoint | Person 2 | Person 1 |
+| [#19](https://github.com/CharlotteLeBihan18/Retraction-Contamination-Tracker/pull/19) | Index benchmark with PROFILE before and after | Person 2 | Person 1 |
+| [#20](https://github.com/CharlotteLeBihan18/Retraction-Contamination-Tracker/pull/20) | Graph schema diagram and modeling rationale | Person 2 | Person 1 |
+| [#21](https://github.com/CharlotteLeBihan18/Retraction-Contamination-Tracker/pull/21) | README sections for the data, the graph model and the endpoints | Person 2 | Person 1 |
+| [#22](https://github.com/CharlotteLeBihan18/Retraction-Contamination-Tracker/pull/22) | Two fixes found while preparing the demo, AI API examples | Person 3 | Person 2 |
+
+Who reviews whom: Person 3 reviews Person 1, Person 2 reviews Person 3, and Person 1 reviews Person 2. The
+review comments, and the commits that answer them, are visible in each pull request.
 
 *To avoid Git conflicts, only Person 1 edits this file: each author writes their row in their pull request description, and Person 1 adds the rows together.*
