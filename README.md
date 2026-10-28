@@ -45,10 +45,6 @@ in February 2007, and it was still cited **268 times** after its retraction, eve
 
 *From the demo notebook ([`demo.ipynb`](demo.ipynb)): zombie citations by number of years after the retraction.*
 
-![Neo4j Browser: citations made after the retraction](docs/screenshots/neo4j-zombie-citations.png)
-
-*In the Neo4j Browser: each arrow is a citation made after the cited paper was retracted.*
-
 ## Quick start
 
 You need Docker Desktop (open and running), Python 3.11+, make and git.
@@ -222,6 +218,41 @@ The full version, with every property, an example on the sample graph and all ou
 - **`before_retraction` is stored on `CITES`.** It describes the citation, not either paper, and it's computed once when loading, so zombie-citation queries just compare a boolean.
 - **`RELIES_ON` is separate from `CITES`.** A citation is a fact; "it relies on it" is an AI guess with a confidence score. Fact-only queries never touch it.
 - **Authors and papers use OpenAlex ids.** 403 author names are shared by 926 different people in our data, so a name can't be a key.
+
+**The model on real data.** The Marsupialization paper from [What it finds](#what-it-finds) in the Neo4j Browser:
+
+![Neo4j Browser: one retracted paper, its notices, its reason and 12 zombie citations](docs/screenshots/neo4j-zombie-citations.png)
+
+*Blue: the retracted paper. Red: 12 of the papers that cited it after its retraction (yellow `CITES` arrows).
+Green: its two retraction notices, one from Retraction Watch (dated 2007-02-01) and one from OpenAlex. Pink: the
+reason given by Retraction Watch.*
+
+<details>
+<summary>The query behind this picture</summary>
+
+The retracted paper is both `Paper` and `Retracted`, and the Browser colours a node by its first label. To give it
+its own colour, the query draws it as a display-only copy (`apoc.create.vNode`); nothing is written to the database.
+
+```cypher
+MATCH (r:Paper:Retracted)
+WHERE toLower(r.title) CONTAINS "marsupialization as a definitive"
+MATCH (n:RetractionNotice)-[:RETRACTS]->(r)
+OPTIONAL MATCH why = (n)-[:FOR_REASON]->(:Reason)
+WITH r, collect(DISTINCT n) AS notices, collect(why) AS reasons
+CALL {
+  WITH r
+  MATCH (p:Paper)-[c:CITES]->(r)
+  WHERE c.before_retraction = false
+  RETURN collect(p)[..12] AS citers
+}
+WITH notices, reasons, citers,
+     apoc.create.vNode(["RetractedPaper"], {title: r.title, year: r.year}) AS retracted
+RETURN retracted, notices, reasons, citers,
+       [p IN citers  | apoc.create.vRelationship(p, "CITES", {}, retracted)]    AS zombieCitations,
+       [n IN notices | apoc.create.vRelationship(n, "RETRACTS", {}, retracted)] AS retractions
+```
+
+</details>
 
 ### Indexes
 
