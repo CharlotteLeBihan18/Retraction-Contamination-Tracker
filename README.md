@@ -63,6 +63,7 @@ What to fill in:
 | `NEO4J_PASSWORD` | **Yes** | A password of your choice, 8+ characters, no quotes |
 | `LLM_API_KEY` | Only for the AI endpoints | Your Gemini key, see [AI setup](#ai-setup). Empty: `/api/ask` and `/api/audit` answer 503, the rest works |
 | `OPENALEX_API_KEY` | No | Only to download the data again; the data is already in `data/cache/` |
+| `LANGSMITH_*` | No | Optional tracing of the AI calls, off by default, see [Tracing](#tracing-optional-langsmith) |
 | Everything else | No | Keep the default values |
 
 **2. Install and start.**
@@ -420,6 +421,23 @@ paid tier (prepaid credits, no automatic top-up, so spending is capped). A free 
 Paid-tier prompts are not used to train Google's models, and the higher rate limits keep the demo and the
 evaluation from being throttled.
 
+### Tracing (optional, LangSmith)
+
+To see every AI run as a timeline (each step of the audit agent, what Gemini received and answered, how long it
+took), the API can send its traces to [LangSmith](https://smith.langchain.com), LangChain's monitoring service. No
+code is involved: LangChain reads four lines of `.env`.
+
+1. Create a free LangSmith account and an API key (Settings → API Keys).
+2. In `.env`, set `LANGSMITH_TRACING=true` and `LANGSMITH_API_KEY=...`. If your account is on the EU site
+   (`eu.smith.langchain.com`), also set `LANGSMITH_ENDPOINT=https://eu.api.smith.langchain.com`.
+3. Restart the API so it reads them: `docker compose up -d --force-recreate api`.
+4. Run an audit or a question, then open **Tracing** → `retraction-tracker` in LangSmith.
+
+It is **off by default**, because when it is on the questions, the abstracts and Gemini's answers leave the machine
+for LangSmith's servers. The tests and CI never turn it on. It only reaches the API running in Docker; to trace a
+script run on your own machine (like the evaluation), export the same variables in your terminal first. The API
+already lists every step in its `steps` field, so tracing is a comfort for debugging and demos, not a requirement.
+
 ### Ask: a question in plain English becomes a safe graph query
 
 ```bash
@@ -523,14 +541,13 @@ curl -X POST http://localhost/api/audit -H "Content-Type: application/json" -d '
 `"saved": null` because saving is opt-in (see below). An unknown DOI is looked up on OpenAlex, and a malformed one
 gets a 422.
 
-The agent is a LangGraph state machine that calls tools from `app/agent/tools.py`:
+The agent is a LangGraph state machine that calls tools from `app/agent/tools.py`. This diagram is drawn by
+LangGraph itself from the compiled agent, so it shows exactly what the code does (dotted arrows: the choice made after
+`locate`):
 
-```
-locate ──► (not found) ─────────────────────────────┐
-   │                                                 ▼
-   ├──► (retracted) contamination ──► judge ──► report
-   └──► (not retracted) exposure ───┘
-```
+<p align="center"><img src="docs/agent_graph.png" alt="The audit agent drawn by LangGraph: start, locate, then contamination, exposure or report, then judge, report, end" width="360"></p>
+
+*Regenerate it with `build_audit_graph(None, None).get_graph().draw_mermaid()` (from `app/agent/graph.py`).*
 
 1. **locate:** find the paper in our graph, or else on OpenAlex.
 2. **exposure** (normal paper): the retracted papers it relies on, up to 2 citation steps away. **contamination** (retracted paper): the papers that built on it. In both cases each direct citation carries `before_retraction`, so the report can count the zombie citations.
