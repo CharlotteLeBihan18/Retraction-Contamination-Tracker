@@ -822,7 +822,7 @@ Who reviews whom: Lara reviews Charlotte, Kenza reviews Lara, and Charlotte revi
 and the commits that answer them, are visible in each pull request.
 
 <details>
-<summary>All 33 pull requests, with author and reviewer</summary>
+<summary>All 34 pull requests, with author and reviewer</summary>
 
 | PR | What it adds | Author | Reviewer |
 | --- | --- | --- | --- |
@@ -858,6 +858,7 @@ and the commits that answer them, are visible in each pull request.
 | [#31](https://github.com/CharlotteLeBihan18/Retraction-Contamination-Tracker/pull/31) | Demo notebook re-run on the final code | Charlotte Le Bihan | Lara Normand |
 | [#32](https://github.com/CharlotteLeBihan18/Retraction-Contamination-Tracker/pull/32) | `.mailmap`, so each person appears once in `git shortlog` | Charlotte Le Bihan | Lara Normand |
 | [#33](https://github.com/CharlotteLeBihan18/Retraction-Contamination-Tracker/pull/33) | README restructured: screenshots, evaluation tables, contribution stats, names in the diagram | Charlotte Le Bihan | Lara Normand |
+| [#34](https://github.com/CharlotteLeBihan18/Retraction-Contamination-Tracker/pull/34) | Real names instead of Person 1/2/3 in the file headers, outdated comments updated | Charlotte Le Bihan | Kenza Gueddas, Lara Normand |
 
 #29 was an automatic revert opened by mistake and closed without merging.
 
