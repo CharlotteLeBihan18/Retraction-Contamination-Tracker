@@ -1,6 +1,6 @@
 """Cypher queries for the top-spreaders endpoint (PageRank).
 
-Owner: Person 1. Only the owner edits this file.
+Owner: Charlotte Le Bihan. Only the owner edits this file.
 
 PageRank runs on the directed CITES relationships of the in-memory projection
 (see app/services/gds.py). A paper scores high when it is cited by many papers,

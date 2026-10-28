@@ -1,6 +1,6 @@
 """Zombie citations: journals that keep citing papers after their retraction.
 
-Owner: Person 1. Only the owner edits this file.
+Owner: Charlotte Le Bihan. Only the owner edits this file.
 """
 
 from fastapi import APIRouter, Depends, Query

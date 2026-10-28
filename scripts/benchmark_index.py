@@ -1,6 +1,6 @@
 """Measure how much our indexes speed up real queries (PROFILE before and after).
 
-Owner: Person 2. Only the owner edits this file.
+Owner: Kenza Gueddas. Only the owner edits this file.
 
 For each index of the graph model that our endpoints rely on, the script:
 

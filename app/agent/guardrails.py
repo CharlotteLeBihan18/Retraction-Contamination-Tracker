@@ -1,6 +1,6 @@
 """Guardrails for LLM-written Cypher: nothing reaches Neo4j unless it passes every check.
 
-Owner: Person 3. Only the owner edits this file.
+Owner: Lara Normand. Only the owner edits this file.
 
 An LLM can write any Cypher, including queries that delete data, read the whole
 graph, or invent labels that do not exist. ``validate`` runs cheap text checks

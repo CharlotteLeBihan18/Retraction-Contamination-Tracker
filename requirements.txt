@@ -4,9 +4,9 @@ uvicorn[standard]==0.54.0
 neo4j==6.4.1
 pydantic==2.14.1
 pydantic-settings==2.16.0
-# AI agent (Person 3). The LLM provider package is added once the provider is chosen.
+# AI agent and LLM provider (Lara Normand)
 langgraph==1.2.15
 langchain-core==1.6.10
 langchain-google-genai==4.4.2
-# Risk model (Person 3)
+# Risk model (Lara Normand)
 scikit-learn==1.8.0

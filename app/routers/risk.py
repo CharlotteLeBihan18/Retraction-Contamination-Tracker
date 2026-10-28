@@ -1,6 +1,6 @@
 """At-risk prediction for a paper (FastRP embeddings + classifier).
 
-Owner: Person 3. Only the owner edits this file.
+Owner: Lara Normand. Only the owner edits this file.
 """
 
 from fastapi import APIRouter, HTTPException, status

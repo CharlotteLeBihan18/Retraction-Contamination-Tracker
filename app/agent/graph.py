@@ -1,6 +1,6 @@
 """The LangGraph audit agent: an integrity report for one paper, with every step it took.
 
-Owner: Person 3. Only the owner edits this file.
+Owner: Lara Normand. Only the owner edits this file.
 
 The agent is a small LangGraph state machine. Each node calls one or more tools
 from app/agent/tools.py and appends what it did to ``steps``, so the report can

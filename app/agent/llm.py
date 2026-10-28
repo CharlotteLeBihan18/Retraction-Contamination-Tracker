@@ -1,6 +1,6 @@
 """The LLM the AI endpoints talk to, behind one tiny interface.
 
-Owner: Person 3. Only the owner edits this file.
+Owner: Lara Normand. Only the owner edits this file.
 
 Everything in app/agent/ calls the model through ``LLM``: a function that takes a
 system instruction and a user message and returns plain text. Endpoints get it

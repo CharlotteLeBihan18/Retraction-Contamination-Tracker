@@ -1,6 +1,6 @@
 """Ask: a plain-English question becomes a safe Cypher query.
 
-Owner: Person 3. Only the owner edits this file.
+Owner: Lara Normand. Only the owner edits this file.
 """
 
 from fastapi import APIRouter, Depends, HTTPException, Query, status

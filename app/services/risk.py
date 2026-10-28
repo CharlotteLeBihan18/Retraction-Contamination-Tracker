@@ -1,6 +1,6 @@
 """At-risk model: FastRP embeddings + year + reference count -> logistic regression.
 
-Owner: Person 3. Only the owner edits this file.
+Owner: Lara Normand. Only the owner edits this file.
 
 The question: does a paper *look like* the retracted ones, from its place in the
 citation graph and two simple facts about it? The answer is a probability and is
