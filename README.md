@@ -433,6 +433,14 @@ code is involved: LangChain reads four lines of `.env`.
 3. Restart the API so it reads them: `docker compose up -d --force-recreate api`.
 4. Run an audit or a question, then open **Tracing** → `retraction-tracker` in LangSmith.
 
+![LangSmith trace of one audit: the agent's steps with their times, and Gemini's verdict for the judge step](docs/screenshots/langsmith-trace.png)
+
+*One audit of `sample.013` in LangSmith. Left: the agent's steps. The graph steps (`locate`, `exposure`) take
+milliseconds; almost all the time and tokens go to the two Gemini calls, in `judge` and `report`. Right: what
+Gemini received for `judge` (our instructions, the retracted paper's title and the citing abstract) and its answer,
+`relies_on` with confidence 1.0 and a sentence quoted from the abstract, which our code then checks really appears
+in it.*
+
 It is **off by default**, because when it is on the questions, the abstracts and Gemini's answers leave the machine
 for LangSmith's servers. The tests and CI never turn it on. It only reaches the API running in Docker; to trace a
 script run on your own machine (like the evaluation), export the same variables in your terminal first. The API
