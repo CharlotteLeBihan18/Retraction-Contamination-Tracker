@@ -1,6 +1,6 @@
 """Audit: an integrity report for one paper, built by the LangGraph agent.
 
-Owner: Person 3. Only the owner edits this file.
+Owner: Lara Normand. Only the owner edits this file.
 """
 
 from fastapi import APIRouter, Depends, HTTPException, status

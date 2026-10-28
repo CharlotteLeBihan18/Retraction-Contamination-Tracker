@@ -1,13 +1,13 @@
 """Cypher queries for the zombie-citations endpoint.
 
-Owner: Person 1. Only the owner edits this file.
+Owner: Charlotte Le Bihan. Only the owner edits this file.
 
 A "zombie citation" is a CITES relationship whose ``before_retraction`` property
 is false: the citing paper was published after the cited paper was retracted.
-That property is computed once at ingestion (Person 2), so these queries only
+That property is computed once at ingestion (Kenza Gueddas), so these queries only
 compare a boolean instead of comparing dates on every request.
 
-Rules the loading script must follow (Person 2):
+Rules the loading script must follow (Kenza Gueddas):
 
 * Always set ``before_retraction`` on every CITES relationship that points at a
   retracted paper. If it is missing, ``c.before_retraction = false`` is null in

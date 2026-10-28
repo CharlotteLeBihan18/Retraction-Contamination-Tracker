@@ -1,6 +1,6 @@
 """Research communities (Louvain) ranked by their share of retracted papers.
 
-Owner: Person 1. Only the owner edits this file.
+Owner: Charlotte Le Bihan. Only the owner edits this file.
 """
 
 from fastapi import APIRouter, Depends, HTTPException, Query, status

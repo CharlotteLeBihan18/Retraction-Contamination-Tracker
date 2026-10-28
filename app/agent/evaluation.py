@@ -1,6 +1,6 @@
 """Evaluation of the AI part: 20 questions for /ask and /audit, run with the real LLM.
 
-Owner: Person 3. Only the owner edits this file.
+Owner: Lara Normand. Only the owner edits this file.
 
 Run it against a Neo4j that holds Kenza's sample graph (``python -m scripts.load_sample``):
 

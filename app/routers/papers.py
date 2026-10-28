@@ -1,6 +1,6 @@
 """Contamination and exposure traversals around a paper.
 
-Owner: Person 2. Only the owner edits this file.
+Owner: Kenza Gueddas. Only the owner edits this file.
 """
 
 from fastapi import APIRouter, Depends, HTTPException, Path, Query, status

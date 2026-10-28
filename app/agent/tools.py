@@ -1,7 +1,7 @@
 
 """Tools the audit agent can call. Each one returns a plain dict the agent can read.
 
-Owner: Person 3. Only the owner edits this file.
+Owner: Lara Normand. Only the owner edits this file.
 
 Every result says where it comes from and how much to trust it:
 
@@ -11,8 +11,8 @@ Every result says where it comes from and how much to trust it:
 Tools never raise on bad input or a refused query: they return ``{"error": ...}``
 so the agent can read the problem and try something else.
 
-``vector_search`` is not here yet: it needs the abstract embeddings and the
-vector index that the ingestion script (Person 2) will create.
+``vector_search`` is not part of the project: it would need abstract embeddings
+and a vector index created at ingestion (see the README, "Limitations").
 """
 
 import json

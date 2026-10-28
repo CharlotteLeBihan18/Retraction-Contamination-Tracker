@@ -1,4 +1,4 @@
-"""Person 1's graph endpoints on the hand-written sample graph (real Neo4j).
+"""Charlotte Le Bihan's graph endpoints on the hand-written sample graph (real Neo4j).
 
 Zombie citations, Top spreaders (PageRank) and Communities (Louvain) are checked against
 values worked out by hand from data/sample/sample.cypher, so these tests show that each

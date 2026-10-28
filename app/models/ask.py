@@ -1,6 +1,6 @@
 """Response model for the Ask endpoint.
 
-Owner: Person 3. Only the owner edits this file.
+Owner: Lara Normand. Only the owner edits this file.
 """
 
 from typing import Any, Literal

@@ -1,6 +1,6 @@
 """Cypher queries for the contamination and exposure endpoints.
 
-Owner: Person 2. Only the owner edits this file.
+Owner: Kenza Gueddas. Only the owner edits this file.
 
 Contamination walks the CITES links downstream from a retracted paper: the papers that cite
 it directly (1 hop), the papers that cite those (2 hops), and so on up to ``MAX_DEPTH``.

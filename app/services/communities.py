@@ -1,6 +1,6 @@
 """Cypher queries for the communities endpoint (Louvain).
 
-Owner: Person 1. Only the owner edits this file.
+Owner: Charlotte Le Bihan. Only the owner edits this file.
 
 Louvain groups papers into communities: sets of papers that cite each other much
 more than they cite papers outside the set. In a citation network these match

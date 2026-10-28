@@ -1,6 +1,6 @@
 """GDS helpers: create and drop the in-memory citation projection, run through Cypher.
 
-Owner: Person 1. Only the owner edits this file.
+Owner: Charlotte Le Bihan. Only the owner edits this file.
 
 GDS algorithms (PageRank, Louvain, FastRP) do not run on the database itself but on
 a *projection*: a compact in-memory copy of the part of the graph they need. We

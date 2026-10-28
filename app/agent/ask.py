@@ -1,6 +1,6 @@
 """Ask: a plain-English question becomes a safe graph query, then a cited answer.
 
-Owner: Person 3. Only the owner edits this file.
+Owner: Lara Normand. Only the owner edits this file.
 
 Hybrid design, in four steps:
 
