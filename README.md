@@ -87,8 +87,8 @@ Once it's running:
 | Health check | http://localhost/health/ready |
 | Neo4j Browser | http://localhost:7474 |
 
-**3. Load some data.** Check that Neo4j and its plugins are ready, then load the data. Both loading commands can be run again safely,
-and neither needs an API key:
+**3. Load some data.** Check that Neo4j and its plugins are ready, then load the data. Both loading commands can
+be run again safely, and neither needs an API key:
 
 ```bash
 .venv/bin/python -m scripts.check_neo4j
@@ -99,8 +99,12 @@ and neither needs an API key:
 On Windows (Git Bash), replace `.venv/bin/python` with `.venv/Scripts/python`, or run
 `source .venv/Scripts/activate` once and then simply type `python`.
 
-The AI endpoints (`/api/ask`, `/api/audit`) also need a Gemini key in `.env`, see [AI setup](#ai-setup). Without
-it, they answer 503 and everything else works.
+**4. Try it.** Open http://localhost/docs and call any endpoint, or run the demo notebook, which explores the graph
+with charts and calls every endpoint:
+
+```bash
+.venv/bin/jupyter notebook demo.ipynb
+```
 
 ### Makefile commands
 
@@ -209,10 +213,13 @@ LIMIT 1
 
 ![Graph schema](docs/graph_schema.png)
 
-The full version, with every property, an example on the sample graph and all our decisions, is in
-[`docs/graph_model.md`](docs/graph_model.md). The main ideas:
+**6 labels:** `Paper`, `Retracted` (an extra label on retracted papers), `RetractionNotice`, `Reason`, `Author`,
+`Journal`. **6 relationship types:** `CITES`, `RETRACTS`, `FOR_REASON`, `AUTHORED`, `PUBLISHED_IN`, `RELIES_ON`.
 
-- **`Retracted` is a label on `Paper`, not a separate node and not a boolean.** A retracted paper is still a paper (it gets cited, has authors, can cite other retracted papers). With a label, queries can start from the 456 retracted papers instead of reading all 9,354.
+The full version, with every property, an example on the sample graph and all our decisions, is in
+[`docs/graph_model.md`](docs/graph_model.md). The main ideas, and the alternatives we rejected:
+
+- **`Retracted` is a label on `Paper`, not a separate node and not a boolean.** A retracted paper is still a paper (it gets cited, has authors, can cite other retracted papers). With a label, queries can start from the 453 retracted papers instead of reading all 9,334.
 - **A retraction is a `RetractionNotice` with a `source`.** Retraction Watch and OpenAlex don't always agree, so we keep one notice per source and let Retraction Watch decide.
 - **Reasons are nodes.** 351 notices give 2 to 11 reasons, and as nodes they are easy to count.
 - **`before_retraction` is stored on `CITES`.** It describes the citation, not either paper, and it's computed once when loading, so zombie-citation queries just compare a boolean.
@@ -240,8 +247,7 @@ WHERE toLower(r.title) CONTAINS "marsupialization as a definitive"
 MATCH (n:RetractionNotice)-[:RETRACTS]->(r)
 OPTIONAL MATCH why = (n)-[:FOR_REASON]->(:Reason)
 WITH r, collect(DISTINCT n) AS notices, collect(why) AS reasons
-CALL {
-  WITH r
+CALL (r) {
   MATCH (p:Paper)-[c:CITES]->(r)
   WHERE c.before_retraction = false
   RETURN collect(p)[..12] AS citers
@@ -371,6 +377,24 @@ curl "http://localhost/api/papers/10.0000/sample.023/exposure?depth=3"
 
 On the sample graph, `sample.023` reaches the retracted `sample.001` in 3 steps, and the answer shows the chain of
 papers in between. A paper that reaches nothing gets `"exposed": false` (that's an answer, not an error).
+
+### How the main queries work
+
+The queries live in `app/services/`, one file per topic. The techniques they use, and why:
+
+| Technique | Where | Why |
+| --- | --- | --- |
+| Variable-length paths `[:CITES*1..3]`, keeping the shortest | Contamination, Exposure (`papers.py`) | Follow a retraction through several citation steps and show the chain |
+| `WITH` + aggregations (`count`, `sum(CASE …)`, `collect(...)[..3]`) | Zombie citations (`journals.py`), Communities (`communities.py`) | Count per journal or community, then filter and keep a few examples |
+| `CALL (j) { ... }` subquery | Zombie citations | Fetch the 3 most recent examples for each journal on the page only |
+| `COUNT { }` subqueries | Top spreaders (`retractions.py`) | Count direct and zombie citations next to the PageRank score |
+| `UNWIND` batches | Loading scripts (`scripts/ingest.py`) | Write thousands of rows in a few queries instead of one per paper |
+| GDS: PageRank, Louvain, FastRP | Top spreaders, Communities, Risk | Algorithms that plain Cypher cannot do well |
+
+**How they behave as the graph grows.** The number of citation paths multiplies with each extra step, so path queries
+are capped at 3 steps and always start from one paper found through an index. The zombie-citation queries start from the `Retracted` label,
+so they only visit citations that point at retracted papers, not the whole graph. The gain from the indexes is
+measured in [Indexes](#indexes).
 
 ## AI component and guardrails
 
