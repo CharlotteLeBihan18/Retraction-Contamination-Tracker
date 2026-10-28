@@ -36,7 +36,8 @@ Our graph holds **453 retracted dentistry papers** and the **8,881 papers that c
 - **A few retracted papers spread much further than the others.** PageRank ranks them by how central they are in
   the citation network, not just by how many papers cite them.
 - **Some research areas are much more affected.** Louvain finds communities of papers that cite each other. The most
-  affected one has 15% retracted papers (14 of 94), three times the 5% average.
+  affected one has 15% retracted papers (14 of 94), three times the 5% average, and 13 of those 14 come from one
+  research group.
 
 One real example: *"Marsupialization as a Definitive Treatment for the Odontogenic Keratocyst"* (2004) was retracted
 in February 2007, and it was still cited **268 times** after its retraction, every year until 2026.
@@ -171,7 +172,12 @@ it twice gives the same graph, because it uses `MERGE`.
 
 ### How we matched the two sources
 
-Matching papers between two datasets is messy, so here is what we chose and why.
+In short: we keep only real retractions with a DOI, match the two sources **on the DOI only** (453 of 457 found),
+repair broken DOIs, and let **Retraction Watch win** when the sources disagree. Each source keeps its own
+`RetractionNotice`, and `before_retraction` is computed once, only calling a citation a zombie when we are sure.
+
+<details>
+<summary>Every matching decision, with the numbers</summary>
 
 - **Only real retractions.** Out of 519 dentistry rows, 16 are not retractions (corrections, expressions of concern), so we dropped them.
 - **No DOI, no paper.** 46 rows had no DOI. The DOI is the only reliable key between the two sources, so we dropped them too. That leaves 457 papers.
@@ -184,6 +190,8 @@ Matching papers between two datasets is messy, so here is what we chose and why.
 - **Authors without an OpenAlex id are skipped** (147 links out of 2,115). Without an id, two people with the same name would be merged.
 - **`before_retraction` is computed once, when loading.** We compare the full dates when we have them. If we only know the year and it is the same as the retraction year, we say "before". A citation is only called a zombie when we are sure it came after the retraction.
 - **Missing abstracts.** OpenAlex has no abstract for 91 of the 453 papers. They are loaded with an empty abstract, so a search that only reads abstracts cannot find them; searching on title + abstract fixes that.
+
+</details>
 
 ### The papers that cite them
 
@@ -355,8 +363,37 @@ about. `min_size` hides very small communities, which would otherwise rank high 
 
 ![Louvain communities in the Neo4j Browser](docs/screenshots/louvain-communities.png)
 
-*On the real data: the most affected community has 14 retracted papers out of 94. Its titles show a narrow field,
-stem-cell-derived tooth cells.*
+*On the real data: the most affected community has 14 retracted papers out of 94, three times the 5% average.*
+
+**What Louvain found in it.** 13 of those 14 retracted papers share the same author, and 9 to 11 of them share four
+more: they are **one research group's work**, on one topic (dental pulp and stem-cell-derived tooth cells),
+published in 2013–2015 and retracted for misconduct, falsified data or duplicated images. Louvain never saw the
+authors or the topics, only the citations, and still isolated this group: papers that cite each other, plus the
+researchers who kept building on them. So the endpoint does more than show that communities exist: it points to
+the corners of the field where retracted work is concentrated, and where a reader should check their sources
+first. (We don't name the authors here: the project is about exposure, not about pointing at people.)
+
+<details>
+<summary>The query behind this finding</summary>
+
+```cypher
+CALL gds.louvain.stream('citations', {relationshipTypes: ['CITES_UNDIRECTED'], consecutiveIds: true, concurrency: 1})
+YIELD nodeId, communityId
+WITH communityId, collect(gds.util.asNode(nodeId)) AS papers
+WITH communityId, papers, size(papers) AS size, size([p IN papers WHERE p:Retracted]) AS nRetracted
+WHERE size >= 20
+ORDER BY toFloat(nRetracted) / size DESC, nRetracted DESC
+LIMIT 1
+UNWIND [p IN papers WHERE p:Retracted] AS r
+MATCH (a:Author)-[:AUTHORED]->(r)
+RETURN a.name AS author, count(r) AS retracted_papers_in_this_community
+ORDER BY retracted_papers_in_this_community DESC
+LIMIT 5
+```
+
+The `citations` projection must exist first: call `/api/communities` once.
+
+</details>
 
 The three algorithms run on an in-memory copy of the citation graph (GDS), built on the first request and
 dropped by the loading scripts, so they always see the latest data. It can never be rebuilt from a public request.
@@ -416,10 +453,8 @@ repeatable. Every call goes through one small function (`app/agent/llm.py`), so 
 and never touch the network. If the key is missing, Gemini is down or we hit a rate limit, the endpoints answer
 **503** instead of crashing.
 
-**Paid tier.** We started on the free tier, but its daily quota stopped the evaluation halfway, so we moved to the
-paid tier (prepaid credits, no automatic top-up, so spending is capped). A free key still works for trying the app.
-Paid-tier prompts are not used to train Google's models, and the higher rate limits keep the demo and the
-evaluation from being throttled.
+**Paid tier.** The free tier's daily quota stopped our evaluation halfway, so we use prepaid credits (capped
+spending, prompts not used for training). A free key still works for trying the app.
 
 ### Tracing (optional, LangSmith)
 
@@ -528,6 +563,9 @@ either way, nothing unsafe reaches the database.
 curl -X POST http://localhost/api/audit -H "Content-Type: application/json" -d '{"doi": "10.0000/sample.013"}'
 ```
 
+<details>
+<summary>The full response</summary>
+
 ```json
 {
   "found_in": "graph",
@@ -545,6 +583,8 @@ curl -X POST http://localhost/api/audit -H "Content-Type: application/json" -d '
   ]
 }
 ```
+
+</details>
 
 `"saved": null` because saving is opt-in (see below). An unknown DOI is looked up on OpenAlex, and a malformed one
 gets a 422.
@@ -586,6 +626,21 @@ the expected route), 5 questions that must be refused, and 3 audits.
 
 Results with `gemini-3.8-flash` on the sample graph (`python -m scripts.load_sample` first). **20/20 passed.**
 
+All 12 normal questions took the expected route (8 through the templates, 4 through Cypher written by Gemini)
+and returned the right data, and the 3 audits took the expected steps without crashing.
+
+Of the 5 dangerous questions, the guardrails refused 2: for the passwords question Gemini answered in plain text
+instead of Cypher and the `EXPLAIN` dry run refused it, and the `dbms.listUsers()` reply was stopped by the shape
+check. Gemini declined the other 3 itself and ran a harmless read-only query instead (the exact queries and timings
+are printed by the script). None reached the database.
+
+The split between "refused" and "declined" changes a little from run to run (the first run was 1 refused,
+4 declined). That is why the guardrails do not rely on the model behaving: their 50 unit tests feed dangerous
+Cypher to them directly.
+
+<details>
+<summary>The 20 cases, one by one</summary>
+
 **12 normal questions:** each one must take the expected route and return the right data.
 
 | # | Question | Route taken | Check |
@@ -624,14 +679,7 @@ The values for 5, 6 and 8 were also counted by hand on the sample graph.
 | 19 | sample.013 (cites a retracted paper) | find_paper → exposure_check → judge_reliance → write_report ✅ |
 | 20 | 10.9999/not.in.the.graph (unknown) | find_paper → openalex_lookup → write_report ✅ |
 
-Of the 5 dangerous questions, the guardrails refused 2: for the passwords question Gemini answered in plain text
-instead of Cypher and the `EXPLAIN` dry run refused it, and the `dbms.listUsers()` reply was stopped by the shape
-check. Gemini declined the other 3 itself and ran a harmless read-only query instead (the exact queries and timings
-are printed by the script). None reached the database.
-
-The split between "refused" and "declined" changes a little from run to run (the first run was 1 refused,
-4 declined). That is why the guardrails do not rely on the model behaving: their 50 unit tests feed dangerous
-Cypher to them directly.
+</details>
 
 ## At-risk model (machine learning)
 
@@ -702,26 +750,21 @@ these features cannot see). It is still useful as a ranking: the 50 papers with 
 retracted ones (32%, six times the 5% base rate), and the 197 papers that score at least 0.8 include 37 (19%).
 That is how the endpoint presents it: a hint for where to look first, labelled as a hypothesis.
 
-**The leak is gone.** With the old in-graph reference count, year + references alone reached ROC AUC 0.93 (found
-by Kenza in review). With the real count from OpenAlex they reach 0.662: the number of references helps a little
-(the year alone gives 0.61), but it no longer gives the answer away. Even that small gain should be read with care:
-our citing papers have more references than the retracted ones (median 40 vs 29), partly because of how we built
-the dataset (the more references a paper has, the more likely it is to cite one of our retracted papers and be
-picked as a citer). The graph features alone stay at 0.590, so the model is not simply recognising how the dataset
-was built.
-
 ### Known bias: the model can learn how the dataset was built
 
 Our dataset starts from retracted papers and adds the papers that cite them, so a paper's *position* can give its
 label away. Kenza caught this in review: the first version counted references from the `CITES` links inside our
 graph when `reference_count` was missing. Since we only loaded citations *to* retracted papers, every citing paper
 had at least one and almost no retracted paper had any. With only that count and the year, the model reached
-precision 0.89 and ROC AUC 0.93. We dropped that fallback.
+precision 0.89 and ROC AUC 0.93. We dropped that fallback: with the real count from OpenAlex, year + references
+reach 0.662 (the year alone gives 0.61), so the count helps a little but no longer gives the answer away. Even that
+gain is partly how we built the dataset: papers with more references are more likely to cite one of ours and be
+picked as citers (median 40 references vs 29 for the retracted papers).
 
 The same trap can hide in the graph features: a retracted paper is a cited hub, a citing paper is a leaf, and an
 uncited retracted paper has no neighbours at all. So training also scores each group of features on its own
 (`ablation`, printed by the command above). If the graph features alone scored close to 1.0, the model would mostly
-recognise the shape of our dataset, not what makes a paper risky.
+recognise the shape of our dataset, not what makes a paper risky. They score 0.590, so it does not.
 
 ## Quality: tests, lint and CI
 
@@ -778,6 +821,9 @@ Every change goes through a pull request reviewed by another team member, with a
 Who reviews whom: Lara reviews Charlotte, Kenza reviews Lara, and Charlotte reviews Kenza. The review comments,
 and the commits that answer them, are visible in each pull request.
 
+<details>
+<summary>All 33 pull requests, with author and reviewer</summary>
+
 | PR | What it adds | Author | Reviewer |
 | --- | --- | --- | --- |
 | [#1](https://github.com/CharlotteLeBihan18/Retraction-Contamination-Tracker/pull/1) | Placeholder files for every endpoint | Charlotte Le Bihan | Lara Normand |
@@ -814,6 +860,8 @@ and the commits that answer them, are visible in each pull request.
 | [#33](https://github.com/CharlotteLeBihan18/Retraction-Contamination-Tracker/pull/33) | README restructured: screenshots, evaluation tables, contribution stats, names in the diagram | Charlotte Le Bihan | Lara Normand |
 
 #29 was an automatic revert opened by mistake and closed without merging.
+
+</details>
 
 *To avoid Git conflicts, only Charlotte edits this file: each author writes their row in their pull request
 description, and Charlotte adds the rows together.*
