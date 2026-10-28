@@ -367,7 +367,7 @@ about. `min_size` hides very small communities, which would otherwise rank high 
 
 **What Louvain found in it.** 13 of those 14 retracted papers share the same author, and 9 to 11 of them share four
 more: they are **one research group's work**, on one topic (dental pulp and stem-cell-derived tooth cells),
-published in 2013–2015 and retracted for misconduct, falsified data or duplicated images. Louvain never saw the
+published in 2011–2016 and retracted mostly for misconduct, falsified data or duplicated images. Louvain never saw the
 authors or the topics, only the citations, and still isolated this group: papers that cite each other, plus the
 researchers who kept building on them. So the endpoint does more than show that communities exist: it points to
 the corners of the field where retracted work is concentrated, and where a reader should check their sources
@@ -808,21 +808,21 @@ What the project does not do (yet), in one place:
 
 ## Team and pull requests
 
-Contributions on `main`, counted before this pull request (91 commits, merge commits excluded). The pull request
+Contributions on `main` at the end of the project (105 commits, merge commits excluded). The pull request
 numbers link to each person's list on GitHub.
 
 | Member | Role | What they built | Commits | Merged PRs | Reviewed PRs |
 | --- | --- | --- | --- | --- | --- |
-| Charlotte Le Bihan (`CharlotteLeBihan18`) | Team lead, platform and graph algorithms | Docker, Nginx, Makefile, CI and tests, GDS setup, Zombie citations, Top spreaders (PageRank) and Communities (Louvain) endpoints, architecture diagram, README, demo notebook | 33 (36%) | [11](https://github.com/CharlotteLeBihan18/Retraction-Contamination-Tracker/pulls?q=is%3Apr+is%3Amerged+author%3ACharlotteLeBihan18) | [11](https://github.com/CharlotteLeBihan18/Retraction-Contamination-Tracker/pulls?q=is%3Apr+reviewed-by%3ACharlotteLeBihan18+-author%3ACharlotteLeBihan18) |
-| Kenza Gueddas (`kenza-gueddas`) | Data and graph model | Retraction Watch and OpenAlex download, loading into Neo4j, sample graph, Contamination and Exposure endpoints, index benchmark, graph model and anti-genericity appendix | 34 (37%) | [11](https://github.com/CharlotteLeBihan18/Retraction-Contamination-Tracker/pulls?q=is%3Apr+is%3Amerged+author%3Akenza-gueddas) | [8](https://github.com/CharlotteLeBihan18/Retraction-Contamination-Tracker/pulls?q=is%3Apr+reviewed-by%3Akenza-gueddas+-author%3Akenza-gueddas) |
-| Lara Normand (`Lara-Normand-Pro`) | AI and machine learning | Guardrails, Ask endpoint, Audit agent (LangGraph), evaluation, at-risk model and Risk endpoint | 24 (26%) | [8](https://github.com/CharlotteLeBihan18/Retraction-Contamination-Tracker/pulls?q=is%3Apr+is%3Amerged+author%3ALara-Normand-Pro) | [11](https://github.com/CharlotteLeBihan18/Retraction-Contamination-Tracker/pulls?q=is%3Apr+reviewed-by%3ALara-Normand-Pro+-author%3ALara-Normand-Pro) |
+| Charlotte Le Bihan (`CharlotteLeBihan18`) | Team lead, platform and graph algorithms | Docker, Nginx, Makefile, CI and tests, GDS setup, Zombie citations, Top spreaders (PageRank) and Communities (Louvain) endpoints, architecture diagram, README, demo notebook | 47 (45%) | [15](https://github.com/CharlotteLeBihan18/Retraction-Contamination-Tracker/pulls?q=is%3Apr+is%3Amerged+author%3ACharlotteLeBihan18) | [11](https://github.com/CharlotteLeBihan18/Retraction-Contamination-Tracker/pulls?q=is%3Apr+reviewed-by%3ACharlotteLeBihan18+-author%3ACharlotteLeBihan18) |
+| Kenza Gueddas (`kenza-gueddas`) | Data and graph model | Retraction Watch and OpenAlex download, loading into Neo4j, sample graph, Contamination and Exposure endpoints, index benchmark, graph model and anti-genericity appendix | 34 (32%) | [11](https://github.com/CharlotteLeBihan18/Retraction-Contamination-Tracker/pulls?q=is%3Apr+is%3Amerged+author%3Akenza-gueddas) | [8](https://github.com/CharlotteLeBihan18/Retraction-Contamination-Tracker/pulls?q=is%3Apr+reviewed-by%3Akenza-gueddas+-author%3Akenza-gueddas) |
+| Lara Normand (`Lara-Normand-Pro`) | AI and machine learning | Guardrails, Ask endpoint, Audit agent (LangGraph), evaluation, at-risk model and Risk endpoint | 24 (23%) | [8](https://github.com/CharlotteLeBihan18/Retraction-Contamination-Tracker/pulls?q=is%3Apr+is%3Amerged+author%3ALara-Normand-Pro) | [15](https://github.com/CharlotteLeBihan18/Retraction-Contamination-Tracker/pulls?q=is%3Apr+reviewed-by%3ALara-Normand-Pro+-author%3ALara-Normand-Pro) |
 
 Every change goes through a pull request reviewed by another team member, with at least 2 constructive comments.
 Who reviews whom: Lara reviews Charlotte, Kenza reviews Lara, and Charlotte reviews Kenza. The review comments,
 and the commits that answer them, are visible in each pull request.
 
 <details>
-<summary>All 34 pull requests, with author and reviewer</summary>
+<summary>All 35 pull requests, with author and reviewer</summary>
 
 | PR | What it adds | Author | Reviewer |
 | --- | --- | --- | --- |
@@ -857,8 +857,9 @@ and the commits that answer them, are visible in each pull request.
 | [#30](https://github.com/CharlotteLeBihan18/Retraction-Contamination-Tracker/pull/30) | Ask says "at least 100" when the row limit cuts the answer | Lara Normand | Kenza Gueddas |
 | [#31](https://github.com/CharlotteLeBihan18/Retraction-Contamination-Tracker/pull/31) | Demo notebook re-run on the final code | Charlotte Le Bihan | Lara Normand |
 | [#32](https://github.com/CharlotteLeBihan18/Retraction-Contamination-Tracker/pull/32) | `.mailmap`, so each person appears once in `git shortlog` | Charlotte Le Bihan | Lara Normand |
-| [#33](https://github.com/CharlotteLeBihan18/Retraction-Contamination-Tracker/pull/33) | README restructured: screenshots, evaluation tables, contribution stats, names in the diagram | Charlotte Le Bihan | Lara Normand |
-| [#34](https://github.com/CharlotteLeBihan18/Retraction-Contamination-Tracker/pull/34) | Real names instead of Person 1/2/3 in the file headers, outdated comments updated | Charlotte Le Bihan | Kenza Gueddas, Lara Normand |
+| [#33](https://github.com/CharlotteLeBihan18/Retraction-Contamination-Tracker/pull/33) | README restructured: screenshots, agent graph, optional LangSmith tracing, the Louvain finding, contribution stats, names in the diagram | Charlotte Le Bihan | Lara Normand |
+| [#34](https://github.com/CharlotteLeBihan18/Retraction-Contamination-Tracker/pull/34) | Real names instead of Person 1/2/3 in the file headers, outdated comments updated | Charlotte Le Bihan | Lara Normand |
+| [#35](https://github.com/CharlotteLeBihan18/Retraction-Contamination-Tracker/pull/35) | Notebook review: real-data counts, the Louvain finding, agent graph, model quality | Charlotte Le Bihan | Lara Normand |
 
 #29 was an automatic revert opened by mistake and closed without merging.
 
