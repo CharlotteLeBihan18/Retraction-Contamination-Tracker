@@ -224,9 +224,9 @@ The full version, with every property, an example on the sample graph and all ou
 ![Neo4j Browser: one retracted paper, its notices, its reason and 12 zombie citations](docs/screenshots/neo4j-zombie-citations.png)
 
 *Blue: the retracted paper. Red: 12 of the papers that cited it after its retraction (yellow `CITES` arrows).
-Green: its two retraction notices, one from Retraction Watch (dated 2007-02-01) and one from OpenAlex. Pink: the
-reason given by Retraction Watch. OpenAlex only says that a paper is retracted, with no date and no reason, so its
-notice has neither.*
+Green: its two retraction notices, one from Retraction Watch and one from OpenAlex. Pink: the reason given by
+Retraction Watch. OpenAlex only says that a paper is retracted, with no date and no reason, so its notice has
+neither.*
 
 <details>
 <summary>The query behind this picture</summary>
